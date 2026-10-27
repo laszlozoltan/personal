@@ -55,6 +55,11 @@ nav.menu ul ul{list-style:none;margin:0;padding:4px 0;position:absolute;left:0;t
 nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
 nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
 nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
+nav.menu li.sub a{padding-left:32px;font-size:13px}
+.gt{width:100%;border-collapse:collapse;font:14px/1.5 "Open Sans",sans-serif;margin:8px 0 18px}
+.gt th,.gt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.gt th{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+.tablewrap{overflow-x:auto}
 .burger{display:none}
 @media (max-width:700px){
   .masthead{padding:24px 16px 16px}
@@ -133,6 +138,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
       <li><a href="#research" data-t="m_research">Kutatás</a>
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
+          <li class="sub"><a href="#rozsagubacsok" data-t="tp1">Rózsagubacsok</a></li>
           <li><a href="#students" data-t="m_students">Szakdolgozóknak</a></li>
         </ul>
       </li>
@@ -156,7 +162,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
       <div class="widget">
         <h4 data-t="w_topics">Kutatási témák</h4>
         <ul>
-          <li><a href="#research" data-t="tp1">Rózsagubacsok</a></li>
+          <li><a href="#rozsagubacsok" data-t="tp1">Rózsagubacsok</a></li>
           <li><a href="#research" data-t="tp2">Akácmagdarazsak</a></li>
           <li><a href="#research" data-t="tp3">Magányos méhek</a></li>
           <li><a href="#research" data-t="tp4">Fémfürkészek és tájhasználat</a></li>
@@ -224,7 +230,7 @@ hu:{
 <h3>Ökológiai terepgyakorlat</h3><p>Terepi mintavételi módszerek és adatgyűjtés.</p>
 <h3>Térbeli adatok elemzése R-ben</h3><p>Doktori kurzus (BBTE Doktori Iskola).</p>`,
  research:`<h2>Kutatási témák</h2>
-<h3 class="topic">Rózsagubacsok</h3><p>A vadrózsák <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsai, parazitoidjaik és inkvilinusaik: a gubacs mérete, falvastagsága és kamraszáma hogyan alakítja a parazitoidok támadását és a hálózatok topológiáját. Ide tartozik a fajhatárok és a filogenetika molekuláris vizsgálata (COI, ITS2, matK, rbcL), a gubacs-mikrobiom és a laboratóriumi gubacsindukció is.</p>
+<h3 class="topic"><a href="#rozsagubacsok">Rózsagubacsok</a></h3><p>A vadrózsák <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsai, parazitoidjaik és inkvilinusaik: a gubacs mérete, falvastagsága és kamraszáma hogyan alakítja a parazitoidok támadását és a hálózatok topológiáját. Ide tartozik a fajhatárok és a filogenetika molekuláris vizsgálata (COI, ITS2, matK, rbcL), a gubacs-mikrobiom és a laboratóriumi gubacsindukció is.</p>
 <h3 class="topic">Akácmagdarazsak</h3><p>Az akác (<i>Robinia pseudoacacia</i>) magjaiban fejlődő fémfürkészek és parazitoidjaik.</p>
 <h3 class="topic">Magányos méhek</h3><p>A méhek sokféleségének csökkenése mögött álló tájhasználati, genetikai és járványtani tényezők.</p>
 <h3 class="topic">Fémfürkészek és tájhasználat</h3><p>Hogyan befolyásolja a tájhasználat intenzitása és a táj komplexitása a parazitoid közösségek összetételét és stabilitását.</p>`,
@@ -257,7 +263,7 @@ en:{
 <h3>Ecological field practice</h3><p>Field sampling methods and data collection.</p>
 <h3>Spatial data analysis in R</h3><p>Doctoral course (BBU Doctoral School).</p>`,
  research:`<h2>Research topics</h2>
-<h3 class="topic">Rose galls</h3><p><i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses, their parasitoids and inquilines: how gall size, wall thickness and chamber number shape parasitoid attack and network topology. This includes molecular work on species boundaries and phylogenies (COI, ITS2, matK, rbcL), gall microbiomes and gall induction under lab conditions.</p>
+<h3 class="topic"><a href="#rozsagubacsok">Rose galls</a></h3><p><i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses, their parasitoids and inquilines: how gall size, wall thickness and chamber number shape parasitoid attack and network topology. This includes molecular work on species boundaries and phylogenies (COI, ITS2, matK, rbcL), gall microbiomes and gall induction under lab conditions.</p>
 <h3 class="topic">Black locust seed wasps</h3><p>Chalcid wasps developing in black locust (<i>Robinia pseudoacacia</i>) seeds and their parasitoids.</p>
 <h3 class="topic">Solitary bees</h3><p>Land-use, genetic and epidemiological factors behind the decline of bee diversity.</p>
 <h3 class="topic">Chalcids and land use</h3><p>How land-use intensity and landscape complexity shape the composition and stability of parasitoid communities.</p>`,
@@ -290,7 +296,7 @@ ro:{
 <h3>Practică de teren ecologică</h3><p>Metode de eșantionare pe teren și colectarea datelor.</p>
 <h3>Analiza datelor spațiale în R</h3><p>Curs doctoral (Școala Doctorală, UBB).</p>`,
  research:`<h2>Teme de cercetare</h2>
-<h3 class="topic">Gale de trandafir</h3><p>Viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici, parazitoizii și inchilinii lor: cum influențează mărimea galei, grosimea peretelui și numărul de camere atacul parazitoizilor și topologia rețelelor. Include studii moleculare asupra limitelor de specie și filogeniei (COI, ITS2, matK, rbcL), microbiomul galelor și inducerea galelor în laborator.</p>
+<h3 class="topic"><a href="#rozsagubacsok">Gale de trandafir</a></h3><p>Viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici, parazitoizii și inchilinii lor: cum influențează mărimea galei, grosimea peretelui și numărul de camere atacul parazitoizilor și topologia rețelelor. Include studii moleculare asupra limitelor de specie și filogeniei (COI, ITS2, matK, rbcL), microbiomul galelor și inducerea galelor în laborator.</p>
 <h3 class="topic">Viespi ale semințelor de salcâm</h3><p>Calcidoide care se dezvoltă în semințele de salcâm (<i>Robinia pseudoacacia</i>) și parazitoizii lor.</p>
 <h3 class="topic">Albine solitare</h3><p>Factorii de utilizare a terenului, genetici și epidemiologici din spatele declinului diversității albinelor.</p>
 <h3 class="topic">Calcidoide și utilizarea terenului</h3><p>Cum influențează intensitatea utilizării terenului și complexitatea peisajului compoziția și stabilitatea comunităților de parazitoizi.</p>`,
@@ -304,7 +310,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","research","students","contact"];
+const PAGES = ["home","cv","publications","teaching","research","rozsagubacsok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -437,6 +443,55 @@ ${CV.map(sec=>`<h3 class="topic">${sec.h[lang]}</h3>${
 <p class="note" style="margin-top:24px">${L.pubs}</p>`;
 }
 
+
+/* ---------- Rose galls page ---------- */
+const SPP = [
+ ["Diplolepis rosae","borzas rózsagubacs","bedeguar gall (robin's pincushion)","gală de trandafir păroasă (bedeguar)","multi"],
+ ["Diplolepis mayri","tüskés rózsagubacs","spiny rose gall","gală de trandafir spinoasă","multi"],
+ ["Diplolepis spinosissimae","párnás rózsagubacs","cushion rose gall","gală de trandafir în formă de pernă","multi"],
+ ["Diplolepis fructuum","rózsa termésgubacs","rose hip gall","gală în fructul de trandafir","multi"],
+ ["Diplolepis nervosa","tüskés gyöngygubacs","spiked pea gall","gală sferică spinoasă","uni"],
+ ["Diplolepis eglanteriae","gyöngygubacs","smooth pea gall","gală sferică netedă","uni"]
+];
+const GL = {
+ hu:{crumb:'<a href="#research">Kutatási témák</a> › Rózsagubacsok', h:"Rózsagubacsok",
+  intro:'A rózsagubacsdarazsak (<i>Diplolepis</i> és <i>Liebelia</i> fajok) a gubacsdarázsfélék (Cynipidae) családjába tartozó hártyásszárnyúak, amelyek vadrózsákon (<i>Rosa</i> spp.) gubacsokat indukálnak. A Nyugat-Palearktikumból hat fajuk ismert; egy további faj, a <i>D. japonica</i>, Kelet-Ázsiában él.',
+  sp_h:"Fajok és gubacsaik", th:["Faj","Magyar név","Kamrák"], multi:"többkamrás", uni:"egykamrás",
+  sp_p:'Leggyakoribb a borzas felszínű gubacsot képző <i>D. rosae</i>. Ugyanazokon a gazdanövényeken élhet a tüskés gubacsú <i>D. mayri</i>. A <i>D. fructuum</i> Délkelet-Európában és Kis-Ázsiában fordul elő: a csipkebogyó magjaiban képez kamrákat, amitől a termés felreped. A <i>D. eglanteriae</i> sima, gyöngyszerű gubacsa sárga vagy piros is lehet.',
+  as_h:"A gubacsok közössége",
+  as_p:'A gubacsokban gazdag parazitoid közösség fejlődik, például <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> és <i>Stepanovia eurytomae</i>; ezek egy része egymást is támadja. Az inkvilin <i>Periclistus brandtii</i> és <i>P. caninae</i> maga nem indukál gubacsot, de lárvái további kamrákat hoznak létre a meglévő gubacsban.',
+  pubs_h:"Kapcsolódó közlemények"},
+ en:{crumb:'<a href="#research">Research topics</a> › Rose galls', h:"Rose galls",
+  intro:'Rose gall wasps (<i>Diplolepis</i> and <i>Liebelia</i> species) are Hymenoptera of the gall wasp family Cynipidae that induce galls on wild roses (<i>Rosa</i> spp.). Six species are known from the Western Palearctic; another, <i>D. japonica</i>, lives in East Asia.',
+  sp_h:"Species and their galls", th:["Species","Common name","Chambers"], multi:"multilocular", uni:"unilocular",
+  sp_p:'The most common is <i>D. rosae</i>, with its hairy gall. <i>D. mayri</i>, with a spiny gall, can occur on the same host plants. <i>D. fructuum</i> occurs in south-eastern Europe and Asia Minor: it forms chambers in the seeds of the rose hip, which splits the fruit open. The smooth, pea-like gall of <i>D. eglanteriae</i> may be yellow or red.',
+  as_h:"The gall community",
+  as_p:'A rich parasitoid community develops in the galls, including <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> and <i>Stepanovia eurytomae</i>; some of these also attack each other. The inquilines <i>Periclistus brandtii</i> and <i>P. caninae</i> do not induce galls themselves, but their larvae create extra chambers inside existing galls.',
+  pubs_h:"Related publications"},
+ ro:{crumb:'<a href="#research">Teme de cercetare</a> › Gale de trandafir', h:"Gale de trandafir",
+  intro:'Viespile galicole ale trandafirului (specii de <i>Diplolepis</i> și <i>Liebelia</i>) sunt himenoptere din familia Cynipidae care induc gale pe trandafirii sălbatici (<i>Rosa</i> spp.). Din Palearcticul de Vest sunt cunoscute șase specii; o altă specie, <i>D. japonica</i>, trăiește în Asia de Est.',
+  sp_h:"Specii și galele lor", th:["Specie","Denumire","Camere"], multi:"multiloculară", uni:"uniloculară",
+  sp_p:'Cea mai frecventă este <i>D. rosae</i>, cu gala sa păroasă. Pe aceleași plante gazdă poate apărea și <i>D. mayri</i>, cu gală spinoasă. <i>D. fructuum</i> apare în sud-estul Europei și în Asia Mică: formează camere în semințele măceșei, ceea ce face ca fructul să crape. Gala netedă, sferică, a speciei <i>D. eglanteriae</i> poate fi galbenă sau roșie.',
+  as_h:"Comunitatea galelor",
+  as_p:'În gale se dezvoltă o comunitate bogată de parazitoizi, de exemplu <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> și <i>Stepanovia eurytomae</i>; unii dintre aceștia se atacă și între ei. Inchilinii <i>Periclistus brandtii</i> și <i>P. caninae</i> nu induc gale, dar larvele lor formează camere suplimentare în galele existente.',
+  pubs_h:"Publicații legate de temă"}
+};
+function gallsPage(){
+  const g = GL[lang], col = {hu:1,en:2,ro:3}[lang];
+  const rel = SELECTED.filter(p=>/Diplolepis|gall/i.test(p.html));
+  return `<div class="crumb">${g.crumb}</div><h2>${g.h}</h2>
+<p>${g.intro}</p>
+<h3>${g.sp_h}</h3>
+<div class="tablewrap"><table class="gt"><thead><tr>${g.th.map(t=>`<th>${t}</th>`).join("")}</tr></thead><tbody>
+${SPP.map(r=>`<tr><td><i>${r[0]}</i></td><td>${r[col]}</td><td>${g[r[4]]}</td></tr>`).join("")}
+</tbody></table></div>
+<p>${g.sp_p}</p>
+<h3>${g.as_h}</h3>
+<p>${g.as_p}</p>
+<h3>${g.pubs_h}</h3>
+<ul class="pubs">${rel.map(p=>`<li><b>${p.y}</b> · ${p.html}${doiLink(p.doi)}</li>`).join("")}</ul>`;
+}
+
 function pubsPage(){
   const t = T[lang];
   return `<h2>${t.m_pubs}</h2>
@@ -452,7 +507,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
