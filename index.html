@@ -60,7 +60,8 @@ nav.menu li.sub a{padding-left:32px;font-size:13px}
 .gt th,.gt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 .gt th{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
 .tablewrap{overflow-x:auto}
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:6px 0 24px}
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 24px}
+@media (max-width:420px){.gal{gap:6px}.gal figcaption{font-size:11px}}
 .gal figure{margin:0}
 .gal a{display:block;line-height:0;border:1px solid var(--line);background:#fff}
 .gal img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
@@ -456,38 +457,7 @@ ${CV.map(sec=>`<h3 class="topic">${sec.h[lang]}</h3>${
 }
 
 
-/* ---------- Rose galls page ---------- */
-const SPP = [
- ["Diplolepis rosae","borzas rózsagubacs","bedeguar gall (robin's pincushion)","gală de trandafir păroasă (bedeguar)","multi"],
- ["Diplolepis mayri","tüskés rózsagubacs","spiny rose gall","gală de trandafir spinoasă","multi"],
- ["Diplolepis spinosissimae","párnás rózsagubacs","cushion rose gall","gală de trandafir în formă de pernă","multi"],
- ["Diplolepis fructuum","rózsa termésgubacs","rose hip gall","gală în fructul de trandafir","multi"],
- ["Diplolepis nervosa","tüskés gyöngygubacs","spiked pea gall","gală sferică spinoasă","uni"],
- ["Diplolepis eglanteriae","gyöngygubacs","smooth pea gall","gală sferică netedă","uni"]
-];
-const GL = {
- hu:{crumb:'<a href="#research">Kutatási témák</a> › Rózsagubacsok', h:"Rózsagubacsok",
-  intro:'A rózsagubacsdarazsak (<i>Diplolepis</i> és <i>Liebelia</i> fajok) a gubacsdarázsfélék (Cynipidae) családjába tartozó hártyásszárnyúak, amelyek vadrózsákon (<i>Rosa</i> spp.) gubacsokat indukálnak. A Nyugat-Palearktikumból hat fajuk ismert; egy további faj, a <i>D. japonica</i>, Kelet-Ázsiában él.',
-  sp_h:"Fajok és gubacsaik", th:["Faj","Magyar név","Kamrák"], multi:"többkamrás", uni:"egykamrás",
-  sp_p:'Leggyakoribb a borzas felszínű gubacsot képző <i>D. rosae</i>. Ugyanazokon a gazdanövényeken élhet a tüskés gubacsú <i>D. mayri</i>. A <i>D. fructuum</i> Délkelet-Európában és Kis-Ázsiában fordul elő: a csipkebogyó magjaiban képez kamrákat, amitől a termés felreped. A <i>D. eglanteriae</i> sima, gyöngyszerű gubacsa sárga vagy piros is lehet.',
-  as_h:"A gubacsok közössége",
-  as_p:'A gubacsokban gazdag parazitoid közösség fejlődik, például <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> és <i>Stepanovia eurytomae</i>; ezek egy része egymást is támadja. Az inkvilin <i>Periclistus brandtii</i> és <i>P. caninae</i> maga nem indukál gubacsot, de lárvái további kamrákat hoznak létre a meglévő gubacsban.',
-  pubs_h:"Kapcsolódó közlemények"},
- en:{crumb:'<a href="#research">Research topics</a> › Rose galls', h:"Rose galls",
-  intro:'Rose gall wasps (<i>Diplolepis</i> and <i>Liebelia</i> species) are Hymenoptera of the gall wasp family Cynipidae that induce galls on wild roses (<i>Rosa</i> spp.). Six species are known from the Western Palearctic; another, <i>D. japonica</i>, lives in East Asia.',
-  sp_h:"Species and their galls", th:["Species","Common name","Chambers"], multi:"multilocular", uni:"unilocular",
-  sp_p:'The most common is <i>D. rosae</i>, with its hairy gall. <i>D. mayri</i>, with a spiny gall, can occur on the same host plants. <i>D. fructuum</i> occurs in south-eastern Europe and Asia Minor: it forms chambers in the seeds of the rose hip, which splits the fruit open. The smooth, pea-like gall of <i>D. eglanteriae</i> may be yellow or red.',
-  as_h:"The gall community",
-  as_p:'A rich parasitoid community develops in the galls, including <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> and <i>Stepanovia eurytomae</i>; some of these also attack each other. The inquilines <i>Periclistus brandtii</i> and <i>P. caninae</i> do not induce galls themselves, but their larvae create extra chambers inside existing galls.',
-  pubs_h:"Related publications"},
- ro:{crumb:'<a href="#research">Teme de cercetare</a> › Gale de trandafir', h:"Gale de trandafir",
-  intro:'Viespile galicole ale trandafirului (specii de <i>Diplolepis</i> și <i>Liebelia</i>) sunt himenoptere din familia Cynipidae care induc gale pe trandafirii sălbatici (<i>Rosa</i> spp.). Din Palearcticul de Vest sunt cunoscute șase specii; o altă specie, <i>D. japonica</i>, trăiește în Asia de Est.',
-  sp_h:"Specii și galele lor", th:["Specie","Denumire","Camere"], multi:"multiloculară", uni:"uniloculară",
-  sp_p:'Cea mai frecventă este <i>D. rosae</i>, cu gala sa păroasă. Pe aceleași plante gazdă poate apărea și <i>D. mayri</i>, cu gală spinoasă. <i>D. fructuum</i> apare în sud-estul Europei și în Asia Mică: formează camere în semințele măceșei, ceea ce face ca fructul să crape. Gala netedă, sferică, a speciei <i>D. eglanteriae</i> poate fi galbenă sau roșie.',
-  as_h:"Comunitatea galelor",
-  as_p:'În gale se dezvoltă o comunitate bogată de parazitoizi, de exemplu <i>Torymus bedeguaris</i>, <i>Glyphomerus stigma</i>, <i>Pteromalus bedeguaris</i>, <i>Orthopelma mediator</i>, <i>Exeristes roborator</i> și <i>Stepanovia eurytomae</i>; unii dintre aceștia se atacă și între ei. Inchilinii <i>Periclistus brandtii</i> și <i>P. caninae</i> nu induc gale, dar larvele lor formează camere suplimentare în galele existente.',
-  pubs_h:"Publicații legate de temă"}
-};
+/* ---------- Rose galls page (text: László Zoltán) ---------- */
 const PH = {
  gall:{hu:"gubacs",en:"gall",ro:"gală"}, fem:{hu:"nőstény",en:"female",ro:"femelă"},
  exit:{hu:"gubacs kirepülőnyílással",en:"gall with exit hole",ro:"gală cu orificiu de ieșire"}
@@ -496,39 +466,71 @@ const GAL = {
  galls1:[["diplolepis_rosae_gall","Diplolepis rosae","gall"],["diplolepis_mayri_gall","Diplolepis mayri","gall"]],
  galls2:[["diplolepis_spinosissimae_gall","Diplolepis spinosissimae","gall"],["diplolepis_nervosa_gall","Diplolepis nervosa","gall"],["diplolepis_eglanteriae_gall","Diplolepis eglanteriae","gall"]],
  par:[["pteromalus_bedeguaris_female","Pteromalus bedeguaris","fem"],["orthopelma_mediator_female","Orthopelma mediator","fem"],["exeristes_roborator_female","Exeristes roborator","fem"]],
- inq:[["periclistus_brandtii","Periclistus brandtii",""],["diplolepis_spinosissimae_female","Diplolepis spinosissimae","fem"],["stepanovia_eurytomae_female","Stepanovia eurytomae","fem"]],
+ inq:[["periclistus_brandtii","Periclistus brandtii","fem"],["diplolepis_spinosissimae_female","Diplolepis spinosissimae","fem"],["stepanovia_eurytomae_female","Stepanovia eurytomae","fem"]],
  nerv:[["diplolepis_nervosa_female","Diplolepis nervosa","fem"],["diplolepis_nervosa_gall_exit","Diplolepis nervosa","exit"],["diplolepis_japonica_female","Diplolepis japonica","fem"]],
  egl:[["diplolepis_eglanteriae_female","Diplolepis eglanteriae","fem"],["diplolepis_eglanteriae_gall_exit","Diplolepis eglanteriae","exit"]]
 };
-const ADULTS = {hu:"Imágók és kirepült gubacsok", en:"Adults and emerged galls", ro:"Adulți și gale părăsite"};
-function gal(key){
-  return `<div class="gal">${GAL[key].map(([f,sp,k])=>{
+function gal(key, stack){
+  return `<div class="gal${stack?" stack":""}">${GAL[key].map(([f,sp,k])=>{
     const cap = `<i>${sp}</i>${k?" – "+PH[k][lang]:""}`;
-    const cls = /gall/.test(f)&&!/exit/.test(f) ? "" : ' class="wasp"';
+    const cls = /_gall$/.test(f) ? "" : ' class="wasp"';
     return `<figure><a href="images/${f}.jpg" data-cap="${esc(sp)}${k?" – "+PH[k][lang]:""}"><img${cls} src="images/${f}.jpg" alt="${esc(sp)}" loading="lazy"></a><figcaption>${cap}</figcaption></figure>`;
   }).join("")}</div>`;
 }
+const D = s => `<i>${s}</i>`;
+const GT = {
+hu:{crumb:'<a href="#research">Kutatási témák</a> › Rózsagubacsok', h:"Rózsagubacsok", pubs_h:"Kapcsolódó közlemények", p:[
+`A rózsagubacsdarazsak (${D("Diplolepis")} sp. és ${D("Liebelia")} sp.) hártyásszárnyú rovarok, rendszertanilag a gubacsdarazsak (Hymenoptera: Cynipoidea: Cynipidae) családjába tartoznak. Különböző vadon élő rózsafajokon okoznak gubacsokat. A nyugat-palearktikumban 6 fajukat ismerjük. Ezek közül leggyakrabban a ${D("Diplolepis rosae")} gubacsaival találkozhatunk. Tekintettel a felszíni struktúrájára nyugodt lelkiismerettel nevezhetjük a fajt magyarul borzas rózsagubacsnak. A hozzá hasonló, azonban felszíni struktúrájában tőle jelentősen eltérő ${D("D. mayri")} ugyanazokon a gazdaegyedeken is előfordulhat. Ez utóbbi faj gubacsainak felszínét tüskék borítják, ezért nevezhetjük őt tüskés rózsagubacsnak.`,
+`Egyéb rózsagubacsdarázs fajok a ${D("D. spinosissimae")}, melyet tömlő vagy párnás gubacsszerkezete alapján párnás rózsagubacsnak is nevezhetünk. Egy másik, rózsagubacsot okozó faj a ${D("D. nervosa")}, melynek golyó vagy gyöngy alakú gubacsai felszínén széles alapú tövisek vagy apró rücskök találhatók. Ezért találó esetében a tüskés gyöngygubacs elnevezés. A ${D("D. eglanteriae")} gubacsa szintén golyó- vagy gyöngyszerű, felszíne sosem rücskös vagy tövises, színe lehet sárga vagy piros. Előbbi tulajdonságai alapján gyöngygubacsnak nevezhetjük. A ${D("D. fructuum")} faj délkelet-európai és kis-ázsiai elterjedésű, Törökországban és a Fekete-tenger keleti partján lehet vele találkozni. Az áltermésben található magvakban képződnek a kamrák, melyek növekedésük következtében szétfeszítik az áltermést, mintegy kifordítva annak belsejét. Esetében a rózsa termésgubacsa elnevezés találó.`,
+`A rózsagubacsokat a kamrák száma alapján két csoportba sorolhatjuk: egykamrás gubacsokra, illetve többkamrás gubacsokra. Jellegzetesen egykamrás gubacsokat okoz a ${D("D. nervosa")} és a ${D("D. eglanteriae")}. Többkamrás gubacsokat okoznak a ${D("D. spinosissimae")}, ${D("D. rosae")}, ${D("D. mayri")} és a ${D("D. fructuum")}.`,
+`A rózsagubacsokban nem csupán a rózsagubacsdarázs lárvája, hanem több parazitoid faj lárvája is fejlődhet. Ezek lárvái elsődlegesen a rózsagubacsdarázs lárváinak ragadozói, azonban egymás ragadozói is lehetnek. Ilyen pl. a ${D("Torymus bedeguaris")} vagy a ${D("Glyphomerus stigma")} is.`,
+`Más parazitoid fajok a közösségből: ${D("Pteromalus bedeguaris")} (nőstény, alább – bal), ${D("Orthopelma mediator")} (nőstény, alább – középen), ${D("Exeristes roborator")} (nőstény, alább – jobb).`,
+`A parazitoidokon túl a közösségben más, a gubacsdarazsak családsorozatába tartozó ún. társbérlő faj is előfordul, ez a ${D("Periclistus brandtii")} (nősténye alább balra). A társbérlő faj gubacsképzési képességei csupán arra korlátozódnak, hogy egy, már beindult gubacsképződést eltérítsen, ugyanis a lárvái a már meglévő kamrákban újakat hoznak létre. Egy gubacsdarázs-kamrában akár 5–6 kisebb kamra is kifejlődhet.`,
+`A párnás rózsagubacsdarázs (${D("D. spinosissimae")}) (nősténye látható feljebb középen) gubacsaiban úgyszintén nem csak a gubacsokozó lárvái, hanem különböző parazitoid fajok lárvái is kifejlődhetnek. Hasonlóképpen a párnás rózsagubacshoz a gyöngygubacsdarázs (${D("D. eglanteriae")}) gubacsaiban is jelen vannak különböző parazitoid fajok, sőt az egyik társbérlő faj, a ${D("Periclistus caninae")} is előfordulhat apró kamráiban. Az egyik legkisebb testmérettel rendelkező faj a közösségben a ${D("Stepanovia eurytomae")} karcsú fémfürkész (nősténye látható feljebb jobbra), amely általában tömegesen táplálkozik a gazdalárvákban.`,
+`A tüskés gyöngygubacsdarázs (${D("Diplolepis nervosa")}) gubacsaiban (nősténye feljebb baloldalt, mellette gubacsa) is fejlődhetnek parazitoidok (pl. a ${D("Torymus microstigma")}). A ${D("Diplolepis japonica")} (nősténye feljebb jobbra) keleti elterjedésű faj, előfordul Japánban, Kína keleti partvidékén és az Oroszországi Föderáció Primorszkij vidékén.`,
+`A gyöngygubacsdarázs (${D("D. eglanteriae")}) angol neve „smooth rose pea gall”, gubacsai abban térnek el a tüskés gyöngygubacsoktól, hogy felszínük tüskék nélküli, sima; azonban időnként a sima felszínt barázdák ráncolhatják.`]},
+en:{crumb:'<a href="#research">Research topics</a> › Rose galls', h:"Rose galls", pubs_h:"Related publications", p:[
+`Rose gall wasps (${D("Diplolepis")} sp. and ${D("Liebelia")} sp.) are hymenopteran insects belonging to the gall wasp family (Hymenoptera: Cynipoidea: Cynipidae). They induce galls on various wild rose species. Six species are known from the Western Palearctic. Of these, the galls of ${D("Diplolepis rosae")} are the ones we meet most often; given its surface structure, its Hungarian name, “hairy rose gall”, is well deserved (in English it is known as the bedeguar gall or robin's pincushion). The similar ${D("D. mayri")}, whose gall surface differs markedly, can occur on the same host plants. Its galls are covered with spines, hence the name “spiny rose gall”.`,
+`Other rose gall wasp species include ${D("D. spinosissimae")}, which, based on its blister- or cushion-like gall structure, may be called the cushion rose gall. Another rose gall inducer is ${D("D. nervosa")}, whose spherical or pea-shaped galls bear broad-based spines or small warts on their surface – hence the name “spiked pea gall”. The gall of ${D("D. eglanteriae")} is also spherical or pea-like, but its surface is never warty or spiny, and it may be yellow or red; for these traits it is called the pea gall. ${D("D. fructuum")} has a south-east European and Asia Minor distribution and can be found in Turkey and on the eastern coast of the Black Sea. Its chambers form in the seeds inside the rose hip, and as they grow they split the hip open, as if turning its inside out – hence the name “rose hip gall”.`,
+`Rose galls can be divided into two groups by the number of chambers: unilocular and multilocular galls. ${D("D. nervosa")} and ${D("D. eglanteriae")} typically induce unilocular galls, while ${D("D. spinosissimae")}, ${D("D. rosae")}, ${D("D. mayri")} and ${D("D. fructuum")} induce multilocular galls.`,
+`Rose galls host not only the larvae of the gall wasp but also those of several parasitoid species. Their larvae are primarily predators of the gall wasp larvae, but they can also prey on each other – for example ${D("Torymus bedeguaris")} or ${D("Glyphomerus stigma")}.`,
+`Other parasitoid species of the community: ${D("Pteromalus bedeguaris")} (female, below – left), ${D("Orthopelma mediator")} (female, below – middle), ${D("Exeristes roborator")} (female, below – right).`,
+`Besides parasitoids, the community also includes a so-called inquiline belonging to the gall wasp superfamily: ${D("Periclistus brandtii")} (female below, left). The inquiline's gall-inducing ability is limited to diverting gall formation that has already started: its larvae create new chambers within the existing ones. As many as 5–6 smaller chambers can develop inside a single gall wasp chamber.`,
+`In the galls of the cushion rose gall wasp (${D("D. spinosissimae")}) (female shown above, middle), too, not only the larvae of the gall inducer but also those of various parasitoid species can develop. Similarly, the galls of the pea gall wasp (${D("D. eglanteriae")}) host various parasitoids, and even an inquiline, ${D("Periclistus caninae")}, may occur in their small chambers. One of the smallest species in the community is the slender chalcid ${D("Stepanovia eurytomae")} (female shown above, right), which usually feeds gregariously on the host larvae.`,
+`Parasitoids (e.g. ${D("Torymus microstigma")}) can also develop in the galls of the spiked pea gall wasp (${D("Diplolepis nervosa")}) (female above left, its gall next to it). ${D("Diplolepis japonica")} (female above right) has an eastern distribution: it occurs in Japan, on the eastern coast of China and in Primorsky Krai of the Russian Federation.`,
+`The English name of the pea gall wasp's (${D("D. eglanteriae")}) gall is “smooth rose pea gall”. Its galls differ from the spiked pea galls in having a smooth surface without spines, although the smooth surface can sometimes be wrinkled by furrows.`]},
+ro:{crumb:'<a href="#research">Teme de cercetare</a> › Gale de trandafir', h:"Gale de trandafir", pubs_h:"Publicații legate de temă", p:[
+`Viespile galicole ale trandafirului (${D("Diplolepis")} sp. și ${D("Liebelia")} sp.) sunt insecte himenoptere care aparțin familiei viespilor galicole (Hymenoptera: Cynipoidea: Cynipidae). Ele induc gale pe diferite specii de trandafiri sălbatici. În Palearcticul de Vest cunoaștem 6 specii. Dintre acestea, cel mai des întâlnim galele speciei ${D("Diplolepis rosae")}, pe care, după structura suprafeței, în maghiară o numim „gala păroasă a trandafirului”. Specia asemănătoare ${D("D. mayri")}, cu o suprafață a galei net diferită, poate apărea chiar pe aceleași plante gazdă. Galele acesteia sunt acoperite cu spini, de aceea o putem numi „gala spinoasă a trandafirului”.`,
+`Alte specii de viespi galicole ale trandafirului sunt ${D("D. spinosissimae")}, care, după structura galei sale în formă de bășică sau pernă, poate fi numită „gala-pernă a trandafirului”. O altă specie care induce gale pe trandafir este ${D("D. nervosa")}, ale cărei gale sferice sau în formă de perlă au pe suprafață spini cu bază lată sau mici negi – de aici denumirea de „gală-perlă spinoasă”. Gala speciei ${D("D. eglanteriae")} este tot sferică sau în formă de perlă, dar suprafața ei nu este niciodată verucoasă sau spinoasă, iar culoarea poate fi galbenă sau roșie; după aceste trăsături o numim „gală-perlă”. Specia ${D("D. fructuum")} are o răspândire sud-est europeană și în Asia Mică, putând fi întâlnită în Turcia și pe coasta estică a Mării Negre. Camerele se formează în semințele din interiorul măceșei, iar prin creșterea lor despică fructul, întorcându-i parcă interiorul pe dos – de aici denumirea de „gala fructului de trandafir”.`,
+`După numărul de camere, galele de trandafir pot fi împărțite în două grupe: gale uniloculare și gale multiloculare. ${D("D. nervosa")} și ${D("D. eglanteriae")} induc de regulă gale uniloculare, iar ${D("D. spinosissimae")}, ${D("D. rosae")}, ${D("D. mayri")} și ${D("D. fructuum")} induc gale multiloculare.`,
+`În galele de trandafir se pot dezvolta nu doar larvele viespii galicole, ci și larvele mai multor specii de parazitoizi. Larvele acestora sunt în primul rând prădători ai larvelor viespii galicole, dar pot fi și prădători unele ale altora – de exemplu ${D("Torymus bedeguaris")} sau ${D("Glyphomerus stigma")}.`,
+`Alte specii de parazitoizi din comunitate: ${D("Pteromalus bedeguaris")} (femelă, mai jos – stânga), ${D("Orthopelma mediator")} (femelă, mai jos – mijloc), ${D("Exeristes roborator")} (femelă, mai jos – dreapta).`,
+`Pe lângă parazitoizi, în comunitate apare și o specie așa-numită inchilină, care aparține suprafamiliei viespilor galicole: ${D("Periclistus brandtii")} (femela mai jos, stânga). Capacitatea inchilinului de a induce gale se limitează la devierea unei gale deja în formare: larvele sale formează camere noi în cele existente. Într-o singură cameră a viespii galicole se pot dezvolta chiar 5–6 camere mai mici.`,
+`Și în galele viespii ${D("D. spinosissimae")} (femela este prezentată mai sus, la mijloc) se pot dezvolta, pe lângă larvele inductorului de gală, și larvele diferitelor specii de parazitoizi. La fel, în galele speciei ${D("D. eglanteriae")} sunt prezente diferite specii de parazitoizi, iar în camerele lor mici poate apărea chiar și un inchilin, ${D("Periclistus caninae")}. Una dintre cele mai mici specii din comunitate este calcidoidul zvelt ${D("Stepanovia eurytomae")} (femela este prezentată mai sus, dreapta), care se hrănește de obicei gregar în larvele gazdă.`,
+`Și în galele speciei ${D("Diplolepis nervosa")} (femela mai sus, stânga, alături gala ei) se pot dezvolta parazitoizi (de ex. ${D("Torymus microstigma")}). ${D("Diplolepis japonica")} (femela mai sus, dreapta) are o răspândire estică: apare în Japonia, pe coasta estică a Chinei și în ținutul Primorie al Federației Ruse.`,
+`Denumirea engleză a galei speciei ${D("D. eglanteriae")} este „smooth rose pea gall”. Galele sale se deosebesc de galele-perlă spinoase prin suprafața netedă, fără spini, deși suprafața netedă poate fi uneori brăzdată de șanțuri.`]}
+};
 function gallsPage(){
-  const g = GL[lang], col = {hu:1,en:2,ro:3}[lang];
-  const rel = SELECTED.filter(p=>/Diplolepis|gall/i.test(p.html));
+  const g = GT[lang], p = g.p;
+  const rel = SELECTED.filter(x=>/Diplolepis|gall/i.test(x.html));
   return `<div class="crumb">${g.crumb}</div><h2>${g.h}</h2>
-<p>${g.intro}</p>
+<p>${p[0]}</p>
 ${gal("galls1")}
-<h3>${g.sp_h}</h3>
-<div class="tablewrap"><table class="gt"><thead><tr>${g.th.map(t=>`<th>${t}</th>`).join("")}</tr></thead><tbody>
-${SPP.map(r=>`<tr><td><i>${r[0]}</i></td><td>${r[col]}</td><td>${g[r[4]]}</td></tr>`).join("")}
-</tbody></table></div>
-<p>${g.sp_p}</p>
+<p>${p[1]}</p>
 ${gal("galls2")}
-<h3>${g.as_h}</h3>
-<p>${g.as_p}</p>
+<p>${p[2]}</p>
+<p>${p[3]}</p>
+<p>${p[4]}</p>
 ${gal("par")}
+<p>${p[5]}</p>
 ${gal("inq")}
-<h3>${ADULTS[lang]}</h3>
+<p>${p[6]}</p>
 ${gal("nerv")}
+<p>${p[7]}</p>
+<p>${p[8]}</p>
 ${gal("egl")}
 <h3>${g.pubs_h}</h3>
-<ul class="pubs">${rel.map(p=>`<li><b>${p.y}</b> · ${p.html}${doiLink(p.doi)}</li>`).join("")}</ul>`;
+<ul class="pubs">${rel.map(x=>`<li><b>${x.y}</b> · ${x.html}${doiLink(x.doi)}</li>`).join("")}</ul>`;
 }
 /* lightbox */
 document.addEventListener("click", e=>{
