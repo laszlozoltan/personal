@@ -150,6 +150,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
           <li class="sub"><a href="#rozsagubacsok" data-t="tp1">Rózsagubacsok</a></li>
+          <li class="sub"><a href="#szitakotok" data-t="tp5">Szitakötők</a></li>
           <li><a href="#students" data-t="m_students">Szakdolgozóknak</a></li>
         </ul>
       </li>
@@ -177,6 +178,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
           <li><a href="#research" data-t="tp2">Akácmagdarazsak</a></li>
           <li><a href="#research" data-t="tp3">Magányos méhek</a></li>
           <li><a href="#research" data-t="tp4">Fémfürkészek és tájhasználat</a></li>
+          <li><a href="#szitakotok" data-t="tp5">Szitakötők</a></li>
         </ul>
       </div>
       <div class="widget">
@@ -205,6 +207,7 @@ const SELECTED = [
  {y:2024,html:'<span class="me">László Z.</span>, Szilágyi B., Macalik B., Biró M., Iordache C.T., Nicula M., Podar D. <span class="ti">Successful gall induction on wild roses by gall wasps under lab conditions.</span> <span class="jr">Ecological Entomology</span>.',doi:'10.1111/een.13366'},
  {y:2021,html:'<span class="me">László Z.</span>, Lakatos K.T., Dénes A.-L. <span class="ti">A new species of <i>Mesopolobus</i> (Hymenoptera, Pteromalidae) from black locust crops.</span> <span class="jr">European Journal of Taxonomy</span> 740: 118–137.',doi:'10.5852/ejt.2021.740.1285'},
  {y:2020,html:'Pujade-Villar J., Wang Y., Zhang W., Mata-Casanova N., Lobato-Vila I., Dénes A.-L., <span class="me">László Z.</span> <span class="ti">A new <i>Diplolepis</i> Geoffroy (Hymenoptera, Cynipidae, Diplolepidini) species from China: a rare example of a rose gall-inducer of economic significance.</span> <span class="jr">ZooKeys</span> 904: 131–146.',doi:'10.3897/zookeys.904.46547'},
+ {y:2019,html:'Nagy H.B., <span class="me">László Z.</span>, Szabó F., Szőcs L., Dévai G., Tóthmérész B. <span class="ti">Landscape-scale terrestrial factors are also vital in shaping Odonata assemblages of watercourses.</span> <span class="jr">Scientific Reports</span> 9: 18196.',doi:'10.1038/s41598-019-54628-7'},
  {y:2018,html:'<span class="me">László Z.</span>, Rákosy L., Tóthmérész B. <span class="ti">The simpler the better: when decreasing landscape complexity increases community stability.</span> <span class="jr">Ecological Indicators</span> 84: 828–836.',doi:'10.1016/j.ecolind.2017.09.054'},
  {y:2017,html:'<span class="me">László Z.</span> <span class="ti">A study on <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) and its community</span> [in Hungarian, English summary]. <span class="jr">Presa Universitară Clujeană</span>, 108 pp. <a href="http://www.editura.ubbcluj.ro/bd/ebooks/pdf/2067.pdf">PDF</a>'},
  {y:2014,html:'<span class="me">László Z.</span>, Sólyom K., Prázsmári H., Tóthmérész B., Barta Z. <span class="ti">Predation on rose galls: parasitoids and predators determine gall size through directional selection.</span> <span class="jr">PLoS ONE</span> 9(6): e99806.',doi:'10.1371/journal.pone.0099806'},
@@ -225,7 +228,7 @@ hu:{
  m_home:"Főoldal", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
- tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat",
+ tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
  foot:"A közleménylista az ORCID-ból frissül.", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
  n:"{n} közlemény az ORCID-on.", sel:"Válogatott közlemények", all:"Összes közlemény (ORCID)", filter:"Szűrés cím, folyóirat vagy év szerint…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
@@ -246,6 +249,7 @@ hu:{
 <h3 class="topic"><a href="#rozsagubacsok">Rózsagubacsok</a></h3><p>A vadrózsák <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsai, parazitoidjaik és inkvilinusaik: a gubacs mérete, falvastagsága és kamraszáma hogyan alakítja a parazitoidok támadását és a hálózatok topológiáját. Ide tartozik a fajhatárok és a filogenetika molekuláris vizsgálata (COI, ITS2, matK, rbcL), a gubacs-mikrobiom és a laboratóriumi gubacsindukció is.</p>
 <h3 class="topic">Akácmagdarazsak</h3><p>Az akác (<i>Robinia pseudoacacia</i>) magjaiban fejlődő fémfürkészek és parazitoidjaik.</p>
 <h3 class="topic">Magányos méhek</h3><p>A méhek sokféleségének csökkenése mögött álló tájhasználati, genetikai és járványtani tényezők.</p>
+<h3 class="topic"><a href="#szitakotok">Szitakötők</a></h3><p>Vízfolyások szitakötő-együttesei (Odonata) és az őket alakító helyi és tájléptékű tényezők.</p>
 <h3 class="topic">Fémfürkészek és tájhasználat</h3><p>Hogyan befolyásolja a tájhasználat intenzitása és a táj komplexitása a parazitoid közösségek összetételét és stabilitását.</p>`,
  students:`<h2>Szakdolgozóknak</h2>
 <p>Alapképzési, mesteri és doktori dolgozatok témavezetését vállalom a fenti kutatási témákban. Ha érdekel valamelyik, írj e-mailt.</p>
@@ -258,7 +262,7 @@ en:{
  m_home:"Home", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
- tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use",
+ tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
  foot:"Publication list updates from ORCID.", loading:"Loading…", err:"Could not load the list right now – full record on ",
  n:"{n} works listed on ORCID.", sel:"Selected publications", all:"All publications (ORCID)", filter:"Filter by title, journal or year…",
  home:`<h2>Zoltán László</h2>${PORTRAIT}
@@ -279,6 +283,7 @@ en:{
 <h3 class="topic"><a href="#rozsagubacsok">Rose galls</a></h3><p><i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses, their parasitoids and inquilines: how gall size, wall thickness and chamber number shape parasitoid attack and network topology. This includes molecular work on species boundaries and phylogenies (COI, ITS2, matK, rbcL), gall microbiomes and gall induction under lab conditions.</p>
 <h3 class="topic">Black locust seed wasps</h3><p>Chalcid wasps developing in black locust (<i>Robinia pseudoacacia</i>) seeds and their parasitoids.</p>
 <h3 class="topic">Solitary bees</h3><p>Land-use, genetic and epidemiological factors behind the decline of bee diversity.</p>
+<h3 class="topic"><a href="#szitakotok">Dragonflies and damselflies</a></h3><p>Odonata assemblages of watercourses and the local and landscape-scale factors that shape them.</p>
 <h3 class="topic">Chalcids and land use</h3><p>How land-use intensity and landscape complexity shape the composition and stability of parasitoid communities.</p>`,
  students:`<h2>For thesis students</h2>
 <p>I supervise BSc, MSc and PhD theses on the research topics above. If one interests you, send me an email.</p>
@@ -291,7 +296,7 @@ ro:{
  m_home:"Acasă", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
- tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului",
+ tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
  foot:"Lista de publicații se actualizează din ORCID.", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
  n:"{n} lucrări listate pe ORCID.", sel:"Publicații selectate", all:"Toate publicațiile (ORCID)", filter:"Filtrează după titlu, revistă sau an…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
@@ -312,6 +317,7 @@ ro:{
 <h3 class="topic"><a href="#rozsagubacsok">Gale de trandafir</a></h3><p>Viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici, parazitoizii și inchilinii lor: cum influențează mărimea galei, grosimea peretelui și numărul de camere atacul parazitoizilor și topologia rețelelor. Include studii moleculare asupra limitelor de specie și filogeniei (COI, ITS2, matK, rbcL), microbiomul galelor și inducerea galelor în laborator.</p>
 <h3 class="topic">Viespi ale semințelor de salcâm</h3><p>Calcidoide care se dezvoltă în semințele de salcâm (<i>Robinia pseudoacacia</i>) și parazitoizii lor.</p>
 <h3 class="topic">Albine solitare</h3><p>Factorii de utilizare a terenului, genetici și epidemiologici din spatele declinului diversității albinelor.</p>
+<h3 class="topic"><a href="#szitakotok">Odonate</a></h3><p>Comunitățile de odonate ale cursurilor de apă și factorii locali și de peisaj care le influențează.</p>
 <h3 class="topic">Calcidoide și utilizarea terenului</h3><p>Cum influențează intensitatea utilizării terenului și complexitatea peisajului compoziția și stabilitatea comunităților de parazitoizi.</p>`,
  students:`<h2>Pentru studenți</h2>
 <p>Coordonez lucrări de licență, disertații și teze de doctorat pe temele de cercetare de mai sus. Dacă te interesează una dintre ele, scrie-mi un e-mail.</p>
@@ -323,7 +329,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","research","rozsagubacsok","students","contact"];
+const PAGES = ["home","cv","publications","teaching","research","rozsagubacsok","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -532,6 +538,42 @@ ${gal("egl")}
 <h3>${g.pubs_h}</h3>
 <ul class="pubs">${rel.map(x=>`<li><b>${x.y}</b> · ${x.html}${doiLink(x.doi)}</li>`).join("")}</ul>`;
 }
+
+/* ---------- Odonata page ---------- */
+const OT = {
+hu:{crumb:'<a href="#research">Kutatási témák</a> › Szitakötők', h:"Szitakötők", pubs_h:"Kapcsolódó közlemények", h1:`A mocsári szitakötő (<i>Libellula fulva</i>) hímjeinek viselkedése`, beh:`Egy ötéves vizsgálatban azt követtük, hogyan hat a populációméret és az egyedsűrűség a mocsári szitakötő hímjeinek viselkedésére. Vizsgáltuk a hímek helyhűségét, párzási sikerét és szaporodási stratégiáit, valamint a kondíció hatását a stressztűrésre.`, h2:`Vízfolyások szitakötő-együttesei és a táj`, p:[
+`A szitakötők (Odonata) – az egyenlőszárnyú szitakötők (Zygoptera) és a különszárnyú szitakötők (Anisoptera) – lárvái vízben fejlődnek, a kifejlett egyedek viszont a vízpart menti szárazföldi élőhelyeket is használják. Ezért az együtteseiket nem csak a víz és a part állapota, hanem a környező táj is befolyásolhatja.`,
+`Kutatásunkban Északkelet-Magyarország és Északnyugat-Románia 11 síkvidéki vízfolyásán vizsgáltuk a szitakötő-együtteseket két aszályos évben. Májustól szeptemberig 500 m-es transzszekteken mintáztunk, felvettük a helyi vízi és parti változókat, a mintavételi helyek körül pedig 1,25, 2,5 és 5 km sugarú körökben térképeztük a felszínborítást.`,
+`Az egyenlőszárnyú szitakötők diverzitása csökkent a vízfelszíni növényzet borításának növekedésével, az erdőborítás pedig csak gyenge hatással volt rájuk. A különszárnyú szitakötők diverzitása nőtt a környező vízfolyások összhosszával, és csökkent a mezőgazdasági foltok méretével. Az eredmények szerint a vízfolyások szitakötőinek védelmében a tájléptékű szárazföldi tényezőket is figyelembe kell venni.`]},
+en:{crumb:'<a href="#research">Research topics</a> › Dragonflies and damselflies', h:"Dragonflies and damselflies", pubs_h:"Related publications", h1:`Male behaviour in the scarce chaser (<i>Libellula fulva</i>)`, beh:`In a five-year study we followed how population size and density affect the behaviour of male scarce chasers. We examined male site fidelity, mating success and reproductive strategies, as well as the effect of body condition on stress tolerance.`, h2:`Odonata of watercourses and the landscape`, p:[
+`Odonata – damselflies (Zygoptera) and dragonflies (Anisoptera) – develop in water as larvae, while the adults also use the terrestrial habitats around the waterside. Their assemblages can therefore depend not only on water and bank conditions but also on the surrounding landscape.`,
+`We studied Odonata assemblages of 11 lowland watercourses in north-eastern Hungary and north-western Romania over two dry years. Adults were sampled along 500 m transects from May to September; we recorded local aquatic and bank variables and mapped land cover within 1.25, 2.5 and 5 km radius circles around each site.`,
+`Damselfly diversity decreased as cover of water-surface vegetation increased, and forest cover had only a weak effect on them. Dragonfly diversity increased with the total length of nearby watercourses and decreased with the size of agricultural patches. Conserving the Odonata of watercourses therefore needs to take landscape-scale terrestrial factors into account as well.`]},
+ro:{crumb:'<a href="#research">Teme de cercetare</a> › Odonate', h:"Odonate", pubs_h:"Publicații legate de temă", h1:`Comportamentul masculilor de <i>Libellula fulva</i>`, beh:`Într-un studiu de cinci ani am urmărit modul în care mărimea și densitatea populației influențează comportamentul masculilor de <i>Libellula fulva</i>. Am analizat fidelitatea față de sit, succesul de împerechere și strategiile de reproducere ale masculilor, precum și efectul condiției corporale asupra toleranței la stres.`, h2:`Odonatele cursurilor de apă și peisajul`, p:[
+`Larvele odonatelor – zigopterele (Zygoptera) și anizopterele (Anisoptera) – se dezvoltă în apă, iar adulții folosesc și habitatele terestre din jurul malurilor. De aceea, comunitățile lor pot depinde nu doar de starea apei și a malului, ci și de peisajul înconjurător.`,
+`Am studiat comunitățile de odonate de pe 11 cursuri de apă de câmpie din nord-estul Ungariei și nord-vestul României, în doi ani secetoși. Adulții au fost eșantionați pe transecte de 500 m, din mai până în septembrie; am înregistrat variabile acvatice și de mal la nivel local și am cartat utilizarea terenului în cercuri cu raze de 1,25, 2,5 și 5 km în jurul fiecărui sit.`,
+`Diversitatea zigopterelor a scăzut odată cu creșterea acoperirii cu vegetație a suprafeței apei, iar acoperirea cu pădure a avut doar un efect slab asupra lor. Diversitatea anizopterelor a crescut cu lungimea totală a cursurilor de apă din apropiere și a scăzut cu mărimea parcelelor agricole. Conservarea odonatelor cursurilor de apă trebuie, așadar, să țină cont și de factorii terestri la scară de peisaj.`]}
+};
+const ODO_PUBS = [
+ {y:2011,html:'Nagy H.B., <span class="me">László Z.</span>, Kövér Sz., Szállassy N., Dévai Gy. <span class="ti">Population size effects on the behaviour of <i>Libellula fulva</i> (Odonata: Libellulidae) males, a five year study.</span> <span class="jr">North-Western Journal of Zoology</span> 7(1): 39–46.'},
+ {y:2009,html:'Nagy H.B., <span class="me">László Z.</span>, Szállassy M.-N., Varga Z., Dévai Gy. <span class="ti">Impact of different population size on male behaviour in <i>Libellula fulva</i> (Odonata: Libellulidae).</span> <span class="jr">Verhandlungen des Internationalen Verein Limnologie</span> 30(8): 1242–1244.'},
+ {y:2006,html:'Nagy H.B., Szállassy N., Tóth G., <span class="me">László Z.</span>, Székely A., Dévai Gy. <span class="ti">Az egyedsűrűség növekedésének hatása a mocsári szitakötő (<i>Libellula fulva</i>, Odonata: Libellulidae) hímjeinek viselkedésére.</span> <span class="jr">Hidrológiai Közlöny</span> 86(6): 79–81.'},
+ {y:2005,html:'Nagy H.B., Székely A., Szállassy N., <span class="me">László Z.</span>, Dévai Gy. <span class="ti">A kondíció hatása a stressztűrésre a mocsári szitakötő (<i>Libellula fulva</i> Müller, 1764) hímjeinél.</span> <span class="jr">Hidrológiai Közlöny</span> 6: 100–101.'},
+ {y:2005,html:'Nagy H.B., <span class="me">László Z.</span>, Szállassy N., Székely A., Dévai G. <span class="ti">Site fidelity, mating success and reproductive strategies in males of <i>Libellula fulva</i> (Odonata: Libellulidae).</span> <span class="jr">Abstracts Book, 4th WDA International Symposium of Odonatology</span>, Pontevedra.'}
+];
+function odoPage(){
+  const o = OT[lang];
+  const rel = SELECTED.filter(x=>/Odonata/.test(x.html)).concat(ODO_PUBS).sort((a,b)=>b.y-a.y);
+  return `<div class="crumb">${o.crumb}</div><h2>${o.h}</h2>
+<p>${o.p[0]}</p>
+<h3>${o.h1}</h3>
+<p>${o.beh}</p>
+<h3>${o.h2}</h3>
+<p>${o.p[1]}</p>
+<p>${o.p[2]}</p>
+<h3>${o.pubs_h}</h3>
+<ul class="pubs">${rel.map(x=>`<li><b>${x.y}</b> · ${x.html}${doiLink(x.doi)}</li>`).join("")}</ul>`;
+}
 /* lightbox */
 document.addEventListener("click", e=>{
   const a = e.target.closest(".gal a"); const lb = document.getElementById("lb");
@@ -555,7 +597,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
