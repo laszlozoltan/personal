@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>László Zoltán – Ökológiai modellezés BBTE</title>
+<meta name="description" content="László Zoltán, Babeș-Bolyai Tudományegyetem – kutatás, közlemények, oktatott tantárgyak.">
+<meta name="theme-color" content="#f0f0f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#f0f0f0; --box:#ffffff; --ink:#2b2b2b; --muted:#767676; --line:#e2e2e2;
+  --link:#21759b; --link-hover:#0f4c6b; --nav:#2b2b2b; --nav-ink:#f0f0f0; --nav-hover:#21759b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
+    --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
+  --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.75 Merriweather,Georgia,serif}
+a{color:var(--link)} a:hover{color:var(--link-hover)}
+.skip{position:absolute;left:-999px} .skip:focus{left:16px;top:8px;background:var(--box);padding:6px 10px;z-index:99}
+.site{max-width:1040px;margin:32px auto;background:var(--box);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+@media (max-width:1072px){.site{margin:0}}
+
+/* header */
+.masthead{padding:36px 40px 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.masthead h1{font:700 30px/1.2 "Open Sans",sans-serif;margin:0;letter-spacing:-.3px}
+.masthead h1 a{color:var(--ink);text-decoration:none}
+.masthead .tag{font:400 15px "Open Sans",sans-serif;color:var(--muted);margin:4px 0 0}
+.langs{font:600 13px "Open Sans",sans-serif;display:flex;gap:4px}
+.langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:3px 9px;cursor:pointer;font:inherit;text-transform:lowercase}
+.langs button[aria-pressed="true"]{border-color:var(--link);color:var(--link)}
+
+/* nav */
+nav.menu{background:var(--nav);font:600 14px "Open Sans",sans-serif}
+nav.menu > ul{list-style:none;margin:0;padding:0 28px;display:flex;flex-wrap:wrap}
+nav.menu li{position:relative}
+nav.menu a{display:block;color:var(--nav-ink);text-decoration:none;padding:13px 14px}
+nav.menu > ul > li:hover > a, nav.menu > ul > li:focus-within > a, nav.menu a.cur{background:var(--nav-hover);color:#fff}
+nav.menu ul ul{list-style:none;margin:0;padding:4px 0;position:absolute;left:0;top:100%;min-width:230px;background:var(--box);border:1px solid var(--line);box-shadow:0 4px 10px rgba(0,0,0,.12);display:none;z-index:20}
+nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
+nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
+nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
+.burger{display:none}
+@media (max-width:700px){
+  .masthead{padding:24px 16px 16px}
+  nav.menu > ul{padding:0;flex-direction:column;display:none}
+  nav.menu.open > ul{display:flex}
+  nav.menu ul ul{position:static;display:block;border:0;box-shadow:none;background:transparent;padding:0 0 6px}
+  nav.menu ul ul a{color:var(--nav-ink);opacity:.8;padding:5px 28px}
+  nav.menu ul ul a:hover{background:transparent;color:#fff}
+  .burger{display:block;width:100%;text-align:left;background:none;border:0;color:var(--nav-ink);font:inherit;padding:12px 16px;cursor:pointer}
+}
+
+/* body layout */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:48px;padding:40px}
+@media (max-width:860px){.cols{grid-template-columns:1fr;gap:32px;padding:28px 16px}}
+#content h2{font:700 26px/1.3 "Open Sans",sans-serif;margin:0 0 18px}
+#content h3{font:700 18px/1.4 "Open Sans",sans-serif;margin:28px 0 8px}
+#content p{margin:0 0 1.1em}
+.crumb{font:400 13px "Open Sans",sans-serif;color:var(--muted);margin-bottom:6px}
+.portrait{float:right;width:150px;height:150px;object-fit:cover;margin:0 0 12px 20px;border:1px solid var(--line)}
+.initials{display:grid;place-items:center;background:var(--page);color:var(--muted);font:700 40px "Open Sans",sans-serif}
+@media (max-width:520px){.portrait{float:none;margin:0 0 16px}}
+address{font-style:normal;border-left:3px solid var(--line);padding:4px 0 4px 16px;margin:20px 0}
+ul.pubs{list-style:none;padding:0;margin:0}
+ul.pubs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.65}
+ul.pubs .ti{font-weight:700}
+ul.pubs .jr{font-style:italic}
+.me{text-decoration:underline;text-decoration-color:var(--muted)}
+.cv dt{font:700 15px "Open Sans",sans-serif;margin-top:14px}
+.cv dd{margin:2px 0 0}
+.topic{border-bottom:1px solid var(--line);padding-bottom:6px}
+.note{font-size:14px;color:var(--muted)}
+.filter{width:100%;max-width:340px;padding:7px 10px;border:1px solid var(--line);background:var(--box);color:var(--ink);font:14px "Open Sans",sans-serif;margin:4px 0 10px}
+
+/* sidebar */
+aside .widget{margin-bottom:34px;font:14px/1.6 "Open Sans",sans-serif}
+aside .widget h4{font:700 12px "Open Sans",sans-serif;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+aside ul{list-style:none;margin:0;padding:0}
+aside li{padding:5px 0;border-bottom:1px dotted var(--line)}
+aside li:last-child{border-bottom:0}
+aside .yr{color:var(--muted)}
+aside input{width:100%;padding:7px 10px;border:1px solid var(--line);background:var(--box);color:var(--ink);font:inherit}
+
+footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:700px){footer{padding:16px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#content" data-t="skip">Tovább a tartalomra</a>
+
+<div class="site">
+  <header class="masthead">
+    <div>
+      <h1><a href="#home" data-t="site_title">Ökológiai modellezés BBTE</a></h1>
+      <p class="tag" data-t="site_tag">tantárgyak, egyebek</p>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button data-lang="hu">hu</button><button data-lang="en">en</button><button data-lang="ro">ro</button>
+    </div>
+  </header>
+
+  <nav class="menu" id="menu" aria-label="Menu">
+    <button class="burger" aria-expanded="false" data-t="menu">☰ Menü</button>
+    <ul>
+      <li><a href="#home" data-t="m_home">Főoldal</a>
+        <ul>
+          <li><a href="#cv" data-t="m_cv">Önéletrajz</a></li>
+          <li><a href="#publications" data-t="m_pubs">Közlemények</a></li>
+          <li><a href="#teaching" data-t="m_teach">Oktatás</a></li>
+        </ul>
+      </li>
+      <li><a href="#research" data-t="m_research">Kutatás</a>
+        <ul>
+          <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
+          <li><a href="#students" data-t="m_students">Szakdolgozóknak</a></li>
+        </ul>
+      </li>
+      <li><a href="#teaching" data-t="m_courses">Oktatott tantárgyak</a></li>
+      <li><a href="#contact" data-t="m_contact">Kapcsolat</a></li>
+    </ul>
+  </nav>
+
+  <div class="cols">
+    <main id="content" tabindex="-1"></main>
+
+    <aside>
+      <div class="widget">
+        <h4 data-t="w_search">Keresés a közleményekben</h4>
+        <input type="search" id="sideSearch" data-tp="search_ph" placeholder="Keresés…">
+      </div>
+      <div class="widget">
+        <h4 data-t="w_recent">Legutóbbi közlemények</h4>
+        <ul id="recentPubs"></ul>
+      </div>
+      <div class="widget">
+        <h4 data-t="w_topics">Kutatási témák</h4>
+        <ul>
+          <li><a href="#research" data-t="tp1">Rózsagubacsok</a></li>
+          <li><a href="#research" data-t="tp2">Akácmagdarazsak</a></li>
+          <li><a href="#research" data-t="tp3">Magányos méhek</a></li>
+          <li><a href="#research" data-t="tp4">Fémfürkészek és tájhasználat</a></li>
+        </ul>
+      </div>
+      <div class="widget">
+        <h4 data-t="w_links">Linkek</h4>
+        <ul>
+          <li><a href="https://orcid.org/0000-0001-5064-4785">ORCID</a></li>
+          <li><a href="https://www.ubbcluj.ro">Babeș-Bolyai</a></li>
+          <li><a href="mailto:zoltan.laszlo@ubbcluj.ro">zoltan.laszlo@ubbcluj.ro</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <span>© <span id="yr"></span> László Zoltán</span>
+    <span data-t="foot">A közleménylista az ORCID-ból frissül.</span>
+  </footer>
+</div>
+
+<script>
+/* ---------- confirmed publications (static) ---------- */
+const SELECTED = [
+ {y:2024,html:'<span class="me">László Z.</span>, Looney C., Prázsmári H., Poor E., Shorthouse J.D. <span class="ti">The cynipid gall wasp <i>Diplolepis rosae</i> is more successful in North America than in Europe because of enemy release.</span> <span class="jr">Insect Conservation and Diversity</span> 17(5): 800–810.',doi:'10.1111/icad.12745'},
+ {y:2024,html:'<span class="me">László Z.</span>, Szilágyi B., Macalik B., Biró M., Iordache C.T., Nicula M., Podar D. <span class="ti">Successful gall induction on wild roses by gall wasps under lab conditions.</span> <span class="jr">Ecological Entomology</span>.',doi:'10.1111/een.13366'},
+ {y:2021,html:'<span class="me">László Z.</span>, Lakatos K.T., Dénes A.-L. <span class="ti">A new species of <i>Mesopolobus</i> (Hymenoptera, Pteromalidae) from black locust crops.</span> <span class="jr">European Journal of Taxonomy</span> 740: 118–137.',doi:'10.5852/ejt.2021.740.1285'},
+ {y:2020,html:'Pujade-Villar J., Wang Y., Zhang W., Mata-Casanova N., Lobato-Vila I., Dénes A.-L., <span class="me">László Z.</span> <span class="ti">A new <i>Diplolepis</i> Geoffroy (Hymenoptera, Cynipidae, Diplolepidini) species from China: a rare example of a rose gall-inducer of economic significance.</span> <span class="jr">ZooKeys</span> 904: 131–146.',doi:'10.3897/zookeys.904.46547'},
+ {y:2018,html:'<span class="me">László Z.</span>, Rákosy L., Tóthmérész B. <span class="ti">The simpler the better: when decreasing landscape complexity increases community stability.</span> <span class="jr">Ecological Indicators</span> 84: 828–836.',doi:'10.1016/j.ecolind.2017.09.054'},
+ {y:2017,html:'<span class="me">László Z.</span> <span class="ti">A study on <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) and its community</span> [in Hungarian, English summary]. <span class="jr">Presa Universitară Clujeană</span>, 108 pp. <a href="http://www.editura.ubbcluj.ro/bd/ebooks/pdf/2067.pdf">PDF</a>'},
+ {y:2014,html:'<span class="me">László Z.</span>, Sólyom K., Prázsmári H., Tóthmérész B., Barta Z. <span class="ti">Predation on rose galls: parasitoids and predators determine gall size through directional selection.</span> <span class="jr">PLoS ONE</span> 9(6): e99806.',doi:'10.1371/journal.pone.0099806'},
+ {y:2013,html:'<span class="me">László Z.</span>, Tóthmérész B. <span class="ti">The enemy hypothesis: correlates of gall morphology with parasitoid attack rates in two closely related rose cynipid galls.</span> <span class="jr">Bulletin of Entomological Research</span> 103(3): 326–335.',doi:'10.1017/S0007485312000764'}
+];
+
+/* ---------- texts ---------- */
+const ADDR = {
+ hu:'László Zoltán, PhD<br>Magyar Biológiai és Ökológiai Intézet<br>Babeș-Bolyai Tudományegyetem<br>400006 Kolozsvár, str. Clinicilor nr. 5–7, Románia<br><a href="mailto:zoltan.laszlo@ubbcluj.ro">zoltan.laszlo@ubbcluj.ro</a>',
+ en:'Zoltán László, PhD<br>Hungarian Department of Biology and Ecology<br>Babeș-Bolyai University<br>400006 Cluj-Napoca, str. Clinicilor nr. 5–7, Romania<br><a href="mailto:zoltan.laszlo@ubbcluj.ro">zoltan.laszlo@ubbcluj.ro</a>',
+ ro:'Conf. dr. László Zoltán<br>Departamentul de Biologie și Ecologie al Liniei Maghiare<br>Universitatea Babeș-Bolyai<br>400006 Cluj-Napoca, str. Clinicilor nr. 5–7, România<br><a href="mailto:zoltan.laszlo@ubbcluj.ro">zoltan.laszlo@ubbcluj.ro</a>'
+};
+const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" onerror="this.outerHTML=\'<div class=&quot;portrait initials&quot; aria-hidden=&quot;true&quot;>LZ</div>\'">';
+
+const T = {
+hu:{
+ skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
+ m_home:"Főoldal", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
+ w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
+ tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat",
+ foot:"A közleménylista az ORCID-ból frissül.", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
+ n:"{n} közlemény az ORCID-on.", sel:"Válogatott közlemények", all:"Összes közlemény (ORCID)", filter:"Szűrés cím, folyóirat vagy év szerint…",
+ home:`<h2>László Zoltán</h2>${PORTRAIT}
+<p>A Föld élőlényeinek jelentős részét a rovarok teszik ki, ezen belül a hártyásszárnyúak (darazsak, méhek, hangyák és parazitoid darazsak) az egyik legnagyobb rend. Kutatásaim középpontjában ezek a rovarok és kapcsolataik állnak: a gubacsképző darazsak, a fémfürkészek és a magányos méhek.</p>
+<p>Hosszú ideje vizsgálom a vadrózsákon (<i>Rosa</i> spp.) élő <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsakat és parazitoid közösségeiket Romániában és a Palearktikumban: a gubacsok felépítése hogyan befolyásolja a parazitoidok támadását és a táplálékhálózatok szerkezetét.</p>
+<p>A fémfürkészek (Chalcidoidea) parazitoidként fontos szabályozó szerepet töltenek be a táplálékhálózatokban. Azt vizsgálom, hogyan hat a tájhasználat intenzívebbé válása ezekre a közösségekre. A méhek sokfélesége az elmúlt évtizedekben mérhetően csökkent; célom a háttérben álló – tájhasználati, genetikai vagy járványtani – tényezők feltárása.</p>
+<p>Módszereim: tájökológiai, molekuláris, közösségökológiai és modellezési megközelítések.</p>
+<address>${ADDR.hu}</address>`,
+ cv:`<h2>Önéletrajz</h2>
+<dl class="cv">
+<dt>Jelenlegi munkahely</dt><dd>Egyetemi docens, Magyar Biológiai és Ökológiai Intézet, Biológia és Geológia Kar, Babeș-Bolyai Tudományegyetem, Kolozsvár</dd>
+<dt>Korábban</dt><dd>Egyetemi tanársegéd / adjunktus, Biológia és Geológia Kar, BBTE (2008-tól)</dd>
+<dt>Doktori dolgozat</dt><dd>Kutatások a <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) gubacsdarázson és a gubacshoz kötődő parazitoid közösségen</dd>
+<dt>Témavezetés</dt><dd>Alapképzési, mesteri és doktori dolgozatok témavezetője</dd>
+<dt>Azonosítók</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
+</dl>`,
+ teaching:`<h2>Oktatott tantárgyak</h2>
+<p>A BBTE magyar nyelvű Ökológia és környezetvédelem szakán, valamint a doktori iskolában oktatok.</p>
+<h3>Tájökológia</h3><p>Térbeli fragmentáció, tájhasználat és hatásuk az élőlényközösségekre.</p>
+<h3>Biomatematika</h3><p>Matematikai alapok biológusoknak, gyakorlatokkal.</p>
+<h3>Biostatisztika</h3><p>Statisztikai elemzés és modellezés ökológiai adatokon, R-ben.</p>
+<h3>Ökológiai modellezés</h3><p>Előadások, gyakorlatok és irodalom.</p>
+<h3>Ökológiai terepgyakorlat</h3><p>Terepi mintavételi módszerek és adatgyűjtés.</p>
+<h3>Térbeli adatok elemzése R-ben</h3><p>Doktori kurzus (BBTE Doktori Iskola).</p>`,
+ research:`<h2>Kutatási témák</h2>
+<h3 class="topic">Rózsagubacsok</h3><p>A vadrózsák <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsai, parazitoidjaik és inkvilinusaik: a gubacs mérete, falvastagsága és kamraszáma hogyan alakítja a parazitoidok támadását és a hálózatok topológiáját. Ide tartozik a fajhatárok és a filogenetika molekuláris vizsgálata (COI, ITS2, matK, rbcL), a gubacs-mikrobiom és a laboratóriumi gubacsindukció is.</p>
+<h3 class="topic">Akácmagdarazsak</h3><p>Az akác (<i>Robinia pseudoacacia</i>) magjaiban fejlődő fémfürkészek és parazitoidjaik.</p>
+<h3 class="topic">Magányos méhek</h3><p>A méhek sokféleségének csökkenése mögött álló tájhasználati, genetikai és járványtani tényezők.</p>
+<h3 class="topic">Fémfürkészek és tájhasználat</h3><p>Hogyan befolyásolja a tájhasználat intenzitása és a táj komplexitása a parazitoid közösségek összetételét és stabilitását.</p>`,
+ students:`<h2>Szakdolgozóknak</h2>
+<p>Alapképzési, mesteri és doktori dolgozatok témavezetését vállalom a fenti kutatási témákban. Ha érdekel valamelyik, írj e-mailt.</p>
+<h3>Doktori témák</h3>
+<ul><li>Beporzók ökológiai hálózatai</li><li>Magpredátorok és herbivorok vadrózsákon (köztük <i>Diplolepis</i> és <i>Megastigmus</i>)</li><li>A gazdanövény–gubacs koevolúció globális mintázatai</li></ul>`,
+ contact:`<h2>Kapcsolat</h2><address>${ADDR.hu}</address><p>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></p>`
+},
+en:{
+ skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
+ m_home:"Home", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
+ w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
+ tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use",
+ foot:"Publication list updates from ORCID.", loading:"Loading…", err:"Could not load the list right now – full record on ",
+ n:"{n} works listed on ORCID.", sel:"Selected publications", all:"All publications (ORCID)", filter:"Filter by title, journal or year…",
+ home:`<h2>Zoltán László</h2>${PORTRAIT}
+<p>Insects make up a large share of Earth's organisms, and Hymenoptera – wasps, bees, ants and parasitoid wasps – is one of the largest insect orders. My research focuses on these insects and their interactions: gall wasps, chalcid wasps and solitary bees.</p>
+<p>My long-term work is on <i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses (<i>Rosa</i> spp.) and their parasitoid communities in Romania and across the Palearctic: how gall architecture shapes parasitoid attack and the structure of food webs.</p>
+<p>Chalcid wasps (Chalcidoidea) are parasitoids with an important regulatory role in food webs; I study how intensifying land use affects their communities. Bee diversity has measurably declined in recent decades, and I aim to identify the land-use, genetic and epidemiological factors behind it.</p>
+<p>Methods: landscape ecology, molecular, community ecology and modelling approaches.</p>
+<address>${ADDR.en}</address>`,
+ cv:`<h2>CV</h2>
+<dl class="cv">
+<dt>Current position</dt><dd>Associate Professor, Hungarian Department of Biology and Ecology, Faculty of Biology and Geology, Babeș-Bolyai University, Cluj-Napoca</dd>
+<dt>Previously</dt><dd>Assistant professor / lecturer, Faculty of Biology and Geology, Babeș-Bolyai University (from 2008)</dd>
+<dt>PhD thesis</dt><dd>Research on the gall wasp <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) and the parasitoid community associated with its gall</dd>
+<dt>Supervision</dt><dd>BSc, MSc and PhD theses; doctoral supervisor</dd>
+<dt>Identifiers</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
+</dl>`,
+ teaching:`<h2>Courses</h2>
+<p>I teach in the Hungarian-language Ecology and Environmental Protection programme at Babeș-Bolyai University and in the Doctoral School.</p>
+<h3>Landscape ecology</h3><p>Spatial fragmentation, land use and their effects on communities.</p>
+<h3>Biomathematics</h3><p>Mathematical foundations for biologists, with practicals.</p>
+<h3>Biostatistics</h3><p>Statistical analysis and modelling of ecological data in R.</p>
+<h3>Ecological modelling</h3><p>Lectures, practicals and reading.</p>
+<h3>Ecological field practice</h3><p>Field sampling methods and data collection.</p>
+<h3>Spatial data analysis in R</h3><p>Doctoral course (BBU Doctoral School).</p>`,
+ research:`<h2>Research topics</h2>
+<h3 class="topic">Rose galls</h3><p><i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses, their parasitoids and inquilines: how gall size, wall thickness and chamber number shape parasitoid attack and network topology. This includes molecular work on species boundaries and phylogenies (COI, ITS2, matK, rbcL), gall microbiomes and gall induction under lab conditions.</p>
+<h3 class="topic">Black locust seed wasps</h3><p>Chalcid wasps developing in black locust (<i>Robinia pseudoacacia</i>) seeds and their parasitoids.</p>
+<h3 class="topic">Solitary bees</h3><p>Land-use, genetic and epidemiological factors behind the decline of bee diversity.</p>
+<h3 class="topic">Chalcids and land use</h3><p>How land-use intensity and landscape complexity shape the composition and stability of parasitoid communities.</p>`,
+ students:`<h2>For thesis students</h2>
+<p>I supervise BSc, MSc and PhD theses on the research topics above. If one interests you, send me an email.</p>
+<h3>Doctoral topics</h3>
+<ul><li>Pollinator ecological networks</li><li>Seed predators and herbivores on wild roses (including <i>Diplolepis</i> and <i>Megastigmus</i>)</li><li>Global patterns of host plant–gall coevolution</li></ul>`,
+ contact:`<h2>Contact</h2><address>${ADDR.en}</address><p>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></p>`
+},
+ro:{
+ skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
+ m_home:"Acasă", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
+ w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
+ tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului",
+ foot:"Lista de publicații se actualizează din ORCID.", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
+ n:"{n} lucrări listate pe ORCID.", sel:"Publicații selectate", all:"Toate publicațiile (ORCID)", filter:"Filtrează după titlu, revistă sau an…",
+ home:`<h2>László Zoltán</h2>${PORTRAIT}
+<p>Insectele reprezintă o parte importantă a organismelor de pe Pământ, iar himenopterele – viespi, albine, furnici și viespi parazitoide – formează unul dintre cele mai mari ordine de insecte. Cercetarea mea se concentrează asupra acestor insecte și a interacțiunilor lor: viespi galicole, calcidoide și albine solitare.</p>
+<p>Studiez de mult timp viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici (<i>Rosa</i> spp.) și comunitățile lor de parazitoizi din România și din regiunea palearctică: cum influențează arhitectura galelor atacul parazitoizilor și structura rețelelor trofice.</p>
+<p>Calcidoidele (Chalcidoidea) sunt parazitoizi cu un rol reglator important în rețelele trofice; studiez efectul intensificării utilizării terenului asupra comunităților lor. Diversitatea albinelor a scăzut măsurabil în ultimele decenii, iar scopul meu este identificarea factorilor – de utilizare a terenului, genetici sau epidemiologici – din spatele acestui declin.</p>
+<p>Metode: abordări de ecologia peisajului, moleculare, de ecologia comunităților și de modelare.</p>
+<address>${ADDR.ro}</address>`,
+ cv:`<h2>CV</h2>
+<dl class="cv">
+<dt>Poziția actuală</dt><dd>Conferențiar universitar, Departamentul de Biologie și Ecologie al Liniei Maghiare, Facultatea de Biologie și Geologie, Universitatea Babeș-Bolyai, Cluj-Napoca</dd>
+<dt>Anterior</dt><dd>Asistent / lector universitar, Facultatea de Biologie și Geologie, UBB (din 2008)</dd>
+<dt>Teza de doctorat</dt><dd>Cercetări asupra insectei galicole <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) și a comunității parazitice legate de gală</dd>
+<dt>Coordonare</dt><dd>Lucrări de licență, disertații și teze de doctorat</dd>
+<dt>Identificatori</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
+</dl>`,
+ teaching:`<h2>Discipline predate</h2>
+<p>Predau la specializarea Ecologie și protecția mediului, linia maghiară, a Universității Babeș-Bolyai, și în cadrul Școlii Doctorale.</p>
+<h3>Ecologia peisajului</h3><p>Fragmentarea spațială, utilizarea terenului și efectele lor asupra comunităților.</p>
+<h3>Biomatematică</h3><p>Fundamente matematice pentru biologi, cu lucrări practice.</p>
+<h3>Biostatistică</h3><p>Analiza statistică și modelarea datelor ecologice în R.</p>
+<h3>Modelare ecologică</h3><p>Cursuri, lucrări practice și bibliografie.</p>
+<h3>Practică de teren ecologică</h3><p>Metode de eșantionare pe teren și colectarea datelor.</p>
+<h3>Analiza datelor spațiale în R</h3><p>Curs doctoral (Școala Doctorală, UBB).</p>`,
+ research:`<h2>Teme de cercetare</h2>
+<h3 class="topic">Gale de trandafir</h3><p>Viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici, parazitoizii și inchilinii lor: cum influențează mărimea galei, grosimea peretelui și numărul de camere atacul parazitoizilor și topologia rețelelor. Include studii moleculare asupra limitelor de specie și filogeniei (COI, ITS2, matK, rbcL), microbiomul galelor și inducerea galelor în laborator.</p>
+<h3 class="topic">Viespi ale semințelor de salcâm</h3><p>Calcidoide care se dezvoltă în semințele de salcâm (<i>Robinia pseudoacacia</i>) și parazitoizii lor.</p>
+<h3 class="topic">Albine solitare</h3><p>Factorii de utilizare a terenului, genetici și epidemiologici din spatele declinului diversității albinelor.</p>
+<h3 class="topic">Calcidoide și utilizarea terenului</h3><p>Cum influențează intensitatea utilizării terenului și complexitatea peisajului compoziția și stabilitatea comunităților de parazitoizi.</p>`,
+ students:`<h2>Pentru studenți</h2>
+<p>Coordonez lucrări de licență, disertații și teze de doctorat pe temele de cercetare de mai sus. Dacă te interesează una dintre ele, scrie-mi un e-mail.</p>
+<h3>Teme de doctorat</h3>
+<ul><li>Rețele ecologice ale polenizatorilor</li><li>Prădători de semințe și erbivore pe trandafirii sălbatici (inclusiv <i>Diplolepis</i> și <i>Megastigmus</i>)</li><li>Tipare globale ale coevoluției plantă gazdă–gală</li></ul>`,
+ contact:`<h2>Contact</h2><address>${ADDR.ro}</address><p>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></p>`
+}};
+
+/* ---------- state ---------- */
+const ORCID = "0000-0001-5064-4785";
+let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
+const PAGES = ["home","cv","publications","teaching","research","students","contact"];
+const $ = s => document.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
+
+function pubsPage(){
+  const t = T[lang];
+  return `<h2>${t.m_pubs}</h2>
+<h3>${t.sel}</h3>
+<ul class="pubs">${SELECTED.map(p=>`<li><b>${p.y}</b> · ${p.html}${doiLink(p.doi)}</li>`).join("")}</ul>
+<h3>${t.all}</h3>
+<input class="filter" id="pubFilter" type="search" placeholder="${t.filter}">
+<ul class="pubs" id="orcidList"></ul>
+<p class="note" id="orcidStatus"></p>`;
+}
+
+function route(){
+  let p = location.hash.slice(1) || "home";
+  if(!PAGES.includes(p)) p = "home";
+  const c = $("#content");
+  c.innerHTML = p==="publications" ? pubsPage() : T[lang][p];
+  document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
+    const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
+    a.classList.toggle("cur", sub.includes(p));
+  });
+  if(p==="publications"){
+    const f = $("#pubFilter");
+    f.value = pendingQuery; pendingQuery = "";
+    f.addEventListener("input", renderWorks);
+    loadOrcid(); renderWorks(); renderStatus();
+  }
+  $("#menu").classList.remove("open");
+}
+
+function setLang(l){
+  if(!T[l]) l = "hu";
+  lang = l; document.documentElement.lang = l;
+  document.querySelectorAll("[data-t]").forEach(el=>{ const v=T[l][el.dataset.t]; if(v!==undefined) el.innerHTML=v; });
+  document.querySelectorAll("[data-tp]").forEach(el=>{ el.placeholder=T[l][el.dataset.tp]; });
+  document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===l));
+  document.title = "László Zoltán – " + T[l].site_title;
+  try{ localStorage.setItem("lang", l); }catch(e){}
+  route(); renderRecent();
+}
+
+/* ---------- ORCID ---------- */
+async function loadOrcid(){
+  if(orcidStarted) return; orcidStarted = true;
+  try{
+    const r = await fetch(`https://pub.orcid.org/v3.0/${ORCID}/works`,{headers:{Accept:"application/json"}});
+    if(!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    works = (j.group||[]).map(g=>{
+      const w = g["work-summary"][0];
+      const doi = (g["external-ids"]?.["external-id"]||[]).find(i=>i["external-id-type"]==="doi")?.["external-id-value"];
+      return {title:w.title?.title?.value||"", year:+(w["publication-date"]?.year?.value||0), journal:w["journal-title"]?.value||"", doi};
+    }).sort((a,b)=>b.year-a.year);
+  }catch(e){ orcidFailed = true; }
+  renderWorks(); renderStatus(); renderRecent();
+}
+function renderWorks(){
+  const el = $("#orcidList"); if(!el || !works) return;
+  const q = ($("#pubFilter")?.value||"").trim().toLowerCase();
+  el.innerHTML = works.filter(w=>!q||(w.title+" "+w.journal+" "+w.year).toLowerCase().includes(q))
+    .map(w=>`<li><b>${w.year||""}</b> · <span class="ti">${esc(w.title)}</span>${w.journal?` <span class="jr">${esc(w.journal)}</span>`:""}${doiLink(w.doi)}</li>`).join("");
+}
+function renderStatus(){
+  const s = $("#orcidStatus"); if(!s) return;
+  if(orcidFailed) s.innerHTML = T[lang].err + `<a href="https://orcid.org/${ORCID}">ORCID</a>.`;
+  else if(works) s.textContent = T[lang].n.replace("{n}", works.length);
+  else s.textContent = T[lang].loading;
+}
+function renderRecent(){
+  const list = works ? works.slice(0,5).map(w=>({y:w.year,t:w.title,d:w.doi}))
+                     : SELECTED.slice(0,5).map(p=>({y:p.y,t:p.html.match(/class="ti">(.*?)<\/span>/)?.[1].replace(/<[^>]+>/g,"")||"",d:p.doi}));
+  $("#recentPubs").innerHTML = list.map(p=>`<li>${p.d?`<a href="https://doi.org/${esc(p.d)}">${esc(p.t)}</a>`:esc(p.t)} <span class="yr">(${p.y})</span></li>`).join("");
+}
+
+/* sidebar search → publications page with filter */
+let pendingQuery = "";
+$("#sideSearch").addEventListener("keydown", e=>{
+  if(e.key!=="Enter") return;
+  pendingQuery = e.target.value;
+  if(location.hash==="#publications"){ $("#pubFilter").value = pendingQuery; pendingQuery=""; renderWorks(); }
+  else location.hash = "publications";
+});
+
+$(".burger").addEventListener("click", e=>{ const m=$("#menu"); m.classList.toggle("open"); e.target.setAttribute("aria-expanded", m.classList.contains("open")); });
+document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+window.addEventListener("hashchange", ()=>{ route(); window.scrollTo(0,0); });
+$("#yr").textContent = new Date().getFullYear();
+
+(function(){
+  let l = new URLSearchParams(location.search).get("lang");
+  if(!l){ try{ l = localStorage.getItem("lang"); }catch(e){} }
+  setLang(l || "hu");
+  loadOrcid();
+})();
+</script>
+</body>
+</html>
