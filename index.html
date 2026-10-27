@@ -77,8 +77,12 @@ ul.pubs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;lin
 ul.pubs .ti{font-weight:700}
 ul.pubs .jr{font-style:italic}
 .me{text-decoration:underline;text-decoration-color:var(--muted)}
-.cv dt{font:700 15px "Open Sans",sans-serif;margin-top:14px}
-.cv dd{margin:2px 0 0}
+.cvhead{font:14px/1.6 "Open Sans",sans-serif;color:var(--muted);margin-top:-8px}
+.cvt{display:grid;grid-template-columns:110px minmax(0,1fr);column-gap:18px;font-size:15px;line-height:1.65}
+.cvt > div{padding:7px 0;border-bottom:1px dotted var(--line)}
+.cvt .d{font:600 13px/1.9 "Open Sans",sans-serif;color:var(--muted);white-space:nowrap}
+.cvlist{margin:0;padding-left:1.1em;font-size:15px}
+@media (max-width:520px){.cvt{grid-template-columns:1fr}.cvt .d{border-bottom:0;padding-bottom:0}}
 .topic{border-bottom:1px solid var(--line);padding-bottom:6px}
 .note{font-size:14px;color:var(--muted)}
 .filter{width:100%;max-width:340px;padding:7px 10px;border:1px solid var(--line);background:var(--box);color:var(--ink);font:14px "Open Sans",sans-serif;margin:4px 0 10px}
@@ -205,14 +209,6 @@ hu:{
 <p>A fémfürkészek (Chalcidoidea) parazitoidként fontos szabályozó szerepet töltenek be a táplálékhálózatokban. Azt vizsgálom, hogyan hat a tájhasználat intenzívebbé válása ezekre a közösségekre. A méhek sokfélesége az elmúlt évtizedekben mérhetően csökkent; célom a háttérben álló – tájhasználati, genetikai vagy járványtani – tényezők feltárása.</p>
 <p>Módszereim: tájökológiai, molekuláris, közösségökológiai és modellezési megközelítések.</p>
 <address>${ADDR.hu}</address>`,
- cv:`<h2>Önéletrajz</h2>
-<dl class="cv">
-<dt>Jelenlegi munkahely</dt><dd>Egyetemi docens, Magyar Biológiai és Ökológiai Intézet, Biológia és Geológia Kar, Babeș-Bolyai Tudományegyetem, Kolozsvár</dd>
-<dt>Korábban</dt><dd>Egyetemi tanársegéd / adjunktus, Biológia és Geológia Kar, BBTE (2008-tól)</dd>
-<dt>Doktori dolgozat</dt><dd>Kutatások a <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) gubacsdarázson és a gubacshoz kötődő parazitoid közösségen</dd>
-<dt>Témavezetés</dt><dd>Alapképzési, mesteri és doktori dolgozatok témavezetője</dd>
-<dt>Azonosítók</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
-</dl>`,
  teaching:`<h2>Oktatott tantárgyak</h2>
 <p>A BBTE magyar nyelvű Ökológia és környezetvédelem szakán, valamint a doktori iskolában oktatok.</p>
 <h3>Tájökológia</h3><p>Térbeli fragmentáció, tájhasználat és hatásuk az élőlényközösségekre.</p>
@@ -246,14 +242,6 @@ en:{
 <p>Chalcid wasps (Chalcidoidea) are parasitoids with an important regulatory role in food webs; I study how intensifying land use affects their communities. Bee diversity has measurably declined in recent decades, and I aim to identify the land-use, genetic and epidemiological factors behind it.</p>
 <p>Methods: landscape ecology, molecular, community ecology and modelling approaches.</p>
 <address>${ADDR.en}</address>`,
- cv:`<h2>CV</h2>
-<dl class="cv">
-<dt>Current position</dt><dd>Associate Professor, Hungarian Department of Biology and Ecology, Faculty of Biology and Geology, Babeș-Bolyai University, Cluj-Napoca</dd>
-<dt>Previously</dt><dd>Assistant professor / lecturer, Faculty of Biology and Geology, Babeș-Bolyai University (from 2008)</dd>
-<dt>PhD thesis</dt><dd>Research on the gall wasp <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) and the parasitoid community associated with its gall</dd>
-<dt>Supervision</dt><dd>BSc, MSc and PhD theses; doctoral supervisor</dd>
-<dt>Identifiers</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
-</dl>`,
  teaching:`<h2>Courses</h2>
 <p>I teach in the Hungarian-language Ecology and Environmental Protection programme at Babeș-Bolyai University and in the Doctoral School.</p>
 <h3>Landscape ecology</h3><p>Spatial fragmentation, land use and their effects on communities.</p>
@@ -287,14 +275,6 @@ ro:{
 <p>Calcidoidele (Chalcidoidea) sunt parazitoizi cu un rol reglator important în rețelele trofice; studiez efectul intensificării utilizării terenului asupra comunităților lor. Diversitatea albinelor a scăzut măsurabil în ultimele decenii, iar scopul meu este identificarea factorilor – de utilizare a terenului, genetici sau epidemiologici – din spatele acestui declin.</p>
 <p>Metode: abordări de ecologia peisajului, moleculare, de ecologia comunităților și de modelare.</p>
 <address>${ADDR.ro}</address>`,
- cv:`<h2>CV</h2>
-<dl class="cv">
-<dt>Poziția actuală</dt><dd>Conferențiar universitar, Departamentul de Biologie și Ecologie al Liniei Maghiare, Facultatea de Biologie și Geologie, Universitatea Babeș-Bolyai, Cluj-Napoca</dd>
-<dt>Anterior</dt><dd>Asistent / lector universitar, Facultatea de Biologie și Geologie, UBB (din 2008)</dd>
-<dt>Teza de doctorat</dt><dd>Cercetări asupra insectei galicole <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) și a comunității parazitice legate de gală</dd>
-<dt>Coordonare</dt><dd>Lucrări de licență, disertații și teze de doctorat</dd>
-<dt>Identificatori</dt><dd>ORCID: <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></dd>
-</dl>`,
  teaching:`<h2>Discipline predate</h2>
 <p>Predau la specializarea Ecologie și protecția mediului, linia maghiară, a Universității Babeș-Bolyai, și în cadrul Școlii Doctorale.</p>
 <h3>Ecologia peisajului</h3><p>Fragmentarea spațială, utilizarea terenului și efectele lor asupra comunităților.</p>
@@ -323,6 +303,134 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
 
+/* ---------- CV (from Europass CV and UBB publication lists) ---------- */
+const CV = [
+ {h:{hu:"Munkahelyek",en:"Positions",ro:"Experiență profesională"}, rows:[
+  {d:"2018 –",
+   hu:"<b>Egyetemi docens</b> – Magyar Biológiai és Ökológiai Intézet, Biológia és Geológia Kar, Babeș-Bolyai Tudományegyetem, Kolozsvár",
+   en:"<b>Associate Professor</b> – Hungarian Department of Biology and Ecology, Faculty of Biology and Geology, Babeș-Bolyai University, Cluj-Napoca",
+   ro:"<b>Conferențiar universitar</b> – Departamentul de Biologie și Ecologie al Liniei Maghiare, Facultatea de Biologie și Geologie, Universitatea Babeș-Bolyai, Cluj-Napoca"},
+  {d:"2016 – 2024",
+   hu:"<b>Intézetvezető</b> – Magyar Biológiai és Ökológiai Intézet, BBTE",
+   en:"<b>Head of Department</b> – Hungarian Department of Biology and Ecology, Babeș-Bolyai University",
+   ro:"<b>Director de departament</b> – Departamentul de Biologie și Ecologie al Liniei Maghiare, UBB"},
+  {d:"2008 – 2018",
+   hu:"<b>Egyetemi adjunktus / lektor</b> – Biológia és Geológia Kar, BBTE",
+   en:"<b>Lecturer</b> – Faculty of Biology and Geology, Babeș-Bolyai University",
+   ro:"<b>Șef de lucrări / lector universitar</b> – Facultatea de Biologie și Geologie, UBB"},
+  {d:"2006 – 2007",
+   hu:"<b>Muzeológus</b> – Állattár, Magyar Természettudományi Múzeum, Budapest",
+   en:"<b>Museologist</b> – Department of Zoology, Hungarian Natural History Museum, Budapest",
+   ro:"<b>Muzeograf</b> – Departamentul de Zoologie, Muzeul Maghiar de Istorie Naturală, Budapesta"}
+ ]},
+ {h:{hu:"Tanulmányok",en:"Education",ro:"Studii"}, rows:[
+  {d:"2021",
+   hu:"<b>Habilitáció</b> biológiából – Babeș-Bolyai Tudományegyetem (doktori témavezetési jog)",
+   en:"<b>Habilitation</b> in Biology – Babeș-Bolyai University (doctoral supervision)",
+   ro:"<b>Abilitare</b> în domeniul Biologie – Universitatea Babeș-Bolyai (conducere de doctorat)"},
+  {d:"2003 – 2006",
+   hu:"<b>PhD</b> – Debreceni Egyetem, Ökológiai Tanszék, Környezettudományi Doktori Iskola (terresztris ökológia program). Dolgozat: kutatások a <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) gubacsdarázson és a gubacshoz kötődő parazitoid közösségen",
+   en:"<b>PhD</b> – University of Debrecen, Department of Ecology, Doctoral School of Environmental Sciences (Terrestrial Ecology programme). Thesis on the gall wasp <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) and the parasitoid community of its gall",
+   ro:"<b>Doctorat</b> – Universitatea din Debrecen, Departamentul de Ecologie, Școala Doctorală de Științe ale Mediului (program Ecologie terestră). Teza: „Cercetări asupra insectei galicole <i>Diplolepis rosae</i> (Hymenoptera, Cynipidae) și a comunității parazitice legate de gală”"},
+  {d:"2002 – 2003",
+   hu:"<b>MSc</b> – Sejtbiológia és molekuláris biotechnológia, Biológia és Geológia Kar, BBTE",
+   en:"<b>MSc</b> – Cellular Biology and Molecular Biotechnologies, Faculty of Biology and Geology, Babeș-Bolyai University",
+   ro:"<b>Master</b> – Biologie Celulară și Biotehnologii Moleculare, Facultatea de Biologie și Geologie, UBB"},
+  {d:"1998 – 2002",
+   hu:"<b>BSc</b> – Biológia (magyar tagozat), Biológia és Geológia Kar, BBTE",
+   en:"<b>BSc</b> – Biology (Hungarian-language line), Faculty of Biology and Geology, Babeș-Bolyai University",
+   ro:"<b>Licență</b> – Biologie (linia maghiară), Facultatea de Biologie și Geologie, UBB"}
+ ]},
+ {h:{hu:"Kutatási projektek (válogatás)",en:"Research projects (selected)",ro:"Proiecte de cercetare (selecție)"}, rows:[
+  {d:"2024 –",
+   hu:"<b>RECOVER</b> – Román Biodiverzitás, Ökoszisztéma-szolgáltatások és Társadalom Kiválósági Központ (PN-IV-PRO-CoEx-2024-1); koordinátor: Bukaresti Egyetem, partner: BBTE",
+   en:"<b>RECOVER</b> – Romanian Centre of Excellence in Biodiversity, Ecosystem Services and Society (PN-IV-PRO-CoEx-2024-1); coordinated by the University of Bucharest, UBB as partner",
+   ro:"<b>RECOVER</b> – Centrul de Excelență în Biodiversitate, Servicii Ecosistemice și Societate (PN-IV-PRO-CoEx-2024-1); coordonator: Universitatea din București, partener: UBB"},
+  {d:"2026",
+   hu:"<b>EUTOPIA MORE</b> (Erasmus+) – a „Integrating Biodiversity Understanding into Higher Education” (3. modul) képzési csomag szerzője",
+   en:"<b>EUTOPIA MORE</b> (Erasmus+) – author of the training package “Integrating Biodiversity Understanding into Higher Education” (Module 3)",
+   ro:"<b>EUTOPIA MORE</b> (Erasmus+) – autor al pachetului de formare „Integrating Biodiversity Understanding into Higher Education” (Modulul 3)"},
+  {d:"2020 – 2022",
+   hu:"PN-III-P2-2.1-PED-2019-0214 – genetikai módszerek a folyóvizek vízminőség-értékelésében (vízi gerinctelenek, Meleg-Szamos); <i>biostatisztikus</i>",
+   en:"PN-III-P2-2.1-PED-2019-0214 – genetic methods for river water quality assessment (aquatic invertebrates, Someșul Cald); <i>biostatistician</i>",
+   ro:"PN-III-P2-2.1-PED-2019-0214 – metode genetice pentru evaluarea calității apelor curgătoare (nevertebrate acvatice, Someșul Cald); <i>biostatistician</i>"},
+  {d:"2018 – 2020",
+   hu:"Interreg V-A Románia–Magyarország ROHU-79 (TURRIVER) – a Túr menti védett területek közös természetvédelmi kezelése; <i>entomológus</i>",
+   en:"Interreg V-A Romania–Hungary ROHU-79 (TURRIVER) – joint conservation management of protected areas along the Tur River; <i>entomologist</i>",
+   ro:"Interreg V-A România–Ungaria ROHU-79 (TURRIVER) – management comun de conservare a ariilor protejate de pe râul Tur; <i>entomolog</i>"},
+  {d:"2018 – 2020",
+   hu:"PN-III-P1-1.1-TE-2016-0793 – paleogén nummuliteszes felhalmozódások az Erdélyi-medencében; <i>adatelemző</i>",
+   en:"PN-III-P1-1.1-TE-2016-0793 – Paleogene nummulitic accumulations in the Transylvanian Basin; <i>data analyst</i>",
+   ro:"PN-III-P1-1.1-TE-2016-0793 – acumulări numulitice paleogene din Bazinul Transilvaniei; <i>analist de date</i>"},
+  {d:"2016 – 2017",
+   hu:"31797 GTC 2016 – biodiverzitás-hotspotok kijelölése gubacsképző rovarközösségek genetikai változatossága és filogeográfiája alapján; <i>projektvezető</i>",
+   en:"31797 GTC 2016 – prioritising biodiversity hotspots using genetic variability and phylogeography of galling insect communities; <i>project leader</i>",
+   ro:"31797 GTC 2016 – prioritizarea hotspot-urilor de biodiversitate pe baza variabilității genetice și filogeografiei comunităților de insecte galicole; <i>director de proiect</i>"},
+  {d:"2014 – 2017",
+   hu:"PN-II-PT-PCCA-2013-4-1229 – hagyományos és modern mezőgazdasági gyakorlatok hatása a magas természeti értékű gyepek biodiverzitására; <i>posztdoktori kutató</i>",
+   en:"PN-II-PT-PCCA-2013-4-1229 – effects of traditional and modern agricultural practices on the biodiversity of High Nature Value grasslands; <i>postdoctoral researcher</i>",
+   ro:"PN-II-PT-PCCA-2013-4-1229 – efectele practicilor agricole tradiționale și moderne asupra biodiversității pajiștilor cu înaltă valoare naturală; <i>cercetător postdoctoral</i>"}
+ ]},
+ {h:{hu:"Rendezvények szervezése",en:"Events organised",ro:"Evenimente organizate"}, rows:[
+  {d:"2027",
+   hu:"6th International Conference on Community Ecology (ComEc), Kolozsvár, 2027. szeptember 15–17.",
+   en:"6th International Conference on Community Ecology (ComEc), Cluj-Napoca, 15–17 September 2027",
+   ro:"6th International Conference on Community Ecology (ComEc), Cluj-Napoca, 15–17 septembrie 2027"},
+  {d:"2026",
+   hu:"Nemzetközi gubacskutató konferencia, Kolozsvár; a kötet a <i>Community Ecology</i> különszámaként jelenik meg",
+   en:"International gall conference, Cluj-Napoca; proceedings to appear as a special issue of <i>Community Ecology</i>",
+   ro:"Conferință internațională despre gale, Cluj-Napoca; lucrările vor apărea într-un număr special al revistei <i>Community Ecology</i>"}
+ ]},
+ {h:{hu:"Oktatott tárgyak",en:"Teaching",ro:"Activitate didactică"}, rows:[
+  {d:"2008 –",
+   hu:"BBTE: biostatisztika, biomatematika, tájökológia, ökológiai rendszerek szabályozása, rovartan, gerinctelen állattan, gerinctelenek gyűjtése és preparálása; doktori kurzus: térbeli adatok elemzése R-ben",
+   en:"UBB: biostatistics, biomathematics, landscape ecology, regulation of ecological systems, entomology, invertebrate zoology, collecting and preparing invertebrates; doctoral course: spatial data analysis in R",
+   ro:"UBB: biostatistică, biomatematică, ecologia peisajului, reglarea sistemelor ecologice, entomologie, zoologia nevertebratelor, colectarea și prepararea nevertebratelor; curs doctoral: analiza datelor spațiale în R"},
+  {d:"2003 – 2006",
+   hu:"Debreceni Egyetem: kvantitatív ökológia gyakorlat, bevezetés az R statisztikai nyelvbe",
+   en:"University of Debrecen: quantitative ecology practicals, introduction to the R statistical language",
+   ro:"Universitatea din Debrecen: lucrări practice de ecologie cantitativă, introducere în limbajul statistic R"}
+ ]},
+ {h:{hu:"Szakmai tagságok",en:"Memberships",ro:"Afilieri profesionale"}, list:true, rows:[
+  {hu:"International Society of Hymenopterists",en:"International Society of Hymenopterists",ro:"International Society of Hymenopterists"},
+  {hu:"Magyar Rovartani Társaság",en:"Hungarian Entomological Society",ro:"Societatea Maghiară de Entomologie"},
+  {hu:"Societatea Lepidopterologică Română",en:"Romanian Lepidopterological Society",ro:"Societatea Lepidopterologică Română"},
+  {hu:"Apáthy István Egyesület",en:"Apáthy István Association",ro:"Asociația Apáthy István"}
+ ]},
+ {h:{hu:"Lektori tevékenység",en:"Reviewing",ro:"Activitate de referent"}, rows:[
+  {d:"",
+   hu:"Szaklektor többek között: <i>Scientific Reports, Journal of Insect Conservation, PLoS ONE, Environmental Entomology, North-Western Journal of Zoology, Acta Phytopathologica et Entomologica Hungarica, Zootaxa, Community Ecology, Plant Ecology, Ecosphere</i>",
+   en:"Reviewer for journals including <i>Scientific Reports, Journal of Insect Conservation, PLoS ONE, Environmental Entomology, North-Western Journal of Zoology, Acta Phytopathologica et Entomologica Hungarica, Zootaxa, Community Ecology, Plant Ecology, Ecosphere</i>",
+   ro:"Referent științific pentru reviste precum <i>Scientific Reports, Journal of Insect Conservation, PLoS ONE, Environmental Entomology, North-Western Journal of Zoology, Acta Phytopathologica et Entomologica Hungarica, Zootaxa, Community Ecology, Plant Ecology, Ecosphere</i>"}
+ ]},
+ {h:{hu:"Készségek és nyelvek",en:"Skills and languages",ro:"Competențe și limbi"}, rows:[
+  {d:{hu:"Módszerek",en:"Methods",ro:"Metode"},
+   hu:"többváltozós statisztika, biometria, ökológiai modellezés, növények és rovarok térbeli eloszlása, taxonómia, GIS",
+   en:"multivariate statistics, biometry, ecological modelling, spatial distribution of plants and insects, taxonomy, GIS",
+   ro:"statistică multivariată, biometrie, modelare ecologică, distribuția spațială a plantelor și insectelor, taxonomie, GIS"},
+  {d:{hu:"Szoftver",en:"Software",ro:"Software"}, hu:"R, QGIS, LaTeX", en:"R, QGIS, LaTeX", ro:"R, QGIS, LaTeX"},
+  {d:{hu:"Nyelvek",en:"Languages",ro:"Limbi"},
+   hu:"magyar (anyanyelv), angol (C1–C2), német (A2)",
+   en:"Hungarian (native), English (C1–C2), German (A2)",
+   ro:"maghiară (limba maternă), engleză (C1–C2), germană (A2)"}
+ ]}
+];
+const CVLBL = {
+ hu:{t:"Önéletrajz", pubs:"A közlemények listája a <a href=\"#publications\">Közlemények</a> oldalon található."},
+ en:{t:"Curriculum vitae", pubs:"The publication list is on the <a href=\"#publications\">Publications</a> page."},
+ ro:{t:"Curriculum vitae", pubs:"Lista de publicații se află pe pagina <a href=\"#publications\">Publicații</a>."}
+};
+function cvPage(){
+  const L = CVLBL[lang];
+  return `<h2>${L.t}</h2>
+<p class="cvhead"><b>László Zoltán</b>, PhD, habil. · <a href="mailto:zoltan.laszlo@ubbcluj.ro">zoltan.laszlo@ubbcluj.ro</a> · ORCID <a href="https://orcid.org/0000-0001-5064-4785">0000-0001-5064-4785</a></p>
+${CV.map(sec=>`<h3 class="topic">${sec.h[lang]}</h3>${
+  sec.list ? `<ul class="cvlist">${sec.rows.map(r=>`<li>${r[lang]}</li>`).join("")}</ul>`
+           : `<div class="cvt">${sec.rows.map(r=>`<div class="d">${typeof r.d==="object"?r.d[lang]:r.d}</div><div>${r[lang]}</div>`).join("")}</div>`
+}`).join("")}
+<p class="note" style="margin-top:24px">${L.pubs}</p>`;
+}
+
 function pubsPage(){
   const t = T[lang];
   return `<h2>${t.m_pubs}</h2>
@@ -338,7 +446,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
