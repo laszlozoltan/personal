@@ -12,17 +12,17 @@
 <style>
 :root{
   --page:#f0f0f0; --box:#ffffff; --ink:#2b2b2b; --muted:#767676; --line:#e2e2e2;
-  --link:#21759b; --link-hover:#0f4c6b; --nav:#2b2b2b; --nav-ink:#f0f0f0; --nav-hover:#21759b;
+  --link:#21759b; --link-hover:#0f4c6b; --nav:#2b2b2b; --nav-ink:#f0f0f0; --nav-hover:#c2185b;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
-    --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
+    --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#c2185b;
   }
 }
 :root[data-theme="dark"]{
   --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
-  --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
+  --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#c2185b;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--page);color:var(--ink);font:16px/1.75 Merriweather,Georgia,serif}
@@ -54,12 +54,14 @@ nav.menu > ul > li:hover > a, nav.menu > ul > li:focus-within > a, nav.menu a.cu
 nav.menu ul ul{list-style:none;margin:0;padding:4px 0;position:absolute;left:0;top:100%;min-width:230px;background:var(--box);border:1px solid var(--line);box-shadow:0 4px 10px rgba(0,0,0,.12);display:none;z-index:20}
 nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
 nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
-nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
+nav.menu ul ul a:hover{background:#fce4ec;color:#c2185b}
 nav.menu li.sub a{padding-left:32px;font-size:13px}
 .gt{width:100%;border-collapse:collapse;font:14px/1.5 "Open Sans",sans-serif;margin:8px 0 18px}
 .gt th,.gt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 .gt th{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
 .tablewrap{overflow-x:auto}
+.rfl-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#c2185b;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
+.rfl-btn:hover{background:#9c1149}
 .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 24px}
 @media (max-width:420px){.gal{gap:6px}.gal figcaption{font-size:11px}}
 .gal figure{margin:0}
@@ -146,6 +148,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
           <li><a href="#teaching" data-t="m_teach">Oktatás</a></li>
         </ul>
       </li>
+      <li><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
       <li><a href="#research" data-t="m_research">Kutatás</a>
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
@@ -226,7 +229,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -260,7 +263,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -294,7 +297,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -330,7 +333,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","teaching","rosefarmlab","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -621,6 +624,31 @@ function robPage(){
 <ul class="pubs">${rel.map(x=>`<li><b>${x.y}</b> · ${x.html}${doiLink(x.doi)}</li>`).join("")}</ul>`;
 }
 
+
+/* ---------- RoseFarm Lab page ---------- */
+const RFL_URL = "https://rosefarmlab.org/";
+const RFLT = {
+hu:{h:"RoseFarm Lab", tag:"beasty wild roses", link:"A RoseFarm Lab weboldala",
+ p:[`A RoseFarm Lab a Babeș-Bolyai Tudományegyetemen működő kutatócsoportunk, amely a vadrózsák (<i>Rosa</i> spp.) herbivóriára adott biokémiai válaszait vizsgálja. Gondosan megtervezett kísérleti rendszerekben elemezzük, hogyan változnak a növény másodlagos anyagcseretermékei és más vegyületei a herbivorokkal való kölcsönhatások hatására.`,
+    `Különböző vadrózsafajokat tartunk és vizsgálunk ellenőrzött laboratóriumi körülmények között, és laboratóriumban indukálunk rajtuk gubacsokat <i>Diplolepis rosae</i> és <i>D. mayri</i> gubacsdarazsakkal. Célunk, hogy a vadrózsákra alapozott adatokat és termékeket – például illóolajokat és kivonatokat – a gyógyszer- és kozmetikai ipar számára is hasznosíthatóvá tegyük.`,
+    `A csoport tagjai: László Zoltán, Dorina Podar, Mátis Attila és Gál Emese; partnereink a NECC (Nature Education Community Center) és a Molnar Garden.`]},
+en:{h:"RoseFarm Lab", tag:"beasty wild roses", link:"RoseFarm Lab website",
+ p:[`RoseFarm Lab is our research group at Babeș-Bolyai University studying the biochemical responses of wild roses (<i>Rosa</i> spp.) to herbivory. In carefully designed experimental setups we analyse how secondary metabolites and other compounds change in response to herbivore interactions.`,
+    `We keep and study different wild rose species under controlled laboratory conditions, and induce galls on them in the lab with the gall wasps <i>Diplolepis rosae</i> and <i>D. mayri</i>. We aim to turn wild-rose-based data and products – such as essential oils and extracts – into resources for pharmacology and cosmetics.`,
+    `The team: Zoltán László, Dorina Podar, Attila Mátis and Emese Gál; partners: NECC (Nature Education Community Center) and Molnar Garden.`]},
+ro:{h:"RoseFarm Lab", tag:"beasty wild roses", link:"Site-ul RoseFarm Lab",
+ p:[`RoseFarm Lab este grupul nostru de cercetare de la Universitatea Babeș-Bolyai, care studiază răspunsurile biochimice ale trandafirilor sălbatici (<i>Rosa</i> spp.) la erbivorie. În sisteme experimentale atent concepute analizăm modul în care metaboliții secundari și alți compuși se modifică în urma interacțiunilor cu erbivorele.`,
+    `Cultivăm și studiem diferite specii de trandafiri sălbatici în condiții controlate de laborator și inducem pe ele gale în laborator cu viespile galicole <i>Diplolepis rosae</i> și <i>D. mayri</i>. Ne propunem să valorificăm datele și produsele obținute din trandafirii sălbatici – precum uleiurile esențiale și extractele – în farmacologie și cosmetică.`,
+    `Echipa: László Zoltán, Dorina Podar, Attila Mátis și Emese Gál; parteneri: NECC (Nature Education Community Center) și Molnar Garden.`]}
+};
+function rflPage(){
+  const r = RFLT[lang];
+  return `<h2>${r.h}</h2>
+<p class="note" style="margin-top:-10px"><i>${r.tag}</i></p>
+${r.p.map(t=>`<p>${t}</p>`).join("")}
+<p><a class="rfl-btn" href="${RFL_URL}" target="_blank" rel="noopener">${r.link} →</a></p>`;
+}
+
 /* lightbox */
 document.addEventListener("click", e=>{
   const a = e.target.closest(".gal a"); const lb = document.getElementById("lb");
@@ -644,7 +672,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
