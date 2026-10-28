@@ -12,17 +12,17 @@
 <style>
 :root{
   --page:#f0f0f0; --box:#ffffff; --ink:#2b2b2b; --muted:#767676; --line:#e2e2e2;
-  --link:#21759b; --link-hover:#0f4c6b; --nav:#2b2b2b; --nav-ink:#f0f0f0; --nav-hover:#c2185b;
+  --link:#21759b; --link-hover:#0f4c6b; --nav:#2b2b2b; --nav-ink:#f0f0f0; --nav-hover:#21759b;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
-    --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#c2185b;
+    --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
   }
 }
 :root[data-theme="dark"]{
   --page:#141414; --box:#1e1e1e; --ink:#e6e6e6; --muted:#a0a0a0; --line:#333;
-  --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#c2185b;
+  --link:#6cb4dc; --link-hover:#9fd0ea; --nav:#0c0c0c; --nav-ink:#e6e6e6; --nav-hover:#21759b;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--page);color:var(--ink);font:16px/1.75 Merriweather,Georgia,serif}
@@ -54,7 +54,8 @@ nav.menu > ul > li:hover > a, nav.menu > ul > li:focus-within > a, nav.menu a.cu
 nav.menu ul ul{list-style:none;margin:0;padding:4px 0;position:absolute;left:0;top:100%;min-width:230px;background:var(--box);border:1px solid var(--line);box-shadow:0 4px 10px rgba(0,0,0,.12);display:none;z-index:20}
 nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
 nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
-nav.menu ul ul a:hover{background:#fce4ec;color:#c2185b}
+nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
+nav.menu > ul > li.rfl:hover > a, nav.menu > ul > li.rfl:focus-within > a, nav.menu > ul > li.rfl > a.cur{background:#c2185b;color:#fff}
 nav.menu li.sub a{padding-left:32px;font-size:13px}
 .gt{width:100%;border-collapse:collapse;font:14px/1.5 "Open Sans",sans-serif;margin:8px 0 18px}
 .gt th,.gt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -148,7 +149,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
           <li><a href="#teaching" data-t="m_teach">Oktatás</a></li>
         </ul>
       </li>
-      <li><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
+      <li class="rfl"><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
       <li><a href="#research" data-t="m_research">Kutatás</a>
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
@@ -626,7 +627,7 @@ function robPage(){
 
 
 /* ---------- RoseFarm Lab page ---------- */
-const RFL_URL = "https://rosefarmlab.org/";
+const RFL_URL = "https://laszlozoltan.github.io/RoseFarm_Lab/";
 const RFLT = {
 hu:{h:"RoseFarm Lab", tag:"beasty wild roses", link:"A RoseFarm Lab weboldala",
  p:[`A RoseFarm Lab a Babeș-Bolyai Tudományegyetemen működő kutatócsoportunk, amely a vadrózsák (<i>Rosa</i> spp.) herbivóriára adott biokémiai válaszait vizsgálja. Gondosan megtervezett kísérleti rendszerekben elemezzük, hogyan változnak a növény másodlagos anyagcseretermékei és más vegyületei a herbivorokkal való kölcsönhatások hatására.`,
