@@ -55,6 +55,7 @@ nav.menu ul ul{list-style:none;margin:0;padding:4px 0;position:absolute;left:0;t
 nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
 nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
 nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
+nav.menu > ul > li.wex:hover > a, nav.menu > ul > li.wex:focus-within > a, nav.menu > ul > li.wex > a.cur{background:#d35400;color:#fff}
 nav.menu > ul > li.rfl:hover > a, nav.menu > ul > li.rfl:focus-within > a, nav.menu > ul > li.rfl > a.cur{background:#c2185b;color:#fff}
 nav.menu li.sub a{padding-left:32px;font-size:13px}
 .gt{width:100%;border-collapse:collapse;font:14px/1.5 "Open Sans",sans-serif;margin:8px 0 18px}
@@ -63,6 +64,8 @@ nav.menu li.sub a{padding-left:32px;font-size:13px}
 .tablewrap{overflow-x:auto}
 .rfl-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#c2185b;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
 .rfl-btn:hover{background:#9c1149}
+.wex-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#d35400;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
+.wex-btn:hover{background:#a84300}
 .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 24px}
 @media (max-width:420px){.gal{gap:6px}.gal figcaption{font-size:11px}}
 .gal figure{margin:0}
@@ -150,6 +153,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
         </ul>
       </li>
       <li class="rfl"><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
+      <li class="wex"><a href="#waspexpos" data-t="m_wex">Wasp Expos</a></li>
       <li><a href="#research" data-t="m_research">Kutatás</a>
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
@@ -230,7 +234,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -264,7 +268,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_rfl:"RoseFarm Lab", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -298,7 +302,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_rfl:"RoseFarm Lab", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -334,7 +338,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","rosefarmlab","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","teaching","rosefarmlab","waspexpos","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -626,6 +630,30 @@ function robPage(){
 }
 
 
+
+/* ---------- Wasp Expos page ---------- */
+const WEX_URL = "https://waspexpos.ro/";
+const WEXT = {
+hu:{h:"Wasp Expos", link:"A Wasp Expos weboldala",
+ p:[`A Wasp Expos ismeretterjesztő kiállítássorozat, amely a darazsak és rokonaik szinte láthatatlan világát mutatja be a nagyközönségnek: művészek és kutatók közösen tárják fel az apró parazitoid darazsak életét.`,
+    `Kiállítások: <b>„Guardian Angels from Hell”</b> (darazsak) – alternatív zoológiai kiállítás; <b>„Tiny Heroes of Nature”</b> (magányos méhek); <b>„Hidden Architects of Plants”</b> (rózsagubacsok).`,
+    `A Wasp Expos és a Babeș-Bolyai Tudományegyetem szervezte a <b>9. Nemzetközi Növénygubacs Szimpóziumot</b> (9th International Plant Gall Symposium, 9th IPGS), amelyet 2026. július 13–19. között tartottunk Kolozsváron; a szimpózium elnöke László Zoltán volt.`]},
+en:{h:"Wasp Expos", link:"Wasp Expos website",
+ p:[`Wasp Expos is a series of public exhibitions on the hidden world of wasps and their relatives, in which artists and academics present the virtually invisible life of tiny parasitoid wasps to the general public.`,
+    `Exhibitions: <b>“Guardian Angels from Hell”</b> (wasps) – an alternative zoology exhibition; <b>“Tiny Heroes of Nature”</b> (solitary bees); <b>“Hidden Architects of Plants”</b> (rose galls).`,
+    `Wasp Expos and Babeș-Bolyai University organised the <b>9th International Plant Gall Symposium (9th IPGS)</b>, held in Cluj-Napoca on 13–19 July 2026, chaired by Zoltán László.`]},
+ro:{h:"Wasp Expos", link:"Site-ul Wasp Expos",
+ p:[`Wasp Expos este o serie de expoziții pentru publicul larg despre lumea ascunsă a viespilor și a rudelor lor, în care artiști și cercetători prezintă viața aproape invizibilă a micilor viespi parazitoide.`,
+    `Expoziții: <b>„Guardian Angels from Hell”</b> (viespi) – o expoziție de zoologie alternativă; <b>„Tiny Heroes of Nature”</b> (albine solitare); <b>„Hidden Architects of Plants”</b> (gale de trandafir).`,
+    `Wasp Expos și Universitatea Babeș-Bolyai au organizat <b>al 9-lea Simpozion Internațional despre Gale (9th International Plant Gall Symposium, 9th IPGS)</b>, desfășurat la Cluj-Napoca în perioada 13–19 iulie 2026, prezidat de László Zoltán.`]}
+};
+function wexPage(){
+  const r = WEXT[lang];
+  return `<h2>${r.h}</h2>
+${r.p.map(t=>`<p>${t}</p>`).join("")}
+<p><a class="wex-btn" href="${WEX_URL}" target="_blank" rel="noopener">${r.link} →</a></p>`;
+}
+
 /* ---------- RoseFarm Lab page ---------- */
 const RFL_URL = "https://laszlozoltan.github.io/RoseFarm_Lab/";
 const RFLT = {
@@ -673,7 +701,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
