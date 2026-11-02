@@ -58,6 +58,21 @@ nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
 nav.menu > ul > li.wex:hover > a, nav.menu > ul > li.wex:focus-within > a, nav.menu > ul > li.wex > a.cur{background:#d35400;color:#fff}
 nav.menu > ul > li.rfl:hover > a, nav.menu > ul > li.rfl:focus-within > a, nav.menu > ul > li.rfl > a.cur{background:#c2185b;color:#fff}
 nav.menu li.sub a{padding-left:32px;font-size:13px}
+nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.menu > ul > li.rgr > a.cur{background:#7b1fa2;color:#fff}
+.rgr-btn{display:inline-block;margin-top:4px;padding:8px 16px;background:#7b1fa2;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
+.rgr-btn:hover{background:#5c1680}
+.trip{border-left:4px solid #7b1fa2;padding:2px 0 2px 16px;margin:0 0 24px}
+.trip.soon{border-left-color:var(--line)}
+.trip h3{margin:0 0 2px}
+.trip .when{font:13px "Open Sans",sans-serif;color:var(--muted);margin:0 0 8px}
+.soon-tag{display:inline-block;font:600 12px "Open Sans",sans-serif;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:3px 8px}
+.diary h3{color:#7b1fa2;border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:30px}
+.diary .gal.n1{grid-template-columns:minmax(0,1fr)}
+.diary .gal.n2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.diary .gal img{aspect-ratio:auto;max-height:520px;object-fit:contain;background:#fff}
+.diary-tools{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font:13px "Open Sans",sans-serif;margin:0 0 10px}
+.diary-tools select{max-width:100%}
+.diary-tools button{font:600 13px "Open Sans",sans-serif;background:none;border:1px solid #7b1fa2;color:#7b1fa2;border-radius:3px;padding:5px 10px;cursor:pointer}
 .gt{width:100%;border-collapse:collapse;font:14px/1.5 "Open Sans",sans-serif;margin:8px 0 18px}
 .gt th,.gt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 .gt th{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
@@ -154,6 +169,14 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
       </li>
       <li class="rfl"><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
       <li class="wex"><a href="#waspexpos" data-t="m_wex">Wasp Expos</a></li>
+      <li class="rgr"><a href="#rambling" data-t="m_rgr">RoseGall Rambling</a>
+        <ul>
+          <li><a href="#rambling" data-t="m_rgr">RoseGall Rambling</a></li>
+          <li class="sub"><a href="#rambling-siberia" data-t="rg_sib">Szibéria-expedíció</a></li>
+          <li class="sub"><a href="#rambling-china" data-t="rg_chn">Kínai látogatás</a></li>
+          <li class="sub"><a href="#rambling-kazakhstan" data-t="rg_kaz">Kazahsztáni látogatás</a></li>
+        </ul>
+      </li>
       <li><a href="#research" data-t="m_research">Kutatás</a>
         <ul>
           <li><a href="#research" data-t="m_topics">Kutatási témák</a></li>
@@ -234,7 +257,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -268,7 +291,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -302,7 +325,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -338,7 +361,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","rosefarmlab","waspexpos","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -678,6 +701,113 @@ ${r.p.map(t=>`<p>${t}</p>`).join("")}
 <p><a class="rfl-btn" href="${RFL_URL}" target="_blank" rel="noopener">${r.link} →</a></p>`;
 }
 
+/* ---------- RoseGall Rambling ---------- */
+const RGR = {
+hu:{h:"RoseGall Rambling", sub:"Gubacsos barangolások",
+ intro:`Terepmunkáink és utazásaink naplói: rózsagubacsok, vadrózsák és minden más, ami az út mentén akadt – a szibériai tajgától a Tien-san lejtőiig.`,
+ read:"Napló elolvasása", soon:"Hamarosan",
+ trips:[
+  {id:"siberia", t:"Szibéria-expedíció", w:"2018. június 15. – július 15. · 31 nap · kb. 24 560 km",
+   d:`Tizenegy fős csapat (hat kutató a Babeș-Bolyai Tudományegyetemről, öt a Zsibói Botanikus Kertből) indult Zsibóról Kijeven és Moszkván át, a transzszibériai útvonalon egészen Vlagyivosztokig, majd Kazahsztánon, a Kaukázuson, Grúzián és Törökországon át vissza. A cél a boreális erdők vizsgálata volt a klímaváltozás szemszögéből – közben pedig <i>Diplolepis</i> gubacsokat gyűjtöttünk az út teljes hosszában.`},
+  {id:"china", t:"Kínai látogatás", w:"2018. október 13–19.",
+   d:`Egyhetes út a Zhejiang A&F Egyetemre (Lin'an) és a Lanzhou környéki rózsaültetvényekre. A dél-kínai és az északnyugati táj, kollégák, ételek – és egy <i>Rosa sertata</i> × <i>Rosa rugosa</i> hibriden talált, a tudomány számára új gubacsdarázs.`},
+  {id:"georgia", t:"Grúziai látogatás", w:"", d:"", soon:true},
+  {id:"kazakhstan", t:"Kazahsztáni látogatás", w:"2026. május 30. – június 5.",
+   d:`Gubacs„vadászat” a Tien-san hegységben, Almati környékén: <i>Liebelia</i> és <i>Diplolepis</i> gubacsok, <i>Rosa persica</i>, <i>Rosa platyacantha</i> és más közép-ázsiai rózsák, valamint látogatás az Al-Farabi Kazah Nemzeti Egyetemen.`},
+  {id:"romania", t:"Romániai felmérések", w:"", d:"", soon:true}
+ ],
+ back:"← Vissza a RoseGall Rambling oldalra", order_new:"Legújabb elöl", order_old:"Időrendben", jump:"Ugrás napra:",
+ loading:"Napló betöltése…", err:"A napló most nem tölthető be.",
+ note:{siberia:"", china:"", kazakhstan:"Fordítás az angol eredetiből."}},
+en:{h:"RoseGall Rambling", sub:"Rambling after galls",
+ intro:`Diaries of our field trips and travels: rose galls, wild roses and everything else we came across along the way – from the Siberian taiga to the slopes of the Tien Shan.`,
+ read:"Read the diary", soon:"Coming soon",
+ trips:[
+  {id:"siberia", t:"Siberia expedition", w:"15 June – 15 July 2018 · 31 days · approx. 24,560 km",
+   d:`A team of eleven (six researchers from Babeș-Bolyai University and five from the Jibou Botanical Garden) set off from Jibou through Kyiv and Moscow, along the Trans-Siberian route all the way to Vladivostok, and back through Kazakhstan, the Caucasus, Georgia and Turkey. The aim was to study boreal forests from the perspective of climate change – and along the whole route we collected <i>Diplolepis</i> galls.`},
+  {id:"china", t:"China visit", w:"13–19 October 2018",
+   d:`A one-week trip to Zhejiang A&F University (Lin'an) and the rose plantations around Lanzhou. Southern and north-western landscapes, colleagues, food – and a gall wasp new to science, found on a <i>Rosa sertata</i> × <i>Rosa rugosa</i> hybrid.`},
+  {id:"georgia", t:"Georgia visit", w:"", d:"", soon:true},
+  {id:"kazakhstan", t:"Kazakhstan visit", w:"30 May – 5 June 2026",
+   d:`Gall “hunting” in the Tien Shan around Almaty: <i>Liebelia</i> and <i>Diplolepis</i> galls, <i>Rosa persica</i>, <i>Rosa platyacantha</i> and other Central Asian roses, and a visit to Al-Farabi Kazakh National University.`},
+  {id:"romania", t:"Romania surveys", w:"", d:"", soon:true}
+ ],
+ back:"← Back to RoseGall Rambling", order_new:"Newest first", order_old:"Chronological", jump:"Jump to day:",
+ loading:"Loading the diary…", err:"The diary could not be loaded right now.",
+ note:{siberia:"Translated from the Hungarian original.", china:"Translated from the Hungarian original.", kazakhstan:""}},
+ro:{h:"RoseGall Rambling", sub:"Hoinăreli după gale",
+ intro:`Jurnalele deplasărilor noastre de teren: gale de trandafir, trandafiri sălbatici și tot ce am mai întâlnit pe drum – de la taigaua siberiană până pe versanții munților Tian Shan.`,
+ read:"Citește jurnalul", soon:"În curând",
+ trips:[
+  {id:"siberia", t:"Expediția în Siberia", w:"15 iunie – 15 iulie 2018 · 31 de zile · cca 24.560 km",
+   d:`O echipă de unsprezece persoane (șase cercetători de la Universitatea Babeș-Bolyai și cinci de la Grădina Botanică din Jibou) a pornit din Jibou prin Kiev și Moscova, pe traseul transsiberian până la Vladivostok, și înapoi prin Kazahstan, Caucaz, Georgia și Turcia. Scopul a fost studiul pădurilor boreale din perspectiva schimbărilor climatice – iar de-a lungul întregului traseu am colectat gale de <i>Diplolepis</i>.`},
+  {id:"china", t:"Vizita în China", w:"13–19 octombrie 2018",
+   d:`O săptămână la Universitatea Zhejiang A&F (Lin'an) și în plantațiile de trandafiri din jurul orașului Lanzhou. Peisaje din sud și din nord-vest, colegi, mâncăruri – și o viespe galicolă nouă pentru știință, găsită pe un hibrid <i>Rosa sertata</i> × <i>Rosa rugosa</i>.`},
+  {id:"georgia", t:"Vizita în Georgia", w:"", d:"", soon:true},
+  {id:"kazakhstan", t:"Vizita în Kazahstan", w:"30 mai – 5 iunie 2026",
+   d:`„Vânătoare” de gale în munții Tian Shan, în jurul orașului Almaty: gale de <i>Liebelia</i> și <i>Diplolepis</i>, <i>Rosa persica</i>, <i>Rosa platyacantha</i> și alți trandafiri din Asia Centrală, plus o vizită la Universitatea Națională Kazahă Al-Farabi.`},
+  {id:"romania", t:"Inventarieri în România", w:"", d:"", soon:true}
+ ],
+ back:"← Înapoi la RoseGall Rambling", order_new:"Cele mai noi întâi", order_old:"Cronologic", jump:"Salt la ziua:",
+ loading:"Se încarcă jurnalul…", err:"Jurnalul nu poate fi încărcat acum.",
+ note:{siberia:"Traducere din originalul maghiar.", china:"Traducere din originalul maghiar.", kazakhstan:"Traducere din originalul englez."}}
+};
+function rgrPage(){
+  const r = RGR[lang];
+  return `<h2>${r.h}</h2>
+<p class="note" style="margin-top:-10px"><i>${r.sub}</i></p>
+<p>${r.intro}</p>
+${r.trips.map(x=>`<div class="trip${x.soon?" soon":""}">
+<h3>${x.soon?x.t:`<a href="#rambling-${x.id}">${x.t}</a>`}</h3>
+${x.w?`<p class="when">${x.w}</p>`:""}
+${x.d?`<p>${x.d}</p>`:""}
+${x.soon?`<span class="soon-tag">${r.soon}</span>`:`<a class="rgr-btn" href="#rambling-${x.id}">${r.read} →</a>`}
+</div>`).join("")}`;
+}
+const TRIP_NEWEST = {siberia:true, china:true};  /* source order of each diary */
+const tripRev = {};
+const tripLoading = {};
+function tripPage(id){
+  const r = RGR[lang], x = r.trips.find(t=>t.id===id);
+  return `<p class="note"><a href="#rambling">${r.back}</a></p>
+<h2>${x.t}</h2>
+${x.w?`<p class="note" style="margin-top:-10px">${x.w}</p>`:""}
+${r.note[id]?`<p class="note"><i>${r.note[id]}</i></p>`:""}
+<div class="diary" id="diary"><p class="note">${r.loading}</p></div>`;
+}
+function loadTrip(id){
+  if(window.RAMBLE && RAMBLE[id]) return renderTrip(id);
+  if(!tripLoading[id]){
+    tripLoading[id] = new Promise((ok,bad)=>{
+      const sc = document.createElement("script");
+      sc.src = `rambling/${id}.js`; sc.onload = ok; sc.onerror = ()=>{ delete tripLoading[id]; sc.remove(); bad(); };
+      document.head.appendChild(sc);
+    });
+  }
+  tripLoading[id].then(()=>renderTrip(id), ()=>{ const d=$("#diary"); if(d) d.innerHTML=`<p class="note">${RGR[lang].err}</p>`; });
+}
+function renderTrip(id){
+  const d = $("#diary"); if(!d || location.hash!=="#rambling-"+id) return;
+  const r = RGR[lang], blocks = RAMBLE[id][lang];
+  /* group into sections: each heading starts one; text before the first heading is its own section */
+  const secs = []; let cur = null;
+  blocks.forEach(b=>{ if(b[0]==="h" || !cur){ cur=[]; secs.push(cur); } cur.push(b); });
+  const list = tripRev[id] ? secs.slice().reverse() : secs;
+  const newestNow = !!TRIP_NEWEST[id] !== !!tripRev[id];
+  const heads = list.map((s,i)=>s[0][0]==="h" ? [i,s[0][1]] : null).filter(Boolean);
+  const html = list.map((s,i)=>`<section id="day-${i}">`+s.map(b=>
+    b[0]==="h" ? `<h3>${b[1]}</h3>` :
+    b[0]==="p" ? `<p>${b[1]}</p>` :
+    `<div class="gal n${Math.min(b[1].length,3)}">${b[1].map(f=>`<figure><a href="rambling/${id}/${f}" data-cap="${esc(RGR[lang].trips.find(t=>t.id===id).t)}"><img src="rambling/${id}/${f}" alt="" loading="lazy"></a></figure>`).join("")}</div>`
+  ).join("")+`</section>`).join("");
+  d.innerHTML = `<div class="diary-tools">
+<button type="button" id="tripOrder">${newestNow ? r.order_old : r.order_new}</button>
+${heads.length>3?`<label>${r.jump} <select id="tripJump"><option value=""></option>${heads.map(([i,t])=>`<option value="${i}">${t.replace(/<[^>]+>/g,"")}</option>`).join("")}</select></label>`:""}
+</div>${html}`;
+  $("#tripOrder").onclick = ()=>{ tripRev[id] = !tripRev[id]; renderTrip(id); };
+  const j = $("#tripJump"); if(j) j.onchange = ()=>{ const s=document.getElementById("day-"+j.value); if(s) s.scrollIntoView({behavior:"smooth"}); };
+}
+
 /* lightbox */
 document.addEventListener("click", e=>{
   const a = e.target.closest(".gal a"); const lb = document.getElementById("lb");
@@ -701,7 +831,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
@@ -712,6 +842,7 @@ function route(){
     f.addEventListener("input", renderWorks);
     loadOrcid(); renderWorks(); renderStatus();
   }
+  if(p.startsWith("rambling-")) loadTrip(p.slice(9));
   $("#menu").classList.remove("open");
 }
 
