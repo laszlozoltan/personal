@@ -123,6 +123,10 @@ address{font-style:normal;border-left:3px solid var(--line);padding:4px 0 4px 16
 ul.pubs{list-style:none;padding:0;margin:0}
 ul.pubs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.65}
 ul.pubs .ti{font-weight:700}
+ul.act .role{display:inline-block;font:600 11px "Open Sans",sans-serif;color:#555;border:1px solid var(--line);border-radius:3px;padding:1px 6px;margin-left:4px;white-space:nowrap}
+h4.yr-h{font:700 14px "Open Sans",sans-serif;color:var(--muted);margin:18px 0 0;border-bottom:2px solid var(--line);padding-bottom:3px}
+ul.act sup{color:var(--link)}
+ul.act .tr{font-size:14px;color:var(--muted);font-style:italic}
 ul.pubs .jr{font-style:italic}
 .me{text-decoration:underline;text-decoration-color:var(--muted)}
 .cvhead{font:14px/1.6 "Open Sans",sans-serif;color:var(--muted);margin-top:-8px}
@@ -170,7 +174,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
         <ul>
           <li><a href="#cv" data-t="m_cv">Önéletrajz</a></li>
           <li><a href="#publications" data-t="m_pubs">Közlemények</a></li>
-          <li><a href="#teaching" data-t="m_teach">Oktatás</a></li>
+          <li><a href="#activities" data-t="m_act">Projektek, ismeretterjesztés, konferenciák</a></li>
         </ul>
       </li>
       <li class="rgr"><a href="#rambling" data-t="m_rgr">RoseGall Rambling</a>
@@ -263,7 +267,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -297,7 +301,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", m_cv:"CV", m_pubs:"Publications", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -331,7 +335,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", m_cv:"CV", m_pubs:"Publicații", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -367,7 +371,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -814,6 +818,222 @@ ${heads.length>3?`<label>${r.jump} <select id="tripJump"><option value=""></opti
   const j = $("#tripJump"); if(j) j.onchange = ()=>{ const s=document.getElementById("day-"+j.value); if(s) s.scrollIntoView({behavior:"smooth"}); };
 }
 
+/* ---------- Projects, outreach, conferences (trilingual) ---------- */
+/* Sources: ecolmodelling.wordpress.com/oldalak/zoltan-laszlo/pulications/, UBB CV (25.06.2025), project details supplied by Z. László,
+   and ORCID (loaded live). Original titles are kept; on the other two language versions a translation is shown under them. */
+const ACT_T = {
+hu:{h:"Projektek, ismeretterjesztés, konferenciák", coord:"Általam vezetett projektek", part:"Projektek, amelyekben részt vettem",
+ pop:"Tudománynépszerűsítő cikkek", conf:"Konferencia-részvételek", star:"* előadó / bemutató szerző. Az előadások címe az elhangzás nyelvén szerepel.",
+ popnote:"magyar nyelvű", orcid:"További tételek az ORCID-on",
+ role:{lead:"projektvezető",coord:"projektkoordinátor",postdoc:"posztdoktori kutató",ento:"entomológus",bio:"biológus",data:"adatelemző",mus:"muzeológus",member:"résztvevő",
+  modauth:"a 3. modul képzési csomagjának szerzője",team:"kutatócsoport-tag",practice:"gyakorlati szakértő",beehome:"entomológiai szakértő (zoológus szakértő)",lendulet:"entomológus és csoportkoordinátor"}},
+en:{h:"Projects, outreach & conferences", coord:"Projects I coordinated", part:"Projects I took part in",
+ pop:"Science popularisation articles", conf:"Conference participations", star:"* presenting author. Titles are given in the language of the presentation.",
+ popnote:"in Hungarian", orcid:"Further items on ORCID",
+ role:{lead:"project leader",coord:"project coordinator",postdoc:"postdoctoral researcher",ento:"entomologist",bio:"biologist",data:"data analyst",mus:"museologist",member:"participant",
+  modauth:"author of the Module 3 training package",team:"research team member",practice:"practice expert",beehome:"entomology specialist (zoologist expert)",lendulet:"entomologist and group coordinator"}},
+ro:{h:"Proiecte, popularizare și conferințe", coord:"Proiecte coordonate", part:"Proiecte la care am participat",
+ pop:"Articole de popularizare a științei", conf:"Participări la conferințe", star:"* autor prezentator. Titlurile sunt redate în limba prezentării.",
+ popnote:"în limba maghiară", orcid:"Alte înregistrări pe ORCID",
+ role:{lead:"director de proiect",coord:"coordonator de proiect",postdoc:"cercetător postdoctoral",ento:"entomolog",bio:"biolog",data:"analist de date",mus:"muzeograf",member:"participant",
+  modauth:"autor al pachetului de formare pentru Modulul 3",team:"membru al echipei de cercetare",practice:"expert practică",beehome:"specialist în entomologie (expert zoolog)",lendulet:"entomolog și coordonator de grup"}}
+};
+/* o = language of the original title; t = original title; tr = translations; c = details per language */
+const PROJ_COORD = [
+ {y:"2016–2017", r:"coord", o:"en", t:"Prioritization of hotspots designation in biodiversity conservation: study of genetic variability such as phylogeography of species in galling insect communities",
+  tr:{hu:"Hotspotok kijelölésének rangsorolása a biodiverzitás-védelemben: a genetikai változatosság – például a gubacsképző rovarközösségek fajainak filogeográfiája – vizsgálata", ro:"Prioritizarea desemnării hotspot-urilor în conservarea biodiversității: studiul variabilității genetice, precum filogeografia speciilor din comunitățile de insecte galicole"},
+  c:{hu:"31797 GTC 2016 · Babeș-Bolyai Tudományegyetem, Kolozsvár", en:"31797 GTC 2016 · Babeș-Bolyai University, Cluj-Napoca", ro:"31797 GTC 2016 · Universitatea Babeș-Bolyai, Cluj-Napoca"}},
+ {y:"2013–2015", r:"lead", o:"ro", t:"Dinamica şi efecte peisagistice asupra comunităţilor din galele de pe pajişti uscate semiaride cu tufărişuri",
+  tr:{hu:"Száraz, félszáraz cserjés gyepek gubacsközösségeinek dinamikája és a rájuk ható tájléptékű hatások", en:"Dynamics and landscape effects on gall communities of dry semi-arid grasslands with shrubs"},
+  c:{hu:"PNI-II-RU-PD-2012-3-0065 · Humán erőforrás – posztdoktori kutatási projektek · 299 149 RON", en:"PNI-II-RU-PD-2012-3-0065 · Human Resources – postdoctoral research projects · 299,149 RON", ro:"PNI-II-RU-PD-2012-3-0065 · Resurse Umane – Proiecte de cercetare postdoctorală · 299.149 RON"}},
+ {y:"2010–2012", r:"lead", o:"ro", t:"Distribuție spațială și interacțiuni trofice în cadrul unor comunități cu specii galicole",
+  tr:{hu:"Térbeli eloszlás és trofikus kölcsönhatások gubacsképző fajokat tartalmazó közösségekben", en:"Spatial distribution and trophic interactions in communities with gall-inducing species"},
+  c:{hu:"PD_413, nr. 114/29.07.2010 · Humán erőforrás – posztdoktori kutatási projektek · 285 262 RON", en:"PD_413, no. 114/29.07.2010 · Human Resources – postdoctoral research projects · 285,262 RON", ro:"PD_413, nr. 114/29.07.2010 · Resurse Umane – Proiecte de cercetare postdoctorală · 285.262 RON"}},
+];
+const PROJ_PART = [
+ {y:"2026", r:"modauth", o:"en", t:"EUTOPIA MORE – Module 3: “Integrating Biodiversity Understanding into Higher Education”",
+  tr:{hu:"EUTOPIA MORE – 3. modul: A biodiverzitás megértésének beépítése a felsőoktatásba", ro:"EUTOPIA MORE – Modulul 3: Integrarea înțelegerii biodiversității în învățământul superior"},
+  c:{hu:"Erasmus+", en:"Erasmus+", ro:"Erasmus+"}},
+ {y:"2025–2027", r:"member", o:"hu", t:"Védett területek természeti értékeinek közös természetvédelmi kezelése és a közvélemény tudatosítása a Túr folyó romániai és magyarországi szakasza mentén",
+  tr:{en:"Joint conservation management of the natural values of protected areas and raising public awareness along the Romanian and Hungarian sections of the Tur River", ro:"Managementul comun de conservare a valorilor naturale ale ariilor protejate și conștientizarea publicului de-a lungul sectoarelor românesc și maghiar ale râului Tur"},
+  c:{hu:"ROHU00083 TURRIVER · Interreg VI-A Románia–Magyarország Program · vezető partner: Hortobágyi Nemzeti Park Igazgatóság · partnerek: Erdélyi Kárpát-Egyesület – Szatmárnémeti, Agenția Națională pentru Arii Naturale Protejate, Asociația Crescătorilor de Taurine din Satul Turulung · uniós (ERFA) költségvetés: 474 838,56 EUR",
+     en:"ROHU00083 TURRIVER · Interreg VI-A Romania–Hungary Programme · lead partner: Hortobágy National Park Directorate · partners: Transylvanian Carpathian Association – Satu Mare, Agenția Națională pentru Arii Naturale Protejate, Asociația Crescătorilor de Taurine din Satul Turulung · EU (ERDF) budget: 474,838.56 EUR",
+     ro:"ROHU00083 TURRIVER · Programul Interreg VI-A România–Ungaria · lider de proiect: Direcția Parcului Național Hortobágy · parteneri: Societatea Carpatină Ardeleană – Satu Mare, Agenția Națională pentru Arii Naturale Protejate, Asociația Crescătorilor de Taurine din Satul Turulung · buget UE (FEDR): 474.838,56 EUR"}},
+ {y:"2025–2026", r:"team", o:"", t:"MERREM", tr:{},
+  c:{hu:"Felfedező kutatási projekt (PCE, 2023-as pályázati kör, UEFISCDI) · befogadó intézmény: Babeș-Bolyai Tudományegyetem · projektkoordinátor: dr. Dorina Podar egyetemi docens",
+     en:"Exploratory Research Project (PCE, 2023 competition, UEFISCDI) · host institution: Babeș-Bolyai University · project coordinator: Assoc. Prof. Dr. Dorina Podar",
+     ro:"Proiect de Cercetare Exploratorie (PCE, competiția 2023, UEFISCDI) · instituție gazdă: Universitatea Babeș-Bolyai · coordonator de proiect: conf. dr. Dorina Podar"}},
+ {y:"2024–2026", r:"practice", o:"ro", t:"GreenSeed: Practică studențească pentru o economie verde",
+  tr:{hu:"GreenSeed: Hallgatói szakmai gyakorlat a zöld gazdaságért", en:"GreenSeed: Student internships for a green economy"},
+  c:{hu:"SMIS-kód: 311826 · Oktatás és Foglalkoztatás Program (PEO), PEO/71/PEO_P7/OP4/ESO4.5/PEO_A49 – hallgatói gyakorlatok · kedvezményezett: Babeș-Bolyai Tudományegyetem · projektmenedzser: dr. Markó Bálint egyetemi tanár",
+     en:"SMIS code 311826 · Education and Employment Programme (PEO), call PEO/71/PEO_P7/OP4/ESO4.5/PEO_A49 – student internships · beneficiary: Babeș-Bolyai University · project manager: Prof. Dr. Markó Bálint",
+     ro:"cod SMIS 311826 · Programul Educație și Ocupare (PEO), apel PEO/71/PEO_P7/OP4/ESO4.5/PEO_A49 – STAGII STUDENȚI · beneficiar: Universitatea Babeş-Bolyai · manager de proiect: prof. univ. dr. Markó Bálint"}},
+ {y:"2024–2026", r:"beehome", o:"en", t:"Preservation of pollinator species for sustainable use of environment by joint cross-border collaboration of local citizens",
+  tr:{hu:"Beporzó fajok megőrzése a környezet fenntartható használatáért, a helyi lakosok határon átnyúló együttműködésével", ro:"Conservarea speciilor de polenizatori pentru utilizarea durabilă a mediului prin colaborarea transfrontalieră a cetățenilor locali"},
+  c:{hu:"BEE HOME · kód: HUSKROUA/23/S/1.2/023 · Interreg VI-A NEXT Magyarország–Szlovákia–Románia–Ukrajna 2021–2027", en:"BEE HOME · code: HUSKROUA/23/S/1.2/023 · Interreg VI-A NEXT Hungary–Slovakia–Romania–Ukraine 2021–2027", ro:"BEE HOME · cod: HUSKROUA/23/S/1.2/023 · Programul de Cooperare Transfrontalieră Interreg VI-A NEXT Ungaria–Slovacia–România–Ucraina 2021–2027"}},
+ {y:"2020–2022", r:"member", o:"en", t:"Testing genetic tools to improve national biological assessment practice of freshwaters: an experiment using macro-invertebrates with demonstration on the Somesul Cald catchment area, Romania",
+  tr:{hu:"Genetikai eszközök tesztelése az édesvizek hazai biológiai minősítési gyakorlatának javítására: kísérlet makrogerinctelenekkel, a Meleg-Szamos vízgyűjtőjén bemutatva (Románia)", ro:"Testarea instrumentelor genetice pentru îmbunătățirea practicii naționale de evaluare biologică a apelor dulci: un experiment cu macronevertebrate, cu demonstrație în bazinul Someșului Cald, România"},
+  c:{hu:"hazai pályázat: PN-III-P2-2.1-PED-2019-0214 · szerződésszám: 476PED/2020 · projektvezető: dr. habil. Keresztes Lujza egyetemi docens · a 3B Központhoz tartozó tag",
+     en:"national grant PN-III-P2-2.1-PED-2019-0214 · contract no. 476PED/2020 · project director: Assoc. Prof. Dr. Habil. Lujza Keresztes · member affiliated to Centre 3B",
+     ro:"grant național PN-III-P2-2.1-PED-2019-0214 · contract nr. 476PED/2020 · director de proiect: conf. univ. dr. habil. Lujza Keresztes · membru afiliat Centrului 3B"}},
+ {y:"2018–2023", r:"lendulet", o:"en", t:"Need of paradigm shift in nature conservation: considering the effect of landscape structure on biodiversity patterns and functions",
+  tr:{hu:"Paradigmaváltás szükségessége a természetvédelemben: a tájszerkezet biodiverzitási mintázatokra és funkciókra gyakorolt hatásának figyelembevétele", ro:"Necesitatea unei schimbări de paradigmă în conservarea naturii: luarea în considerare a efectului structurii peisajului asupra tiparelor și funcțiilor biodiversității"},
+  c:{hu:"MTA ÖK Lendület 2018 · projektazonosító: LP2018-1/2018, LP2018-1/2020 · kutatásvezető: Batáry Péter · tervezett időtartam: 2018–2022 (2023-ig meghosszabbítva) · költségvetés: 254 416 720 Ft (~665 000 EUR) · támogató: NKFIH",
+     en:"MTA ÖK Lendület 2018 · project ID: LP2018-1/2018, LP2018-1/2020 · lead researcher: Batáry Péter · planned duration 2018–2022 (extended to 2023) · budget: 254,416,720 HUF (~665,000 EUR) · funder: NKFIH (Hungary)",
+     ro:"MTA ÖK Lendület 2018 · ID proiect: LP2018-1/2018, LP2018-1/2020 · cercetător principal: Batáry Péter · durată planificată 2018–2022 (prelungită până în 2023) · buget: 254.416.720 HUF (~665.000 EUR) · finanțator: NKFIH (Ungaria)"}},
+ {y:"2018–2020", r:"ento", o:"en", t:"Joint conservation management and development of information infrastructure of protected areas along the Romanian and Hungarian course of Tur River",
+  tr:{hu:"A Túr folyó romániai és magyarországi szakasza menti védett területek közös természetvédelmi kezelése és információs infrastruktúrájának fejlesztése", ro:"Managementul comun de conservare și dezvoltarea infrastructurii informaționale a ariilor protejate de-a lungul cursului românesc și maghiar al râului Tur"},
+  c:{hu:"ROHU TURRIVER: ROHU-79 · Interreg V-A Románia–Magyarország Program · a Hortobágyi Nemzeti Park Igazgatóság (Magyarország) és az Erdélyi Kárpát-Egyesület – Szatmárnémeti (Románia) partnersége · költségvetés: 643 759,5 EUR",
+     en:"ROHU TURRIVER: ROHU-79 · Interreg V-A Romania–Hungary Programme · partnership of the Hortobágy National Park Directorate (Hungary) with the Transylvanian Carpathian Association – Satu Mare (Romania) · budget: 643,759.5 EUR",
+     ro:"ROHU TURRIVER: ROHU-79 · Programul Interreg V-A România–Ungaria · parteneriat între Direcția Parcului Național Hortobágy (Ungaria) și Societatea Carpatină Ardeleană – Satu Mare (România) · buget: 643.759,5 EUR"}},
+ {y:"2018–2020", r:"data", o:"en", t:"Paleogene nummulitic accumulations in the Transylvania Basin: species diversity, paleoenvironments, and sedimentary facies",
+  tr:{hu:"Paleogén nummuliteszes felhalmozódások az Erdélyi-medencében: fajdiverzitás, ősi környezetek és üledékes fáciesek", ro:"Acumulări numulitice paleogene din Bazinul Transilvaniei: diversitatea speciilor, paleomedii și facies sedimentar"},
+  c:{hu:"Fiatal kutatócsoportok projekt (PN-III-P1-1.1-TE-2016-0793) · projektkoordinátor: Silye Lóránd (BBTE, Kolozsvár)", en:"Young Research Team Project (PN-III-P1-1.1-TE-2016-0793) · project coordinator: Silye Lóránd (UBB Cluj)", ro:"Proiect Tinere Echipe (PN-III-P1-1.1-TE-2016-0793) · coordonator de proiect: Silye Lóránd (UBB Cluj)"}},
+ {y:"2015–2016", r:"ento", o:"en", t:"Hotels for insects – an economical and ecological method for sustainable agriculture",
+  tr:{hu:"Rovarhotelek – gazdaságos és ökologikus módszer a fenntartható mezőgazdaságért", ro:"Hoteluri pentru insecte – o metodă economică și ecologică pentru agricultura durabilă"},
+  c:{hu:"Romániai NGO Alap – Fenntartható fejlődés: 2014/C3_108(1711) · E-Consult Egyesület, Szatmárnémeti", en:"NGO Fund in Romania – Sustainable Development: 2014/C3_108(1711) · E-Consult Association, Satu Mare", ro:"Fondul ONG în România – Dezvoltare durabilă: 2014/C3_108(1711) · Asociația E-Consult Satu Mare"}},
+ {y:"2014–2017", r:"postdoc", o:"en", t:"Quantification of the effect of traditional and modern agricultural practices on the biodiversity of high nature value grasslands (HNV) targeting sustainable management",
+  tr:{hu:"A hagyományos és modern mezőgazdasági gyakorlatok hatásának számszerűsítése a magas természeti értékű (HNV) gyepek biodiverzitására, a fenntartható kezelés érdekében", ro:"Cuantificarea efectului practicilor agricole tradiționale și moderne asupra biodiversității pajiștilor cu înaltă valoare naturală (HNV), în vederea unui management durabil"},
+  c:{hu:"PN-II-PT-PCCA-2013-4-1229 · projektvezető: Rákosy László", en:"PN-II-PT-PCCA-2013-4-1229 · project leader: Rákosy László", ro:"PN-II-PT-PCCA-2013-4-1229 · director de proiect: Rákosy László"}},
+ {y:"2013", r:"bio", o:"hu", t:"A Kolozsvári Bükk-Malomvölgy (ROSCI0074), Szentiváni rét (ROSCI0356) és a Kis-Szamos (ROSCI0394) közösségi jelentőségű területek integrált menedzsment-terveinek kidolgozása",
+  tr:{en:"Development of integrated management plans for the sites of community importance Kolozsvári Bükk-Malomvölgy (ROSCI0074), Szentiváni rét (ROSCI0356) and Kis-Szamos (ROSCI0394)", ro:"Elaborarea planurilor de management integrat pentru siturile de importanță comunitară Kolozsvári Bükk-Malomvölgy (ROSCI0074), Szentiváni rét (ROSCI0356) și Kis-Szamos (ROSCI0394)"},
+  c:{hu:"SMIS-CSNR kód: 43241 · Apáthy István Egyesület", en:"SMIS-CSNR code 43241 · Apáthy István Association", ro:"cod SMIS-CSNR 43241 · Asociația Apáthy István Egyesület"}},
+ {y:"2011–2012", r:"member", o:"ro", t:"ROSCI 0241 Râul Tur, ROSPA 0068 Lunca Inferioară a Turului şi Rezervaţia Naturală Râul Tur – Planificarea participativă a managementului Ariilor Protejate Râul Tur",
+  tr:{hu:"A Túr folyó védett területeinek részvételi kezelési tervezése (ROSCI 0241 Râul Tur, ROSPA 0068 Lunca Inferioară a Turului és a Túr folyó természetvédelmi terület)", en:"Participatory management planning of the Tur River protected areas (ROSCI 0241 Râul Tur, ROSPA 0068 Lunca Inferioară a Turului and the Tur River Nature Reserve)"},
+  c:{hu:"SMIS-CSNR kód: 16831 · POS Mediu (környezetvédelmi ágazati operatív program), 4. prioritási tengely, ERFA-társfinanszírozással · Erdélyi Kárpát-Egyesület", en:"SMIS-CSNR code 16831 · SOP Environment (POS Mediu), Priority Axis 4, co-financed by the European Regional Development Fund · Transylvanian Carpathian Society", ro:"cod SMIS-CSNR 16831 · POS Mediu, Axa prioritară 4, cofinanțat prin Fondul European de Dezvoltare Regională · Societatea Carpatină Ardeleană"}},
+ {y:"2007", r:"mus", o:"en", t:"Applying Taxonomy to Conservation – EDIT, Work Package 7", u:"http://www.atbi.eu/wp7/",
+  tr:{hu:"A taxonómia alkalmazása a természetvédelemben – EDIT, 7. munkacsomag", ro:"Aplicarea taxonomiei în conservare – EDIT, pachetul de lucru 7"},
+  c:{hu:"nemzetközi · projektigazgató: Christoph Häuser (Museum für Naturkunde, Berlin)", en:"international · project director: Christoph Häuser (Museum für Naturkunde Berlin)", ro:"internațional · director de proiect: Christoph Häuser (Museum für Naturkunde, Berlin)"}},
+ {y:"2007", r:"mus", o:"hu", t:"Faunagenezis NKFP projekt", u:"http://faunagen.nhmus.hu/",
+  tr:{en:"Faunagenesis NKFP project", ro:"Proiectul NKFP Faunageneză"},
+  c:{hu:"Magyarország · projektigazgató: Mahunka Sándor (Magyar Természettudományi Múzeum, Budapest)", en:"Hungary · project director: Mahunka Sándor (Hungarian Natural History Museum, Budapest)", ro:"Ungaria · director de proiect: Mahunka Sándor (Muzeul Maghiar de Istorie Naturală, Budapesta)"}},
+];
+const POPSCI = [
+ {d:"2018-06-12", a:"Prázsmári H. & László Z.", t:"#Fürkészek: ökoszisztéma szolgáltatások v2.0.", u:"http://think.transindex.ro/?cikk=27278"},
+ {d:"2018-06-10", a:"Prázsmári H. & László Z.", t:"Hogyan lehet védeni a növényt rovarirtó nélkül?", u:"http://think.transindex.ro/?cikk=27274"},
+ {d:"2018-01-31", a:"Prázsmári H. & László Z.", t:"Hogyan váltanak gazdát vagy zsákmányt az élősködők és ragadozók?", u:"http://think.transindex.ro/?cikk=27080"},
+ {d:"2018-01-29", a:"László Z. & Prázsmári H.", t:"Mi haszna van a fürkészeknek mezőgazdasági területeken?", u:"http://think.transindex.ro/?cikk=27077"},
+ {d:"2017-03-29", a:"László Z.", t:"Rejtélyes beporzók: a magányos méhek és lakóhelyeik I.", u:"http://think.transindex.ro/?cikk=26542"},
+];
+const PLACES = {
+ helsinki:{hu:"Helsinki, Finnország",en:"Helsinki, Finland",ro:"Helsinki, Finlanda"},
+ virtual:{hu:"online",en:"online",ro:"online"},
+ sydney:{hu:"Sydney, Ausztrália (online)",en:"Sydney, Australia (online)",ro:"Sydney, Australia (online)"},
+ vladivostok:{hu:"Vlagyivosztok, Oroszország",en:"Vladivostok, Russia",ro:"Vladivostok, Rusia"},
+ huisun:{hu:"Huisun Kísérleti Erdő, Nantou megye, Tajvan",en:"Huisun Experimental Forest, Nantou County, Taiwan",ro:"Pădurea Experimentală Huisun, comitatul Nantou, Taiwan"},
+ baltimore:{hu:"Baltimore, Maryland, USA",en:"Baltimore, Maryland, USA",ro:"Baltimore, Maryland, SUA"},
+ liverpool:{hu:"Liverpool, Egyesült Királyság",en:"Liverpool, UK",ro:"Liverpool, Regatul Unit"},
+ orlando:{hu:"Orlando, Florida, USA",en:"Orlando, Florida, USA",ro:"Orlando, Florida, SUA"},
+ marburg:{hu:"Marburg, Németország",en:"Marburg, Germany",ro:"Marburg, Germania"},
+ gottingen:{hu:"Göttingen, Németország",en:"Göttingen, Germany",ro:"Göttingen, Germania"},
+ cluj:{hu:"Kolozsvár, Románia",en:"Cluj-Napoca, Romania",ro:"Cluj-Napoca, România"},
+ cusco:{hu:"Cusco, Peru",en:"Cusco, Peru",ro:"Cusco, Peru"},
+ debrecen:{hu:"Debrecen, Magyarország",en:"Debrecen, Hungary",ro:"Debrețin, Ungaria"},
+ bucharest:{hu:"Bukarest, Románia",en:"Bucharest, Romania",ro:"București, România"},
+ montreal:{hu:"Montréal, Kanada",en:"Montreal, Canada",ro:"Montreal, Canada"},
+ eger:{hu:"Eger, Magyarország",en:"Eger, Hungary",ro:"Eger, Ungaria"},
+ budapest:{hu:"Budapest, Magyarország",en:"Budapest, Hungary",ro:"Budapesta, Ungaria"},
+ pontevedra:{hu:"Pontevedra, Spanyolország",en:"Pontevedra, Spain",ro:"Pontevedra, Spania"},
+ tihany:{hu:"Tihany, Magyarország",en:"Tihany, Hungary",ro:"Tihany, Ungaria"},
+ szeged:{hu:"Szeged, Magyarország",en:"Szeged, Hungary",ro:"Seghedin, Ungaria"},
+ targumures:{hu:"Marosvásárhely, Románia",en:"Târgu Mureș, Romania",ro:"Târgu Mureș, România"},
+};
+const MONTHS = {hu:["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"],
+ en:["January","February","March","April","May","June","July","August","September","October","November","December"],
+ ro:["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]};
+function fmtRange(r, l){
+  const [a,b] = r.split("/"), [y1,m1,d1] = a.split("-").map(Number), [y2,m2,d2] = (b||a).split("-").map(Number), M = MONTHS[l];
+  if(l==="hu"){
+    if(!b) return `${y1}. ${M[m1-1]} ${d1}.`;
+    return m1===m2 ? `${y1}. ${M[m1-1]} ${d1}–${d2}.` : `${y1}. ${M[m1-1]} ${d1}. – ${M[m2-1]} ${d2}.`;
+  }
+  if(!b) return `${d1} ${M[m1-1]} ${y1}`;
+  return m1===m2 ? `${d1}–${d2} ${M[m1-1]} ${y1}` : `${d1} ${M[m1-1]} – ${d2} ${M[m2-1]} ${y1}`;
+}
+/* [year, authors, title, type, meeting (original name), dates, place] – * marks the presenting author, as in the source */
+const ICE22 = "XXVI International Congress of Entomology", CEC7 = "7th International Symposium on Cecidology";
+const CONFS = [
+[2022,"László Z*, Dénes AL, Szabó E","Diplolepis species (Cynipidae) found in Siberia, Kazakhstan and the Caucasus region","oral",ICE22,"2022-07-17/2022-07-22","helsinki"],
+[2022,"Zhu Q*, Dénes AL, Szabó E, Wang Y, László Z","The parasitoid community of Diplolepis abei Pujade-Villar & Wang, 2020","oral",ICE22,"2022-07-17/2022-07-22","helsinki"],
+[2022,"Veres R*, László Z","Co-occurrence models for global distribution of Robin's pincushion (Diplolepis rosae) based on citizen science and open-source environmental data","oral",ICE22,"2022-07-17/2022-07-22","helsinki"],
+[2022,"Balint M*, Mátis A, Szabó E, Denas AL, Schardt L, Veres R, László Z","Two high-quality de novo genomes of the gall inducing Diplolepis rosae and D. eglanteriae (Hymenoptera: Cynipidae)","oral",ICE22,"2022-07-17/2022-07-22","helsinki"],
+[2022,"Zhang YM*, Lucky A, Looney C, Shorthouse J, Buffington M, Ide T, László Z","Where the wild rose galls grow: the phylogenomics and biogeographic history of Diplolepis (Hymenoptera: Cynipidae)","oral",ICE22,"2022-07-17/2022-07-22","helsinki"],
+[2022,"László Z*","Morphometry of Western Palearctic rose gall inducers – a first look","oral","#Hymathon2022 virtual symposium – International Society of Hymenopterists, Europe, Middle East and Africa Session","2022-03-31/2022-04-01","virtual"],
+[2021,"László Z*, Looney C, Shorthouse J","Diplolepis rosae is more successful in North America than in Europe because of enemy release","oral","#Hymathon2021 virtual symposium – International Society of Hymenopterists, Americas Session","2021-05-06/2021-05-07","virtual"],
+[2020,"Zhang YM*, Buffington M, László Z, Looney C, Shorthouse J, Ide T, Lucky A","UCE data reveal multiple origins of rose gallers in North America: Global phylogeny of Diplolepis (Hymenoptera: Cynipidae)","oral","“Entomology for All”, Entomology Virtual Annual Meeting, Entomological Society of America","2020-11-11/2020-11-25","virtual"],
+[2020,"Nagy HB, László Z*, Dénes AL, Dénes A, Antal O, Tóthmérész B","A combined measure of specialization and phylogenetic diversity with an Odonata case study","speed talk","vISEC2020 – virtual International Statistical Ecology Conference, University of New South Wales","2020-06-22/2020-06-26","sydney"],
+[2019,"László Z, Dénes AL, Szabó E","Diplolepis species (Cynipidae) found in Siberia (Виды рода Diplolepis (Cynipidae) найденные в Сибири)","poster","IV. Eurasian Symposium on Hymenoptera, Federal Scientific Center of the East Asia Terrestrial Biodiversity, FEB RAS","2019-09-09/2019-09-15","vladivostok"],
+[2018,"László Z*, Prázsmári H, Dénes AL","Species richness and the enemy hypothesis: correlates of gall morphology with parasitoid attack rates in multi- and unilocular Diplolepis galls","oral",CEC7,"2018-03-03/2018-03-08","huisun"],
+[2018,"Prázsmári H, László Z*, Rákosy L","Rose gall communities in Transylvanian (Romania) managed grasslands: factors influencing gall abundance and parasitoid diversity","poster",CEC7,"2018-03-03/2018-03-08","huisun"],
+[2017,"Lakatos TK*, László Z, Tóthmérész B","The effect of local and landscape level characteristics on the seed predator-parasitoid system of black locust in East-Central Europe","oral","US-IALE 2017 Annual Meeting","2017-04-09/2017-04-13","baltimore"],
+[2016,"László Z*, Prázsmári H, Rákosy L","Repeated clear-cuts in encroached shrublands affects herbivore colonisation and reveals niche segregation","oral","British Ecological Society Annual Meeting 2016","2016-12-11/2016-12-14","liverpool"],
+[2016,"László Z*, Prázsmári H, Kelemen TI, Sólyom K, Tóthmérész B","Appearance of a new species increases community stability","oral","25th International Congress of Entomology","2016-09-25/2016-09-30","orlando"],
+[2016,"László Z*, Dénes AL, Király L, Tóthmérész B","Female biased sex-ratios of a Wolbachia infected parasitoid community: local and landscape effects","oral","46th GfÖ Annual Meeting","2016-09-05/2016-09-09","marburg"],
+[2016,"Nagy HB*, László Z, Dévai G, Tóthmérész B","Effect of terrestrial cover types on occurrence of odonates along lowland creeks","oral","46th GfÖ Annual Meeting","2016-09-05/2016-09-09","marburg"],
+[2015,"László Z*, Tóthmérész B","Female biased sex-ratios: scale effects reveal the importance of rarity","oral","GfÖ Annual Meeting 2015","2015-08-31/2015-09-04","gottingen"],
+[2015,"Nagy HB*, Szállassy N, László Z, Dévai G, Tóthmérész B","Effect of landscape composition and configuration on morphometric variability in Libellula fulva (Odonata, Libellulidae)","oral","GfÖ Annual Meeting 2015","2015-08-31/2015-09-04","gottingen"],
+[2015,"László Z, Prázsmári H*","Efectul defrişării tufărişurilor de măceş asupra comunităţilor galicole din pajişti mezoxerofile – relatări finale","oral","Al XXV-lea Simpozion Național al Societății Lepidopterologice Române","2015-04-25","cluj"],
+[2014,"László Z*, Rákosy L, Tóthmérész B","Habitat networks and parasitoid webs: a landscape scale approach","oral","8th International Congress of Hymenopterists","2014-07-20/2014-07-25","cusco"],
+[2013,"László Z, Prázsmári H*, Tóthmérész B, Rákosy L","Efectul defrişării tufărişurilor de măceş asupra comunităţilor galicole din pajişti mezoxerofile","oral","Simpozionul SLR 2013","2013-04-20","cluj"],
+[2012,"László Z* et al.","Amilyen a rózsa, annyi a gubacsa: rózsagubacsok (Diplolepis sp.) gazdafüggő fertőzése","oral","XIII. Kolozsvári Biológus Napok","2012-03-30/2012-03-31","cluj"],
+[2011,"Nagy HB*, László Z","Két védett bogárfaj elterjedésének vizsgálata a Túrmenti Természetvédelmi Területen","poster","VII. Magyar Természetvédelmi Biológiai Konferencia","2011-11-03/2011-11-06","debrecen"],
+[2011,"László Z*, Tóthmérész B","Testing the enemy hypothesis: the case rose galls","oral","Annual Zoological Congress of “Grigore Antipa” Museum","2011-11-23/2011-11-25","bucharest"],
+[2010,"Peleski M*, Papp É, László Z","A Diplolepis mayri gubacsának parazitáltsága a gubacsok és a kamrafalak átmérőjének függvényében: előzetes eredmények / Preliminary results in the study of the parasitization of Diplolepis mayri galls in the function of gall and gall chamber wall diameter","oral","XI. Kolozsvári Biológus Napok / 11th Biology Days","2010-04-03/2010-04-04","cluj"],
+[2009,"Sólyom K*, László Z","Előzetes tanulmány a Diplolepis rosae gubacsainak madarak általi predációjáról / Preliminary research on the bird predation on Diplolepis rosae galls","oral","X. Kolozsvári Biológus Napok / Xth Biology Days","2009-04-03/2009-04-04","cluj"],
+[2007,"Nagy HB*, Kövér Sz, Peregovits L, Szállassy N, László Z","The impact of population size on behaviour of males of Libellula fulva (Odonata: Libellulidae)","oral","8th Behavioral Ecology Meeting","2007-11-08/2007-11-11","cluj"],
+[2007,"Nagy HB*, Varga Z, László Z, Szállassy N, Dévai G","Impact of different population size on male behaviour in Libellula fulva (Odonata: Libellulidae)","poster","30th Congress of the International Association of Theoretical and Applied Limnology","2007-08-12/2007-08-18","montreal"],
+[2006,"László Z*, Tóthmérész B","Optimal clutch size of the gall wasp Diplolepis rosae (Hymenoptera: Cynipidae)","poster","1st European Congress of Conservation Biology – “Diversity for Europe”","2006-08-22/2006-08-26","eger"],
+[2006,"László Z*, Tóthmérész B","Gazdanövények térbeli mintázatának hatása a rózsagubacsdarázs parazitáltságára","oral","7. Magyar Ökológus Kongresszus – Ökológia: XXI. század értékőrző tudománya (ELTE TTK Biológiai Intézet)","2006-09-04/2006-09-06","budapest"],
+[2005,"Nagy HB*, László Z, Szállassy N, Székely A, Dévai Gy","Site fidelity, mating success and reproductive strategies in males of Libellula fulva (Odonata, Libellulidae)","poster","4th WDA International Symposium of Odonatology","2005-07-25/2005-07-31","pontevedra"],
+[2005,"Nagy HB*, Tóth G, László Z, Székely A, Dévai Gy","Populációbiológiai jellemzők összehasonlítása a mocsári szitakötő (Libellula fulva, Odonata: Libellulidae) két állományánál","oral","XLVII. Hidrobiológus Napok","2005-10-05/2005-10-07","tihany"],
+[2005,"László Z*, Tóthmérész B","Rózsabokrok (Rosa spp.) térbeli eloszlásának hatása a Diplolepis rosae L. általi parazitáltságra száraz gyepeken","poster","III. MTBK – „Az élőhelyek védelmében”","2005-11-03/2005-11-06","eger"],
+[2005,"László Z*, Tóthmérész B","A nagyobb gubacsméret, mint negatív tényező?","oral","VII. Magyar Biometriai és Biomatematikai Konferencia (Budapesti Corvinus Egyetem)","2005-07-05/2005-07-06","budapest"],
+[2004,"László Z*, Tóthmérész B","Az albérlő hatása a Diplolepis rosae gubacsának közösségére","oral","Szegedi Ökológiai Napok (SZTE Ökológiai Tanszék)","2004-11-25/2004-11-26","szeged"],
+[2004,"László Z*, Tóthmérész B","Gubacsméret-hipotézisek és albérlőhatás Diplolepis gubacsokban","oral","„Paraziták és más patogének evolúciója és ökológiája” – MÖTE, Magyar Parazitológusok Társasága és MTA Zoológiai Bizottság előadóülése","2004-11-22","budapest"],
+[2004,"Nagy B*, Székely A, Szállassy N, László Z, Dévai Gy","A kondíció hatása a stressztűrésre a mocsári szitakötő (Libellula fulva Müller, 1764) hímjeinél","oral","XLVI. Hidrobiológus Napok","2004-10-06/2004-10-08","tihany"],
+[2003,"László Z*","Xilofág bogarakban élősködő sugaras fémfürkészek (Chalc., Pteromalidae) a Kárpát-medencéből és egy morfometriai esettanulmány","oral","Erdélyi Múzeum-Egyesület Természettudományi és Matematikai Szakosztályának 2003. évi Tudományos Ülésszaka","2003-10-26","cluj"],
+[2003,"László Z*, Melika G, Popescu O","Cynipidae gubacsokban fejlődő Eupelmus Dalman 1820 fajok 28S rDNS szekvenciájának resztrikciós enzimes emésztése és morfometriai vizsgálata","oral","Romániai Doktoranduszok Szövetségének Konferenciája","2003-04-11/2003-04-12","cluj"],
+[2002,"László Z*","A rózsagubacsdarázs (Diplolepis rosae L.) gubacsából ki nem repülő egyedek és a közösségen belüli interspecifikus kapcsolatok (Hym., Cynipoidea, Chalcidoidea)","oral","Erdélyi Múzeum-Egyesület Természettudományi és Matematikai Szakosztályának 2002. évi Tudományos Ülésszaka","2002-10-26","targumures"],
+];
+const CONF_TYPE = {hu:{oral:"előadás",poster:"poszter","speed talk":"villámelőadás"}, en:{oral:"oral",poster:"poster","speed talk":"speed talk"}, ro:{oral:"prezentare orală",poster:"poster","speed talk":"prezentare scurtă"}};
+let actOrcid = null;
+const normT = s => String(s||"").toLowerCase().replace(/[^a-z0-9áéíóöőúüű]+/g," ").trim().slice(0,40);
+function actPage(){
+  const t = ACT_T[lang];
+  const proj = p => {
+    const tr = p.o && p.o!==lang && p.tr[lang] ? `<br><span class="tr">[${esc(p.tr[lang])}]</span>` : "";
+    const ti = p.u ? `<a href="${p.u}" target="_blank" rel="noopener">${esc(p.t)}</a>` : esc(p.t);
+    return `<li><b>${p.y}</b> · <span class="ti">${ti}</span>${tr}<br><span class="jr">${esc(p.c[lang])}</span> <span class="role">${t.role[p.r]}</span></li>`;
+  };
+  const years = [...new Set(CONFS.map(c=>c[0]))];
+  return `<h2>${t.h}</h2>
+<h3>${t.coord}</h3><ul class="pubs act">${PROJ_COORD.map(proj).join("")}</ul>
+<h3>${t.part}</h3><ul class="pubs act">${PROJ_PART.map(proj).join("")}</ul>
+<h3>${t.pop}</h3><ul class="pubs act">${POPSCI.map(p=>`<li><b>${p.d.slice(0,4)}</b> · ${esc(p.a)}: <a href="${p.u}" target="_blank" rel="noopener"><span class="ti">${esc(p.t)}</span></a><br><span class="jr">Transindex – Think · ${fmtRange(p.d,lang)} · ${t.popnote}</span></li>`).join("")}</ul>
+<h3>${t.conf} <span class="note" style="font-weight:400">(${CONFS.length})</span></h3>
+<p class="note">${t.star}</p>
+${years.map(y=>`<h4 class="yr-h">${y}</h4><ul class="pubs act">${CONFS.filter(c=>c[0]===y).map(c=>`<li>${esc(c[1]).replace(/\*/g,"<sup>*</sup>")}: <span class="ti">${esc(c[2])}</span> <span class="role">${CONF_TYPE[lang][c[3]]}</span><br><span class="jr">${esc(c[4])} · ${fmtRange(c[5],lang)} · <b>${PLACES[c[6]][lang]}</b></span></li>`).join("")}</ul>`).join("")}
+<div id="actOrcid"></div>`;
+}
+async function loadActOrcid(){
+  if(!actOrcid){
+    try{
+      const [f,w] = await Promise.all([
+        fetch(`https://pub.orcid.org/v3.0/${ORCID}/fundings`,{headers:{Accept:"application/json"}}).then(r=>r.ok?r.json():{group:[]}),
+        fetch(`https://pub.orcid.org/v3.0/${ORCID}/works`,{headers:{Accept:"application/json"}}).then(r=>r.ok?r.json():{group:[]})]);
+      const known = new Set([...PROJ_COORD,...PROJ_PART].flatMap(p=>[p.t,...Object.values(p.tr)]).map(normT).concat(POPSCI.map(p=>normT(p.t)), CONFS.map(c=>normT(c[2]))));
+      const fund = (f.group||[]).map(g=>g["funding-summary"][0]).map(s=>({y:[s["start-date"]?.year?.value,s["end-date"]?.year?.value].filter(Boolean).join("–"), t:s.title?.title?.value||"", c:s.organization?.name||""}));
+      const OUT = ["magazine-article","newspaper-article","blog-post","website","public-speech"], CONF = ["conference-paper","conference-abstract","conference-poster","conference-presentation","lecture-speech"];
+      const ws = (w.group||[]).map(g=>g["work-summary"][0]).map(s=>({type:s.type, y:s["publication-date"]?.year?.value||"", t:s.title?.title?.value||"", c:s["journal-title"]?.value||""}));
+      actOrcid = {fund:fund.filter(x=>!known.has(normT(x.t))), out:ws.filter(x=>OUT.includes(x.type)&&!known.has(normT(x.t))), conf:ws.filter(x=>CONF.includes(x.type)&&!known.has(normT(x.t)))};
+    }catch(e){ actOrcid = {fund:[],out:[],conf:[]}; }
+  }
+  const el = $("#actOrcid"); if(!el) return;
+  const t = ACT_T[lang], li = x=>`<li><b>${esc(x.y)}</b> · <span class="ti">${esc(x.t)}</span>${x.c?` <span class="jr">${esc(x.c)}</span>`:""}</li>`;
+  const parts = [[t.part,actOrcid.fund],[t.pop,actOrcid.out],[t.conf,actOrcid.conf]].filter(p=>p[1].length);
+  el.innerHTML = parts.length ? `<h3>${t.orcid}</h3>`+parts.map(([h,l])=>`<h4 class="yr-h">${h}</h4><ul class="pubs act">${l.map(li).join("")}</ul>`).join("") : "";
+}
+
 /* lightbox */
 document.addEventListener("click", e=>{
   const a = e.target.closest(".gal a"); const lb = document.getElementById("lb");
@@ -837,7 +1057,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="activities" ? actPage() : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p));
@@ -849,6 +1069,7 @@ function route(){
     loadOrcid(); renderWorks(); renderStatus();
   }
   if(p.startsWith("rambling-")) loadTrip(p.slice(9));
+  if(p==="activities") loadActOrcid();
   $("#menu").classList.remove("open");
 }
 
