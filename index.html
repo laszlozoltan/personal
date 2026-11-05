@@ -184,6 +184,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
           <li><a href="#rambling" data-t="m_rgr">RoseGall Rambling</a></li>
           <li class="sub"><a href="#rambling-siberia" data-t="rg_sib">Szibéria-expedíció</a></li>
           <li class="sub"><a href="#rambling-china" data-t="rg_chn">Kínai látogatás</a></li>
+          <li class="sub"><a href="#rambling-georgia" data-t="rg_geo">Grúziai látogatás</a></li>
           <li class="sub"><a href="#rambling-turkey" data-t="rg_tur">Törökországi látogatás</a></li>
           <li class="sub"><a href="#rambling-kazakhstan" data-t="rg_kaz">Kazahsztáni látogatás</a></li>
         </ul>
@@ -270,7 +271,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", rg_tur:"Törökországi látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", rg_tur:"Törökországi látogatás", rg_geo:"Grúziai látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -304,7 +305,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", rg_tur:"Turkey visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", rg_tur:"Turkey visit", rg_geo:"Georgia visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -338,7 +339,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", rg_tur:"Vizita în Turcia", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", rg_tur:"Vizita în Turcia", rg_geo:"Vizita în Georgia", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -374,7 +375,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","rambling-georgia","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -724,7 +725,8 @@ hu:{h:"RoseGall Rambling", sub:"Gubacsos barangolások",
    d:`Tizenegy fős csapat (hat kutató a Babeș-Bolyai Tudományegyetemről, öt a Zsibói Botanikus Kertből) indult Zsibóról Kijeven és Moszkván át, a transzszibériai útvonalon egészen Vlagyivosztokig, majd Kazahsztánon, a Kaukázuson, Grúzián és Törökországon át vissza. A cél a boreális erdők vizsgálata volt a klímaváltozás szemszögéből – közben pedig <i>Diplolepis</i> gubacsokat gyűjtöttünk az út teljes hosszában.`},
   {id:"china", t:"Kínai látogatás", w:"2018. október 13–19.",
    d:`Egyhetes út a Zhejiang A&F Egyetemre (Lin'an) és a Lanzhou környéki rózsaültetvényekre. A dél-kínai és az északnyugati táj, kollégák, ételek – és egy <i>Rosa sertata</i> × <i>Rosa rugosa</i> hibriden talált, a tudomány számára új gubacsdarázs.`},
-  {id:"georgia", t:"Grúziai látogatás", w:"", d:"", soon:true},
+  {id:"georgia", t:"Grúziai látogatás", w:"2024. május 28. – június 2.",
+   d:`Hat nap vadrózsagyűjtés Grúziában: Dedoplistskaro és a félsivatagos Vashlovani, a Telavi–Gombori–Tianeti útvonal, Stepantsminda a Kazbek alatt, végül Tbiliszi környéke. Rengeteg <i>Diplolepis fructuum</i> gubacs – és peterakó nőstények –, szirmokból fejlődő gubacsok, sok nehezen azonosítható vadrózsa, valamint Mátis Attila utószava a Kaukázus sárga azáleáiról.`},
   {id:"turkey", t:"Törökországi látogatás", w:"2025. május 25–31.",
    d:`Vadrózsaszirom-gyűjtő expedíció az Altınbaş Egyetem kollégáival a Márvány-tenger körül: Kocaeli szurdokai, Çatalca, Şile, a Fekete-tenger partja és Bursa vidéke – <i>Rosa horrida</i>, <i>Rosa sempervirens</i>, <i>Rosa agrestis</i>, <i>Rosa corymbifera</i>, fehér virágú <i>Rosa gallica</i>, és a ritka <i>Diplolepis nervosa</i> gubacsa. Közben Isztambul: Hagia Szophia, Galata és a Nagy Bazár.`},
   {id:"kazakhstan", t:"Kazahsztáni látogatás", w:"2026. május 30. – június 5.",
@@ -733,7 +735,7 @@ hu:{h:"RoseGall Rambling", sub:"Gubacsos barangolások",
  ],
  back:"← Vissza a RoseGall Rambling oldalra", order_new:"Legújabb elöl", order_old:"Időrendben", jump:"Ugrás napra:",
  loading:"Napló betöltése…", err:"A napló most nem tölthető be.",
- note:{siberia:"Rövid, napról napra haladó összefoglaló.", china:"Napról napra, fényképekkel.", kazakhstan:"Fordítás az angol eredetiből.", turkey:"Fordítás az angol eredetiből."}},
+ note:{siberia:"Rövid, napról napra haladó összefoglaló.", china:"Napról napra, fényképekkel.", kazakhstan:"Fordítás az angol eredetiből.", turkey:"Fordítás az angol eredetiből.", georgia:"Fordítás az angol eredetiből."}},
 en:{h:"RoseGall Rambling", sub:"Rambling after galls",
  intro:`Diaries of our field trips and travels: rose galls, wild roses and everything else we came across along the way – from the Siberian taiga to the slopes of the Tien Shan.`,
  read:"Read the diary", soon:"Coming soon",
@@ -742,7 +744,8 @@ en:{h:"RoseGall Rambling", sub:"Rambling after galls",
    d:`A team of eleven (six researchers from Babeș-Bolyai University and five from the Jibou Botanical Garden) set off from Jibou through Kyiv and Moscow, along the Trans-Siberian route all the way to Vladivostok, and back through Kazakhstan, the Caucasus, Georgia and Turkey. The aim was to study boreal forests from the perspective of climate change – and along the whole route we collected <i>Diplolepis</i> galls.`},
   {id:"china", t:"China visit", w:"13–19 October 2018",
    d:`A one-week trip to Zhejiang A&F University (Lin'an) and the rose plantations around Lanzhou. Southern and north-western landscapes, colleagues, food – and a gall wasp new to science, found on a <i>Rosa sertata</i> × <i>Rosa rugosa</i> hybrid.`},
-  {id:"georgia", t:"Georgia visit", w:"", d:"", soon:true},
+  {id:"georgia", t:"Georgia visit", w:"28 May – 2 June 2024",
+   d:`Six days of wild rose collecting in Georgia: Dedoplistskaro and semi-desert Vashlovani, the Telavi–Gombori–Tianeti route, Stepantsminda below Mount Kazbek, and finally the surroundings of Tbilisi. Plenty of <i>Diplolepis fructuum</i> galls – and egg-laying females –, galls growing from petals, many hard-to-identify wild roses, and an epilogue by Attila Mátis on the yellow rhododendrons of the Caucasus.`},
   {id:"turkey", t:"Turkey visit", w:"25–31 May 2025",
    d:`A wild rose petal collecting expedition with colleagues from Altınbaş University around the Sea of Marmara: the canyons of Kocaeli, Çatalca, Şile, the Black Sea coast and the Bursa region – <i>Rosa horrida</i>, <i>Rosa sempervirens</i>, <i>Rosa agrestis</i>, <i>Rosa corymbifera</i>, white-flowered <i>Rosa gallica</i>, and the rare gall of <i>Diplolepis nervosa</i>. In between, Istanbul: Hagia Sophia, Galata and the Grand Bazaar.`},
   {id:"kazakhstan", t:"Kazakhstan visit", w:"30 May – 5 June 2026",
@@ -751,7 +754,7 @@ en:{h:"RoseGall Rambling", sub:"Rambling after galls",
  ],
  back:"← Back to RoseGall Rambling", order_new:"Newest first", order_old:"Chronological", jump:"Jump to day:",
  loading:"Loading the diary…", err:"The diary could not be loaded right now.",
- note:{siberia:"A short day-by-day outline.", china:"Day by day, with photos.", kazakhstan:"", turkey:""}},
+ note:{siberia:"A short day-by-day outline.", china:"Day by day, with photos.", kazakhstan:"", turkey:"", georgia:""}},
 ro:{h:"RoseGall Rambling", sub:"Hoinăreli după gale",
  intro:`Jurnalele deplasărilor noastre de teren: gale de trandafir, trandafiri sălbatici și tot ce am mai întâlnit pe drum – de la taigaua siberiană până pe versanții munților Tian Shan.`,
  read:"Citește jurnalul", soon:"În curând",
@@ -760,7 +763,8 @@ ro:{h:"RoseGall Rambling", sub:"Hoinăreli după gale",
    d:`O echipă de unsprezece persoane (șase cercetători de la Universitatea Babeș-Bolyai și cinci de la Grădina Botanică din Jibou) a pornit din Jibou prin Kiev și Moscova, pe traseul transsiberian până la Vladivostok, și înapoi prin Kazahstan, Caucaz, Georgia și Turcia. Scopul a fost studiul pădurilor boreale din perspectiva schimbărilor climatice – iar de-a lungul întregului traseu am colectat gale de <i>Diplolepis</i>.`},
   {id:"china", t:"Vizita în China", w:"13–19 octombrie 2018",
    d:`O săptămână la Universitatea Zhejiang A&F (Lin'an) și în plantațiile de trandafiri din jurul orașului Lanzhou. Peisaje din sud și din nord-vest, colegi, mâncăruri – și o viespe galicolă nouă pentru știință, găsită pe un hibrid <i>Rosa sertata</i> × <i>Rosa rugosa</i>.`},
-  {id:"georgia", t:"Vizita în Georgia", w:"", d:"", soon:true},
+  {id:"georgia", t:"Vizita în Georgia", w:"28 mai – 2 iunie 2024",
+   d:`Șase zile de colectare a trandafirilor sălbatici în Georgia: Dedoplistskaro și semideșertul Vashlovani, traseul Telavi–Gombori–Tianeti, Stepantsminda sub muntele Kazbek și, la final, împrejurimile Tbilisiului. Numeroase gale de <i>Diplolepis fructuum</i> – și femele surprinse în timpul ovipoziției –, gale crescute din petale, mulți trandafiri sălbatici greu de identificat și un epilog al lui Attila Mátis despre azaleele galbene din Caucaz.`},
   {id:"turkey", t:"Vizita în Turcia", w:"25–31 mai 2025",
    d:`O expediție de colectare a petalelor de trandafir sălbatic, împreună cu colegi de la Universitatea Altınbaş, în jurul Mării Marmara: canioanele din Kocaeli, Çatalca, Şile, țărmul Mării Negre și regiunea Bursa – <i>Rosa horrida</i>, <i>Rosa sempervirens</i>, <i>Rosa agrestis</i>, <i>Rosa corymbifera</i>, <i>Rosa gallica</i> cu flori albe și rara gală de <i>Diplolepis nervosa</i>. Printre toate acestea, Istanbulul: Hagia Sofia, Galata și Marele Bazar.`},
   {id:"kazakhstan", t:"Vizita în Kazahstan", w:"30 mai – 5 iunie 2026",
@@ -769,7 +773,7 @@ ro:{h:"RoseGall Rambling", sub:"Hoinăreli după gale",
  ],
  back:"← Înapoi la RoseGall Rambling", order_new:"Cele mai noi întâi", order_old:"Cronologic", jump:"Salt la ziua:",
  loading:"Se încarcă jurnalul…", err:"Jurnalul nu poate fi încărcat acum.",
- note:{siberia:"Un scurt rezumat, zi de zi.", china:"Zi de zi, cu fotografii.", kazakhstan:"Traducere din originalul englez.", turkey:"Traducere din originalul englez."}}
+ note:{siberia:"Un scurt rezumat, zi de zi.", china:"Zi de zi, cu fotografii.", kazakhstan:"Traducere din originalul englez.", turkey:"Traducere din originalul englez.", georgia:"Traducere din originalul englez."}}
 };
 function rgrPage(){
   const r = RGR[lang];
