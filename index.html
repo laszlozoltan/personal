@@ -72,6 +72,8 @@ nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.m
 .diary .gal.n1 figure{flex-basis:62%}
 .diary .gal.n2 figure, .diary .gal.n4 figure{flex-basis:calc((100% - 10px)/2)}
 .diary .gal img{aspect-ratio:1/1;object-fit:cover}
+.diary .gal.wide figure{flex-basis:100%}
+.diary .gal.wide img{aspect-ratio:auto;height:auto;object-fit:contain}
 @media (max-width:420px){.diary .gal{gap:6px}.diary .gal figure{flex-basis:calc((100% - 12px)/3)}.diary .gal.n1 figure{flex-basis:100%}.diary .gal.n2 figure,.diary .gal.n4 figure{flex-basis:calc((100% - 6px)/2)}}
 .diary-tools{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font:13px "Open Sans",sans-serif;margin:0 0 10px}
 .diary-tools label{min-width:0;max-width:100%;display:flex;gap:6px;align-items:center}
@@ -815,6 +817,7 @@ function renderTrip(id){
   const html = list.map((s,i)=>`<section id="day-${i}">`+s.map(b=>
     b[0]==="h" ? `<h3>${b[1]}</h3>` :
     b[0]==="p" ? `<p>${b[1]}</p>` :
+    b[0]==="wide" ? `<div class="gal wide">${b[1].map(f=>`<figure><a href="rambling/${id}/${f}" data-cap="${esc(RGR[lang].trips.find(t=>t.id===id).t)}"><img src="rambling/${id}/${f}" alt="" loading="lazy"></a></figure>`).join("")}</div>` :
     `<div class="gal n${b[1].length}">${b[1].map(f=>`<figure><a href="rambling/${id}/${f}" data-cap="${esc(RGR[lang].trips.find(t=>t.id===id).t)}"><img src="rambling/${id}/${f.replace(/\.jpg$/,"_sq.jpg")}" alt="" loading="lazy"></a></figure>`).join("")}</div>`
   ).join("")+`</section>`).join("");
   d.innerHTML = `<div class="diary-tools">
