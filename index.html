@@ -79,23 +79,39 @@ nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.m
 .diary details.fold h4{font:600 14px "Open Sans",sans-serif;color:#7b1fa2;margin:14px 0 4px}
 .diary details.fold p{font-size:15px}
 .sibmap{margin:0 0 18px}
-.sibmap svg{width:100%;height:auto;display:block;background:#d6e6ef;border:1px solid var(--line);border-radius:4px}
+.sibmap{--mp-bg:#d6e6ef;--mp-lab:#2a2a2a;--mp-halo:#fffdf8;--mp-sea:#4f7d99;--mp-area:#8a8070;--mp-dot:#333;--mp-ring:#fff}
+.sibmap svg{width:100%;height:auto;display:block;background:var(--mp-bg);border:1px solid var(--line);border-radius:4px}
+.sibmap .bm-d{display:none}
 .sibmap polyline{fill:none;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
 .sibmap polyline.back{stroke-dasharray:9 5}
-.sibmap .badge circle{stroke:#fff;stroke-width:2.5}
+.sibmap .badge circle{stroke:var(--mp-ring);stroke-width:2.5}
 .sibmap .badge text{font:700 13px "Open Sans",sans-serif;fill:#fff;stroke:none}
 .sib-legend{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 14px;font:13px "Open Sans",sans-serif}
 .sib-legend li{display:flex;align-items:center;gap:8px}
+.sib-legend li.off{opacity:.65}
 .sib-legend .sw{flex:none;width:20px;height:20px;border-radius:50%;color:#fff;font-weight:700;font-size:11px;display:grid;place-items:center}
-.diary h3.stage .sn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;font-size:14px;margin-right:8px;vertical-align:2px}
-.sibmap circle{fill:#333}
-.sibmap text{font:600 17px "Open Sans",sans-serif;fill:#2a2a2a;paint-order:stroke;stroke:#fffdf8;stroke-width:4px;stroke-linejoin:round}
-.sibmap text.sea{font:italic 400 14px "Open Sans",sans-serif;fill:#4f7d99;stroke:#d6e6ef}
+.diary h3 .sn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;font-size:14px;margin-right:8px;vertical-align:2px}
+.sibmap circle.dot{fill:var(--mp-dot)}
+.sibmap text{font:600 17px "Open Sans",sans-serif;fill:var(--mp-lab);paint-order:stroke;stroke:var(--mp-halo);stroke-width:4px;stroke-linejoin:round}
+.sibmap text.sea{font:italic 400 14px "Open Sans",sans-serif;fill:var(--mp-sea);stroke:var(--mp-bg)}
+.sibmap text.area{font:600 13px "Open Sans",sans-serif;letter-spacing:.12em;fill:var(--mp-area);stroke:none}
 .sibmap .src{font-size:12px}
-@media (max-width:600px){.sibmap text{font-size:24px;stroke-width:5px}.sibmap text.sea{font-size:19px}.sibmap text.minor{display:none}}
+@media (max-width:600px){.sibmap text{font-size:24px;stroke-width:5px}.sibmap text.sea,.sibmap text.area{font-size:19px}.sibmap text.minor{display:none}.sibmap .badge circle{r:14px}.sibmap .badge text{font-size:16px}}
 .sibmap figcaption{font:13px "Open Sans",sans-serif;color:var(--muted);margin-top:6px}
-.sibmap .k{display:inline-block;width:22px;height:0;border-top:3px solid #555;vertical-align:middle}
-.sibmap .k.back{border-top:3px dashed #555}
+.sibmap .k{display:inline-block;width:22px;height:0;border-top:3px solid var(--muted);vertical-align:middle}
+.sibmap .k.back{border-top:3px dashed var(--muted)}
+.sibmap circle.site{stroke:var(--mp-ring);stroke-width:1}
+.sibmap .k.site{width:8px;height:8px;border:0;border-radius:50%;background:var(--muted)}
+.sibmap rect.ibox{fill:none;stroke:var(--mp-lab);stroke-width:1.5;stroke-dasharray:4 3}
+.sibmap .k.box{width:12px;height:9px;border:1.5px dashed var(--muted);border-radius:1px}
+.sibmap .map-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start;margin-top:10px}
+.sibmap .map-row .sib-legend{grid-template-columns:1fr;margin:0}
+.sibmap text.ititle{font:700 15px "Open Sans",sans-serif}
+@media (max-width:600px){.sibmap .map-row{grid-template-columns:1fr}.sibmap .map-row .sib-legend{grid-template-columns:1fr 1fr}.sibmap svg.inset text{font-size:20px}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sibmap{--mp-bg:#1a2a35;--mp-lab:#ece6da;--mp-halo:#161616;--mp-sea:#7fb0cc;--mp-area:#9a907e;--mp-dot:#ddd;--mp-ring:#161616}
+ :root:not([data-theme="light"]) .sibmap .bm-l{display:none} :root:not([data-theme="light"]) .sibmap .bm-d{display:inline}}
+:root[data-theme="dark"] .sibmap{--mp-bg:#1a2a35;--mp-lab:#ece6da;--mp-halo:#161616;--mp-sea:#7fb0cc;--mp-area:#9a907e;--mp-dot:#ddd;--mp-ring:#161616}
+:root[data-theme="dark"] .sibmap .bm-l{display:none} :root[data-theme="dark"] .sibmap .bm-d{display:inline}
 .diary .gal.wide figure{flex-basis:100%}
 .diary .gal.wide img{aspect-ratio:auto;height:auto;object-fit:contain}
 @media (max-width:420px){.diary .gal{gap:6px}.diary .gal figure{flex-basis:calc((100% - 12px)/3)}.diary .gal.n1 figure{flex-basis:100%}.diary .gal.n2 figure,.diary .gal.n4 figure{flex-basis:calc((100% - 6px)/2)}}
@@ -828,6 +844,7 @@ ${x.w?`<p class="note" style="margin-top:-10px">${x.w}</p>`:""}
 ${r.note[id]?`<p class="note"><i>${r.note[id]}</i></p>`:""}
 <div class="diary" id="diary"><p class="note">${r.loading}</p></div>`;
 }
+let routesLoading = null;
 function loadTrip(id){
   if(window.RAMBLE && RAMBLE[id]) return renderTrip(id);
   if(!tripLoading[id]){
@@ -835,7 +852,8 @@ function loadTrip(id){
       const sc = document.createElement("script");
       sc.src = `rambling/${id}.js`; sc.onload = ok; sc.onerror = ()=>{ delete tripLoading[id]; sc.remove(); bad(); };
       document.head.appendChild(sc);
-    });
+    }).then(()=>window.ROUTES ? 0 : (routesLoading = routesLoading || new Promise(ok=>{   /* road-following legs; maps fall back to straight lines */
+      const sc = document.createElement("script"); sc.src = "rambling/routes.js"; sc.onload = ok; sc.onerror = ok; document.head.appendChild(sc); })));
   }
   tripLoading[id].then(()=>renderTrip(id), ()=>{ const d=$("#diary"); if(d) d.innerHTML=`<p class="note">${RGR[lang].err}</p>`; });
 }
@@ -852,32 +870,123 @@ const SIB_SEAS = {hu:[["Fekete-tenger",34.5,43.3],["Kaszpi-tenger",51.6,38.6],["
 const SIB_COL = ["#7b1fa2","#1565c0","#00838f","#2e7d32","#e65100","#b8860b","#c2185b"];
 const SIB_BADGE = [[43.5,55.6],[77.5,54.8],[118.6,52.75],[133.9,45.9],[98.6,53.9],[66,51.45],[35,40.9]];
 const SIB_MINOR = ["Kyiv","Novosibirsk","Chita","Uralsk","Stepantsminda","Omsk"];
-function sibMap(){
-  const W=1000,H=321, X=lo=>(lo-14)*7.93651, Y=la=>(62-la)*12.34706, t=SIB_MAPT[lang];
+/* ---------- trip maps (base maps: Natural Earth, light + dark) ---------- */
+const MAP_T = {hu:{cap:"Az útvonal vázlata",out:"kívül esik a térképen",flight:"repülés",src:"Natural Earth",approx:"≈ hozzávetőleges hely",gps:"GPS-sel rögzített gyűjtőhelyek",inset:"a nagyított terület"},
+ en:{cap:"Schematic route",out:"outside the map",flight:"flight",src:"Natural Earth",approx:"≈ approximate location",gps:"GPS-recorded collecting sites",inset:"zoomed-in area"},
+ ro:{cap:"Schița traseului",out:"în afara hărții",flight:"zbor",src:"Natural Earth",approx:"≈ locație aproximativă",gps:"puncte de colectare înregistrate cu GPS",inset:"zona mărită"}};
+const MAP_LABEL = {hu:{"Shanghai":"Sanghaj","Hangzhou":"Hangcsou","Lin'an":"Linan","Lanzhou":"Lancsou","Shichuan":"Shichuanzen","Tbilisi":"Tbiliszi","Istanbul":"Isztambul","Almaty":"Almati","Big Almaty Lake":"Nagy-Almati-tó","Sorbulaq":"Sorbulaq-tó","Medeu":"Medeu-völgy","Charyn Canyon":"Sarin-kanyon","Dardamty":"Dardamti"},
+ ro:{"Big Almaty Lake":"Lacul Big Almaty","Medeu":"Valea Medeu","Belgrad Forest":"Pădurea Belgrad","Charyn Canyon":"Canionul Charyn"}};
+const MAP_AREA = {
+ "East China Sea":{hu:"Kelet-kínai-tenger",ro:"Marea Chinei de Est"},"Black Sea":{hu:"Fekete-tenger",ro:"Marea Neagră"},"Sea of Marmara":{hu:"Márvány-tenger",ro:"Marea Marmara"},
+ "Caspian Sea":{hu:"Kaszpi-tenger",ro:"Marea Caspică"},"Lake Baikal":{hu:"Bajkál",ro:"Lacul Baikal"},"Sea of Japan":{hu:"Japán-tenger",ro:"Marea Japoniei"},
+ "RUSSIA":{hu:"OROSZORSZÁG",ro:"RUSIA"},"AZERBAIJAN":{hu:"AZERBAJDZSÁN",ro:"AZERBAIDJAN"},"ARMENIA":{hu:"ÖRMÉNYORSZÁG",ro:"ARMENIA"},"GEORGIA":{hu:"GRÚZIA",ro:"GEORGIA"},
+ "KAZAKHSTAN":{hu:"KAZAHSZTÁN",ro:"KAZAHSTAN"},"KYRGYZSTAN":{hu:"KIRGIZISZTÁN",ro:"KÂRGÂZSTAN"},"CHINA":{hu:"KÍNA",ro:"CHINA"},"Yellow River":{hu:"Sárga-folyó",ro:"Fluviul Galben"}};
+/* projection constants must match build_maps.py; days: [{p:[[name,lon,lat],...], dash, off}], labels: [name,lon,lat,anchor,dx,dy,minor], areas: [name,lon,lat,cls] */
+const P_SH=["Shanghai",121.47,31.23],P_PVG=["PVG",121.8,31.15],P_HZ=["Hangzhou",120.16,30.27],P_HGH=["HGH",120.43,30.23],P_LA=["Lin'an",119.72,30.23],P_ZGC=["ZGC",103.62,36.52],P_LZ=["Lanzhou",103.83,36.06],P_SC=["Shichuan",103.95,36.33];
+const G_TB=["Tbilisi",44.79,41.72],G_DE=["Dedoplistskaro",46.1,41.46],G_VA=["Vashlovani",46.4,41.18],G_AL=["Alazani",46.55,41.1],G_TE=["Telavi",45.47,41.92],G_GO=["Gombori",45.23,41.86],G_TI=["Tianeti",44.97,42.11],G_AN=["Ananuri",44.7,42.16],G_ST=["Stepantsminda",44.64,42.66],G_TL=["Turtle Lake",44.75,41.69];
+const T_IS=["Istanbul",28.95,41.02],T_BK=["Ballıkaya",29.55,40.83],T_CA=["Çatalca",28.46,41.14],T_MS=["Mimar Sinan",28.62,41.07],T_AU=["Altınbaş",28.83,41.06],T_GA=["Galata",28.974,41.026],T_HA=["Hacıllı",29.49,41.11],T_SI=["Şile",29.61,41.175],T_BF=["Belgrad Forest",28.96,41.18],T_KU=["Kumköy",29.03,41.25],T_OB=["Osmangazi",29.51,40.75],T_YA=["Yalova",29.27,40.655],T_GE=["Gemlik",29.15,40.43],T_DI=["Dişkaya ≈",29.3,40.38];
+const K_AL=["Almaty",76.92,43.24],K_AP=["ALA",77.04,43.35],K_KT=["Kok-Tobe",76.974,43.229],K_AA=["Alma-Arasan",76.909,43.092],K_RP=["R. persica",78.652,43.45],K_PL=["P11",79.619,43.371],K_BR=["BAL road",76.964,43.088],K_CH=["Charyn Canyon",79.08,43.35],K_DA=["Dardamty",80.06,43.485],K_BL=["Big Almaty Lake",76.99,43.05],K_SO=["Sorbulaq",76.68,43.67],K_ME=["Medeu",77.065,43.165];
+const TRIP_MAPS = {
+ siberia:{L0:14,B1:62,KX:7.93651,KY:12.09725,H:315,km:{hu:"24 563 km",en:"24,563 km",ro:"24.563 km"}},
+ china:{L0:99,B1:39.5,KX:38.46154,KY:45.86013,H:596,
+  days:[{p:[]},{p:[P_PVG,P_SH,P_HZ]},{p:[P_HZ,P_LA,P_HGH]},
+   {parts:[{p:[P_HGH,P_ZGC],dash:1,off:-7},{p:[P_ZGC,P_LZ,P_SC,P_LZ]}],bt:.3},{p:[P_LZ,P_ZGC],off:7},
+   {parts:[{p:[P_ZGC,P_HGH],dash:1,off:7},{p:[P_HGH,P_LA],off:5}],bt:.3},{p:[P_LA,P_HZ,P_PVG],off:-5}],
+  badges:[null,null,null,null,[103.4,36.3],null,null],
+  labels:[["Shanghai",121.47,31.23,"start",8,-8],["Hangzhou",120.16,30.27,"end",-8,22],["Lin'an",119.72,30.23,"end",-8,-6,1],["Lanzhou",103.83,36.06,"middle",0,26],["Shichuan",103.95,36.33,"start",9,-4,1]],
+  areas:[["East China Sea",123.4,28.6,"sea"],["CHINA",108.5,33.6,"area"],["Yellow River",107.2,38.6,"sea"]],},
+ georgia:{L0:43.6,B1:42.95,KX:277.77778,KY:373.20095,H:784,
+  days:[{p:[G_TB,G_DE]},{p:[G_DE,G_VA,G_AL,G_DE]},{p:[G_TE,G_GO,G_TI,G_GO,G_TE]},{p:[G_TE,G_GO,G_TI,G_AN,G_ST],off:-6,bt:.3},{p:[G_ST,G_AN,G_TB],off:6,bt:.3},{p:[G_TB,G_TL]}],
+  badges:[null,null,null,null,null,[44.87,41.6]],
+  labels:[["Tbilisi",44.79,41.72,"end",-10,6],["Dedoplistskaro",46.1,41.46,"start",10,6],["Vashlovani",46.4,41.18,"end",-10,6],["Alazani",46.55,41.1,"start",10,10,1],["Telavi",45.47,41.92,"start",10,6],["Gombori",45.23,41.86,"middle",0,26,1],["Tianeti",44.97,42.11,"start",10,-6],["Ananuri",44.7,42.16,"end",-10,6,1],["Stepantsminda",44.64,42.66,"start",10,6],["Turtle Lake",44.75,41.69,"end",-10,26,1]],
+  areas:[["RUSSIA",45.6,42.8,"area"],["AZERBAIJAN",46.85,41.62,"area"],["ARMENIA",44.6,40.98,"area"],["GEORGIA",43.95,42.2,"area"]],},
+ turkey:{L0:27.8,B1:41.55,KX:384.61538,KY:508.46497,H:712,
+  days:[{p:[T_IS]},{p:[T_IS,T_BK],bt:.8},{p:[T_IS,T_CA]},{p:[T_IS,T_MS,T_AU,T_GA]},{p:[T_IS,T_HA,T_SI]},{p:[T_IS,T_BF,T_KU]},{p:[T_IS,T_OB,T_YA,T_GE,T_DI]}],
+  badges:[[28.9,40.94],null,[28.4,41.06],[28.75,40.98],null,[29.06,41.2],null],
+  labels:[["Istanbul",28.95,41.02,"end",-10,-12],["Ballıkaya",29.55,40.83,"start",10,6],["Çatalca",28.46,41.14,"end",-10,6],["Mimar Sinan",28.62,41.07,"middle",0,26,1],["Galata",28.974,41.026,"start",10,24,1],["Şile",29.61,41.175,"start",10,6],["Hacıllı",29.49,41.11,"middle",0,26,1],["Kumköy",29.03,41.25,"start",10,-4],["Belgrad Forest",28.96,41.18,"end",-10,0,1],["Yalova",29.27,40.655,"end",-10,6],["Gemlik",29.15,40.43,"end",-10,6],["Dişkaya ≈",29.3,40.38,"start",10,10]],
+  areas:[["Black Sea",29.0,41.45,"sea"],["Sea of Marmara",28.45,40.72,"sea"]],},
+ kazakhstan:{L0:75.7,B1:44.3,KX:204.08163,KY:281.11394,H:478,
+  days:[{p:[]},{p:[K_AP,K_AL,K_KT],bt:.1},{p:[K_AL,K_AA]},{p:[K_AL,K_RP,K_CH,K_DA,K_PL,K_AL],off:3},{p:[K_AL,K_AA,K_BR,K_BL],off:5},{p:[K_AL,K_SO,K_ME,K_AL],off:-4,bt:.3},{p:[K_AL,K_AP],off:5,bt:.85}],
+  labels:[["Almaty",76.92,43.24,"end",-12,6,0,1],["Alma-Arasan",76.909,43.092,"end",-10,10],["Charyn Canyon",79.08,43.35,"middle",0,26],["Dardamty",80.06,43.485,"middle",0,-14],["R. persica",78.652,43.45,"middle",0,-14],["Big Almaty Lake",76.99,43.05,"middle",0,26],["Sorbulaq",76.68,43.67,"end",-10,6],["Medeu",77.065,43.165,"start",12,6]],
+  sites:[[76.974, 43.2295, 1], [76.9747, 43.2292, 1], [76.9746, 43.229, 1], [76.9745, 43.229, 1], [76.9746, 43.2314, 1], [76.9131, 43.1156, 2], [76.9131, 43.1155, 2], [76.913, 43.1154, 2], [76.9131, 43.1155, 2], [76.9095, 43.108, 2], [76.9095, 43.108, 2], [76.9094, 43.1079, 2], [76.9094, 43.1079, 2], [76.9094, 43.0899, 2], [76.9067, 43.0828, 2], [76.9058, 43.0924, 2], [76.9059, 43.0927, 2], [76.9069, 43.0975, 2], [76.9071, 43.0975, 2], [76.9071, 43.0975, 2], [78.6516, 43.4502, 3], [78.6504, 43.4501, 3], [78.6512, 43.45, 3], [78.6535, 43.451, 3], [78.6534, 43.4507, 3], [78.6526, 43.4507, 3], [80.0604, 43.4846, 3], [80.0604, 43.4846, 3], [80.0604, 43.4847, 3], [80.0605, 43.4848, 3], [79.6193, 43.3714, 3], [76.9107, 43.226, 4], [76.9102, 43.226, 4], [76.9126, 43.1164, 4], [76.9127, 43.116, 4], [76.9638, 43.0878, 4], [76.9635, 43.088, 4], [76.9647, 43.0873, 4], [76.9583, 43.0924, 4], [76.9449, 43.1018, 4], [76.9433, 43.1003, 4], [76.9189, 43.1065, 4], [76.9189, 43.1062, 4], [77.0382, 43.1707, 5], [77.0382, 43.1707, 5], [77.039, 43.1702, 5], [77.0403, 43.1685, 5], [77.0662, 43.1631, 5], [77.0678, 43.1656, 5], [77.0745, 43.1666, 5], [77.0729, 43.1649, 5], [77.0732, 43.1645, 5], [77.0744, 43.1631, 5], [77.0749, 43.163, 5], [77.0752, 43.1633, 5], [77.0594, 43.1612, 5], [77.0291, 43.1735, 5], [77.0124, 43.1795, 5]],
+  areas:[["KAZAKHSTAN",78.3,44.1,"area"],["KYRGYZSTAN",77.6,42.75,"area"],["CHINA",80.45,42.85,"area"]],
+  badges:[null,[76.89,43.37],null,null,null,null,[77.12,43.37]],
+  inset:{bt:{1:.5,2:.3,4:.75,5:.5},box:[76.86,43.03,77.10,43.27], W:500, L0:76.86, B1:43.27, KX:2083.33333, KY:2855.58004, H:686,
+   title:{hu:"Almaty környéke (nagyítás)",en:"Almaty area (zoomed in)",ro:"Zona Almaty (mărit)"},
+   labels:[["Almaty",76.92,43.24,"end",-10,-8],["Kok-Tobe",76.974,43.229,"start",10,18],["Alma-Arasan",76.909,43.092,"start",12,-12],
+    ["Big Almaty Lake",76.99,43.05,"end",-12,6],["Medeu",77.065,43.165,"middle",0,-12]]}},
+};
+TRIP_MAPS.siberia.days = (()=>{ const o=SIB_OUT,b=SIB_BACK; const R=[[["o",0,5]],[["o",5,9]],[["o",9,13]],[["o",13,14],["b",0,1]],[["b",1,6]],[["b",6,10]],[["b",10,20]]];
+  return R.map(parts=>({parts:parts.map(([w,a,c])=>({p:(w==="o"?o:b).slice(a,c+1),dash:w==="b",off:-3}))})); })();
+TRIP_MAPS.siberia.labels = SIB_OUT.concat(SIB_BACK).filter((p,i,a)=>SIB_SHOW.includes(p[0])&&a.findIndex(q=>q[0]===p[0])===i).map(p=>{
+  const below={"Omsk":1,"Kyiv":1,"Irkutsk":1,"Chita":1,"Vladivostok":1,"Astana":1,"Uralsk":1,"Astrakhan":1,"Istanbul":1};
+  const anc={"Stepantsminda":"start","Jibou":"end","Khabarovsk":"end","Vladivostok":"end"}[p[0]]||"middle";
+  return [p[0],p[1],p[2],anc,anc==="end"?-7:anc==="start"?8:0,p[0]==="Stepantsminda"?5:below[p[0]]?22:-10,SIB_MINOR.includes(p[0])?1:0]; });
+TRIP_MAPS.siberia.areas = [["Black Sea",34.5,43.3,"sea"],["Caspian Sea",51.6,38.6,"sea"],["Lake Baikal",106.2,54.6,"sea"],["Sea of Japan",130.5,39.2,"sea"]];
+TRIP_MAPS.siberia.badges = SIB_BADGE;
+TRIP_MAPS.siberia.allpts = SIB_OUT.concat(SIB_BACK);
+/* one map panel: M = projection + content; base = base-map file stem; hide = [lon0,lat0,lon1,lat1] box whose labels/badges move to an inset */
+function mapSVG(M, base, hide, cls){
+  const W=M.W||1000, H=M.H, X=lo=>(lo-M.L0)*M.KX, Y=la=>(M.B1-la)*M.KY;
   const xy=a=>a.map(p=>[X(p[1]),Y(p[2])]);
-  const offset=(pts,d)=>pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)];let nx=-(b[1]-a[1]),ny=b[0]-a[0];const l=Math.hypot(nx,ny)||1;return [p[0]+nx/l*d,p[1]+ny/l*d];});
+  const inHide=(lo,la)=>hide&&lo>hide[0]&&lo<hide[2]&&la>hide[1]&&la<hide[3];
+  const inView=(x,y)=>x>14&&x<W-14&&y>14&&y<H-14;
+  const offset=(pts,d)=>!d?pts:pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)];let nx=-(b[1]-a[1]),ny=b[0]-a[0];const l=Math.hypot(nx,ny)||1;return [p[0]+nx/l*d,p[1]+ny/l*d];});
+  /* part of segment a-b inside the view rectangle (Liang-Barsky), or null */
+  const clipSeg=(a,b)=>{let t0=0,t1=1;const dx=b[0]-a[0],dy=b[1]-a[1];
+    for(const [p,q] of [[-dx,a[0]-14],[dx,W-14-a[0]],[-dy,a[1]-14],[dy,H-14-a[1]]]){ if(!p){ if(q<0) return null; continue; } const r=q/p; if(p<0){ if(r>t1) return null; if(r>t0) t0=r; } else { if(r<t0) return null; if(r<t1) t1=r; } }
+    return [[a[0]+t0*dx,a[1]+t0*dy],[a[0]+t1*dx,a[1]+t1*dy]]; };
   const str=pts=>pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
-  const all=[...SIB_OUT,...SIB_BACK], seen=new Set();
-  const lab=n=>(SIB_LABEL[lang]&&SIB_LABEL[lang][n])||n;
-  const below={"Omsk":1,"Kyiv":1,"Irkutsk":1,"Chita":1,"Vladivostok":1,"Astana":1,"Uralsk":1,"Astrakhan":1,"Stepantsminda":1,"Istanbul":1};
-  const anchor={"Stepantsminda":"start","Jibou":"end","Khabarovsk":"end","Vladivostok":"end","Istanbul":"middle"};
-  const dots=all.filter(p=>!seen.has(p[0])&&seen.add(p[0])).map(p=>{const sh=SIB_SHOW.includes(p[0]),x=X(p[1]),y=Y(p[2]);
-    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${sh?4.5:3}"/>`+(sh?`<text class="${SIB_MINOR.includes(p[0])?"minor":""}" x="${(x+(anchor[p[0]]==="end"?-7:anchor[p[0]]==="start"?8:0)).toFixed(1)}" y="${(y+(p[0]==="Stepantsminda"?5:below[p[0]]?22:-10)).toFixed(1)}" text-anchor="${anchor[p[0]]||"middle"}">${lab(p[0])}</text>`:"");}).join("");
-  const seas=SIB_SEAS[lang].map(s=>`<text class="sea" x="${X(s[1]).toFixed(1)}" y="${Y(s[2]).toFixed(1)}" text-anchor="middle">${s[0]}</text>`).join("");
-  const po=offset(xy(SIB_OUT),-3), pb=offset(xy(SIB_BACK),-3);
-  /* stage k covers these vertex ranges of the outward (o) and return (b) paths */
-  const SEG=[[["o",0,5]],[["o",5,9]],[["o",9,13]],[["o",13,14],["b",0,1]],[["b",1,6]],[["b",6,10]],[["b",10,20]]];
-  const titles=(RAMBLE.siberia&&RAMBLE.siberia[lang]||[]).filter(x=>x[0]==="stage").map(x=>x[1]);
-  let lines="", badges="";
-  SEG.forEach((parts,k)=>{ parts.forEach(([w,a,b])=>{ const P=(w==="o"?po:pb).slice(a,b+1);
-      lines+=`<polyline class="st ${w==="b"?"back":""}" style="stroke:${SIB_COL[k]}" points="${str(P)}"/>`; });
-    const bx=X(SIB_BADGE[k][0]), by=Y(SIB_BADGE[k][1]);
-    badges+=`<g class="badge"><circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="11" style="fill:${SIB_COL[k]}"/><text x="${bx.toFixed(1)}" y="${(by+5).toFixed(1)}" text-anchor="middle">${k+1}</text></g>`; });
-  const legend=titles.map((ti,k)=>`<li><span class="sw" style="background:${SIB_COL[k]}">${k+1}</span>${ti}</li>`).join("");
-  return `<figure class="sibmap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${t.cap}">
-<image href="rambling/siberia_base.svg" x="0" y="0" width="${W}" height="${H}"/>${seas}${lines}${dots}${badges}</svg>
-<figcaption>${t.cap} · <span class="k"></span> ${t.out} · <span class="k back"></span> ${t.back} · <span class="src">Natural Earth</span></figcaption>
-<ol class="sib-legend">${legend}</ol></figure>`;
+  const lab=n=>(SIB_LABEL[lang]&&SIB_LABEL[lang][n])||(MAP_LABEL[lang]&&MAP_LABEL[lang][n])||n;
+  const area=n=>(MAP_AREA[n]&&MAP_AREA[n][lang])||n;
+  /* a leg between two stops follows the roads when rambling/routes.js has it, else it is straight */
+  const road=(a,b)=>window.ROUTES&&ROUTES[`${a[1]},${a[2]}|${b[1]},${b[2]}`];
+  /* point at fraction f along the visible part of a polyline, and that visible length */
+  const along=(P,f)=>{ const segs=[]; let tot=0;
+    for(let i=0;i<P.length-1;i++){ const c=clipSeg(P[i],P[i+1]); if(!c) continue; const L=Math.hypot(c[1][0]-c[0][0],c[1][1]-c[0][1]); segs.push([c,L]); tot+=L; }
+    let r=tot*f; for(const [c,L] of segs){ if(r<=L&&L>0) return [[c[0][0]+(c[1][0]-c[0][0])*r/L,c[0][1]+(c[1][1]-c[0][1])*r/L],tot]; r-=L; }
+    return [null,0]; };
+  let lines="", badges="", pts=[];
+  M.days.forEach((d,k)=>{ let best=null, bl=-1;
+    (d.parts||[d]).forEach(s=>{ if(s.p.length<2) return; pts.push(...s.p);
+      const full=[], legOf=[];
+      for(let i=0;i<s.p.length-1;i++){ const r=road(s.p[i],s.p[i+1]);
+        const seg=r?r.map(q=>[X(q[0]),Y(q[1])]):[[X(s.p[i][1]),Y(s.p[i][2])],[X(s.p[i+1][1]),Y(s.p[i+1][2])]];
+        seg.slice(i?1:0).forEach(q=>{ full.push(q); legOf.push(i); }); }
+      const P=offset(full,s.off||0);
+      lines+=`<polyline class="${s.dash?"back":""}" style="stroke:${SIB_COL[k%7]}" points="${str(P)}"/>`;
+      for(let i=0;i<s.p.length-1;i++){ const sub=P.filter((q,j)=>legOf[j]===i||(legOf[j]===i-1&&legOf[j+1]===i));
+        const [q0,L]=along(sub,(M.bt&&M.bt[k])||d.bt||.5); if(!q0||L<=bl) continue;
+        if(!hide||!inHide(q0[0]/M.KX+M.L0,M.B1-q0[1]/M.KY)){ bl=L; best=q0; } } });
+    if(!d.parts && d.p.length===1){ pts.push(d.p[0]); best=[X(d.p[0][1])+18,Y(d.p[0][2])-20]; }
+    const bp=M.badges&&M.badges[k]; if(!bp&&!best) return;
+    if(M.minBadge && bl<M.minBadge && !bp) return;
+    const bx=bp?X(bp[0]):best[0], by=bp?Y(bp[1]):best[1];
+    badges+=`<g class="badge"><circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="11" style="fill:${SIB_COL[k%7]}"/><text x="${bx.toFixed(1)}" y="${(by+5).toFixed(1)}" text-anchor="middle">${k+1}</text></g>`; });
+  const sites=(M.sites||[]).map(q=>`<circle class="site" cx="${X(q[0]).toFixed(1)}" cy="${Y(q[1]).toFixed(1)}" r="3.2" style="fill:${SIB_COL[q[2]%7]}"/>`).join("");
+  const seen=new Set(), named=new Set(M.labels.map(l=>l[0]));
+  const dots=pts.filter(p=>!seen.has(p[0])&&seen.add(p[0])).map(p=>`<circle class="dot" cx="${X(p[1]).toFixed(1)}" cy="${Y(p[2]).toFixed(1)}" r="${named.has(p[0])?4.5:3}"/>`).join("");
+  const labels=M.labels.filter(l=>!inHide(l[1],l[2])||l[7]).map(l=>`<text class="${l[6]?"minor":""}" x="${(X(l[1])+l[4]).toFixed(1)}" y="${(Y(l[2])+l[5]).toFixed(1)}" text-anchor="${l[3]}">${lab(l[0])}</text>`).join("");
+  const areas=(M.areas||[]).map(a=>`<text class="${a[3]}" x="${X(a[1]).toFixed(1)}" y="${Y(a[2]).toFixed(1)}" text-anchor="middle">${area(a[0])}</text>`).join("");
+  const box=hide?`<rect class="ibox" x="${X(hide[0]).toFixed(1)}" y="${Y(hide[3]).toFixed(1)}" width="${(X(hide[2])-X(hide[0])).toFixed(1)}" height="${(Y(hide[1])-Y(hide[3])).toFixed(1)}"/>`:"";
+  return `<svg class="${cls||""}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${M.aria||MAP_T[lang].cap}">
+<image class="bm-l" href="rambling/${base}_base.svg" x="0" y="0" width="${W}" height="${H}"/><image class="bm-d" href="rambling/${base}_base_dark.svg" x="0" y="0" width="${W}" height="${H}"/>
+${areas}${box}${lines}${sites}${dots}${labels}${badges}${M.title?`<text class="ititle" x="${W-14}" y="${H-16}" text-anchor="end">${M.title[lang]}</text>`:""}</svg>`;
+}
+function tripMap(id){
+  const M=TRIP_MAPS[id], t=MAP_T[lang], I=M.inset;
+  let inset="";
+  if(I){ const IM=Object.assign({}, M, I, {badges:null, sites:M.sites, days:M.days, labels:I.labels, areas:[], aria:I.title[lang]});
+    inset=mapSVG(IM, id+"_inset", null, "inset"); }
+  const heads=id==="siberia" ? RAMBLE.siberia[lang].filter(x=>x[0]==="stage").map(x=>x[1]) : RAMBLE[id][lang].filter(x=>x[0]==="h").map(x=>x[1]);
+  const legend=M.days.map((d,k)=>{const empty=!d.parts&&d.p.length===0;
+    return `<li${empty?' class="off"':""}><span class="sw" style="background:${SIB_COL[k%7]}">${k+1}</span>${heads[k]||""}${empty?` <em>(${t.out})</em>`:""}</li>`;}).join("");
+  const hasDash=M.days.some(d=>(d.parts||[d]).some(s=>s.dash));
+  const dashLbl=id==="siberia" ? SIB_MAPT[lang].back : t.flight, solidLbl=id==="siberia" ? SIB_MAPT[lang].out : "";
+  const approx=M.labels.some(l=>l[0].includes("≈"));
+  const cap=`<figcaption>${t.cap}${M.km?` (${M.km[lang]})`:""}${solidLbl?` · <span class="k"></span> ${solidLbl}`:""}${hasDash?` · <span class="k back"></span> ${dashLbl}`:""}${approx?` · ${t.approx}`:""}${M.sites?` · <span class="k site"></span> ${t.gps}`:""}${I?` · <span class="k box"></span> ${t.inset}`:""} · <span class="src">${t.src}</span></figcaption>`;
+  const ol=`<ol class="sib-legend">${legend}</ol>`;
+  return `<figure class="sibmap">${mapSVG(M, id, I?I.box:null)}${cap}${I?`<div class="map-row">${inset}${ol}</div>`:ol}</figure>`;
 }
 function renderTrip(id){
   const d = $("#diary"); if(!d || location.hash!=="#rambling-"+id) return;
@@ -891,14 +1000,15 @@ function renderTrip(id){
   const heads = list.map((s,i)=>(s[0][0]==="h"||s[0][0]==="stage") ? [i,s[0][1]] : null).filter(Boolean);
   const fig = (f,sq) => `<figure><a href="rambling/${id}/${f}" data-cap="${cap}"><img src="rambling/${id}/${sq?f.replace(/\.jpg$/,"_sq.jpg"):f}" alt="" loading="lazy"></a></figure>`;
   const rb = (b,inner) =>
-    b[0]==="h" ? (inner?`<h4>${b[1]}</h4>`:`<h3>${b[1]}</h3>`) :
+    b[0]==="h" ? (inner?`<h4>${b[1]}</h4>`:(()=>{const M=TRIP_MAPS[id], k=all.filter(x=>x[0]==="h").indexOf(b);
+      return (M&&id!=="siberia"&&k>=0&&k<M.days.length) ? `<h3 style="color:${SIB_COL[k%7]}"><span class="sn" style="background:${SIB_COL[k%7]}">${k+1}</span>${b[1]}</h3>` : `<h3>${b[1]}</h3>`;})()) :
     b[0]==="stage" ? (()=>{const k=all.filter(x=>x[0]==="stage").indexOf(b);return `<h3 class="stage"${id==="siberia"?` style="color:${SIB_COL[k]}"`:""}>${id==="siberia"?`<span class="sn" style="background:${SIB_COL[k]}">${k+1}</span>`:""}${b[1]}</h3><p class="stage-meta">${b[2]}</p>`;})() :
     b[0]==="p" ? `<p>${b[1]}</p>` :
     b[0]==="fold" ? `<details class="fold"><summary>${b[1]}</summary>${b[2].map(x=>rb(x,true)).join("")}</details>` :
     b[0]==="wide" ? `<div class="gal wide">${b[1].map(f=>fig(f,false)).join("")}</div>` :
     `<div class="gal n${b[1].length}">${b[1].map(f=>fig(f,true)).join("")}</div>`;
   const html = list.map((s,i)=>`<section id="day-${i}">`+s.map(b=>rb(b,false)).join("")+`</section>`).join("");
-  d.innerHTML = (top.length&&id==="siberia"?sibMap():"")+`<div class="diary-tools">
+  d.innerHTML = (TRIP_MAPS[id]?tripMap(id):"")+`<div class="diary-tools">
 <button type="button" id="tripOrder">${newestNow ? r.order_old : r.order_new}</button>
 ${heads.length>3?`<label>${r.jump} <select id="tripJump"><option value=""></option>${heads.map(([i,t])=>`<option value="${i}">${t.replace(/<[^>]+>/g,"")}</option>`).join("")}</select></label>`:""}
 </div>${html}`;
