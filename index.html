@@ -113,6 +113,12 @@ nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.m
 :root[data-theme="dark"] .sibmap{--mp-bg:#1a2a35;--mp-lab:#ece6da;--mp-halo:#161616;--mp-sea:#7fb0cc;--mp-area:#9a907e;--mp-dot:#ddd;--mp-ring:#161616}
 :root[data-theme="dark"] .sibmap .bm-l{display:none} :root[data-theme="dark"] .sibmap .bm-d{display:inline}
 .diary .gal.wide figure{flex-basis:100%}
+.diary .jrows{margin:14px 0 18px;display:flex;flex-direction:column;gap:8px}
+.diary .jrow{display:flex;gap:8px;width:100%;margin:0 auto}
+.diary .jrow figure{margin:0;min-width:0}
+.diary .jrow a{display:block;width:100%;height:100%}
+.diary .jrow img{display:block;width:100%;height:100%;object-fit:cover;border-radius:4px}
+@media (max-width:600px){.diary .jrows,.diary .jrow{gap:5px}}
 .diary .gal.wide img{aspect-ratio:auto;height:auto;object-fit:contain}
 @media (max-width:420px){.diary .gal{gap:6px}.diary .gal figure{flex-basis:calc((100% - 12px)/3)}.diary .gal.n1 figure{flex-basis:100%}.diary .gal.n2 figure,.diary .gal.n4 figure{flex-basis:calc((100% - 6px)/2)}}
 .diary-tools{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font:13px "Open Sans",sans-serif;margin:0 0 10px}
@@ -988,6 +994,13 @@ function tripMap(id){
   const ol=`<ol class="sib-legend">${legend}</ol>`;
   return `<figure class="sibmap">${mapSVG(M, id, I?I.box:null)}${cap}${I?`<div class="map-row">${inset}${ol}</div>`:ol}</figure>`;
 }
+/* split photos [file, aspect] into rows whose summed aspect is close to target; a short leftover row goes last */
+function splitRows(it,T){ const n=it.length, best=[0], cut=[0];
+  for(let j=1;j<=n;j++){ best[j]=Infinity; let sum=0;
+    for(let i=j-1;i>=0;i--){ sum+=it[i][1]; if(sum>T*2.2&&i<j-1) break;
+      let c=best[i]+(sum-T)**2*(sum<T?1.6:1); if(sum<T&&j<n) c+=.05;
+      if(c<best[j]){ best[j]=c; cut[j]=i; } } }
+  const out=[]; for(let j=n;j;j=cut[j]) out.unshift(it.slice(cut[j],j)); return out; }
 function renderTrip(id){
   const d = $("#diary"); if(!d || location.hash!=="#rambling-"+id) return;
   const r = RGR[lang], all = RAMBLE[id][lang], cap = esc(r.trips.find(t=>t.id===id).t);
@@ -1006,7 +1019,13 @@ function renderTrip(id){
     b[0]==="p" ? `<p>${b[1]}</p>` :
     b[0]==="fold" ? `<details class="fold"><summary>${b[1]}</summary>${b[2].map(x=>rb(x,true)).join("")}</details>` :
     b[0]==="wide" ? `<div class="gal wide">${b[1].map(f=>fig(f,false)).join("")}</div>` :
+    b[0]==="rows" ? jrows(b[1]) :
     `<div class="gal n${b[1].length}">${b[1].map(f=>fig(f,true)).join("")}</div>`;
+  /* justified rows: every photo in a row has the same height and the row fills the text width; nothing is cropped.
+     Rows come from the data; on narrow screens they are re-split into shorter rows. */
+  const jrows = R => { if(window.innerWidth<600) R=splitRows(R.flat(),2.2);
+    return `<div class="jrows">${R.map(r=>{const s=r.reduce((t,x)=>t+x[1],0);
+      return `<div class="jrow"${s<1.5?` style="max-width:${(s/1.5*100).toFixed(1)}%"`:""}>${r.map(([f,a])=>`<figure style="flex:${a} ${a} 0;aspect-ratio:${a}"><a href="rambling/${id}/${f}" data-cap="${cap}"><img src="rambling/${id}/${f}" alt="" loading="lazy"></a></figure>`).join("")}</div>`;}).join("")}</div>`; };
   const html = list.map((s,i)=>`<section id="day-${i}">`+s.map(b=>rb(b,false)).join("")+`</section>`).join("");
   d.innerHTML = (TRIP_MAPS[id]?tripMap(id):"")+`<div class="diary-tools">
 <button type="button" id="tripOrder">${newestNow ? r.order_old : r.order_new}</button>
