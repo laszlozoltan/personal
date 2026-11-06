@@ -56,6 +56,7 @@ nav.menu li:hover > ul, nav.menu li:focus-within > ul{display:block}
 nav.menu ul ul a{color:var(--ink);font-weight:400;padding:7px 16px}
 nav.menu ul ul a:hover{background:var(--page);color:var(--link)}
 nav.menu > ul > li.wex:hover > a, nav.menu > ul > li.wex:focus-within > a, nav.menu > ul > li.wex > a.cur{background:#d35400;color:#fff}
+nav.menu > ul > li.bee:hover > a, nav.menu > ul > li.bee:focus-within > a, nav.menu > ul > li.bee > a.cur{background:#2e7d32;color:#fff}
 nav.menu > ul > li.rfl:hover > a, nav.menu > ul > li.rfl:focus-within > a, nav.menu > ul > li.rfl > a.cur{background:#c2185b;color:#fff}
 nav.menu li.sub a{padding-left:32px;font-size:13px}
 nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.menu > ul > li.rgr > a.cur{background:#7b1fa2;color:#fff}
@@ -146,6 +147,9 @@ h3.lv{margin-top:22px}
 .tablewrap{overflow-x:auto}
 .rfl-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#c2185b;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
 .rfl-btn:hover{background:#9c1149}
+.bee-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#2e7d32;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
+.bee-btn:hover{background:#1b5e20}
+.bee-h{color:#2e7d32}
 .wex-btn{display:inline-block;margin-top:6px;padding:9px 18px;background:#d35400;color:#fff!important;text-decoration:none;font:600 14px "Open Sans",sans-serif;border-radius:3px}
 .wex-btn:hover{background:#a84300}
 .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 24px}
@@ -248,6 +252,7 @@ footer{border-top:1px solid var(--line);padding:18px 40px;font:13px "Open Sans",
           <li class="sub"><a href="#rambling-kazakhstan" data-t="rg_kaz">Kazahsztáni látogatás</a></li>
         </ul>
       </li>
+      <li class="bee"><a href="#beehost" data-t="m_bee">BeeHost</a></li>
       <li class="rfl"><a href="#rosefarmlab" data-t="m_rfl">RoseFarm Lab</a></li>
       <li class="wex"><a href="#waspexpos" data-t="m_wex">Wasp Expos</a></li>
       <li><a href="#research" data-t="m_research">Kutatás</a>
@@ -330,7 +335,7 @@ const PORTRAIT = '<img class="portrait" src="photo.jpg" alt="László Zoltán" o
 const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
- m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", rg_tur:"Törökországi látogatás", rg_geo:"Grúziai látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
+ m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_bee:"BeeHost", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", rg_tur:"Törökországi látogatás", rg_geo:"Grúziai látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat", m_lect:"Tananyagok hallgatóknak 🔒",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
@@ -356,7 +361,7 @@ hu:{
 },
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
- m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", rg_tur:"Turkey visit", rg_geo:"Georgia visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
+ m_home:"Home", m_rfl:"RoseFarm Lab", m_bee:"BeeHost", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", rg_tur:"Turkey visit", rg_geo:"Georgia visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact", m_lect:"Materials for students 🔒",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
@@ -382,7 +387,7 @@ en:{
 },
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
- m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", rg_tur:"Vizita în Turcia", rg_geo:"Vizita în Georgia", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
+ m_home:"Acasă", m_rfl:"RoseFarm Lab", m_bee:"BeeHost", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", rg_tur:"Vizita în Turcia", rg_geo:"Vizita în Georgia", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact", m_lect:"Materiale pentru studenți 🔒",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
@@ -410,7 +415,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","rambling-georgia","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact","lectures"];
+const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","rambling-georgia","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact","lectures","beehost"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -748,6 +753,31 @@ function rflPage(){
 <p class="note" style="margin-top:-10px"><i>${r.tag}</i></p>
 ${r.p.map(t=>`<p>${t}</p>`).join("")}
 <p><a class="rfl-btn" href="${RFL_URL}" target="_blank" rel="noopener">${r.link} →</a></p>`;
+}
+
+/* ---------- BeeHost Kolozsvár (citizen-science survey of solitary wild bees) ---------- */
+const BEE_URL = "https://laszlozoltan.github.io/BeeHost/";
+const BEET = {
+ hu:{h:"BeeHost Kolozsvár", tag:"Fogadj be vadméheket kertedbe vagy erkélyedre!",
+  p:["A BeeHost a BBTE Biológia és Geológia Karának kutatása, amely a Kolozsváron élő magányos vadméheket méri fel. Ilyen felmérés a városban még nem készült.",
+     "Azt is vizsgáljuk, mennyire szívesen telepednek meg ezek a méhek a lakások erkélyein és a családi házak kertjeiben.",
+     "Önkéntes házigazdákat keresünk: helyezz ki egy rovarhotelt, fényképezd le a látogató rovarokat, kövesd a lezárt járatokat, és küldd el nekünk a megfigyeléseidet."],
+  link:"Tovább a BeeHost oldalára"},
+ en:{h:"BeeHost Kolozsvár", tag:"Host wild bees in your garden or on your balcony!",
+  p:["BeeHost is a research project of the Faculty of Biology and Geology, Babeș-Bolyai University, surveying the solitary wild bees of Cluj-Napoca. No such survey has been done in the city before.",
+     "We also study how readily these bees settle on apartment balconies and in house gardens.",
+     "We are looking for volunteer hosts: set up an insect hotel, photograph the visiting insects, keep track of the sealed tubes and send us your observations."],
+  link:"Go to the BeeHost website"},
+ ro:{h:"BeeHost Cluj", tag:"Adoptă albine solitare în grădina sau pe balconul tău!",
+  p:["BeeHost este un proiect de cercetare al Facultății de Biologie și Geologie a Universității Babeș-Bolyai, care inventariază albinele sălbatice solitare din Cluj-Napoca. Un astfel de studiu nu a mai fost realizat în oraș.",
+     "Urmărim și cât de ușor se instalează aceste albine pe balcoanele apartamentelor și în grădinile caselor.",
+     "Căutăm gazde voluntare: instalează un hotel pentru insecte, fotografiază insectele care îl vizitează, urmărește tuburile sigilate și trimite-ne observațiile tale."],
+  link:"Mergi la site-ul BeeHost"}};
+function beePage(){ const r = BEET[lang];
+  return `<h2 class="bee-h">🐝 ${r.h}</h2>
+<p class="note" style="margin-top:-10px"><i>${r.tag}</i></p>
+${r.p.map(t=>`<p>${t}</p>`).join("")}
+<p><a class="bee-btn" href="${BEE_URL}" target="_blank" rel="noopener">${r.link} →</a></p>`;
 }
 
 /* ---------- RoseGall Rambling ---------- */
@@ -1375,7 +1405,7 @@ function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p) && !lecRoute(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="activities" ? actPage() : p==="teaching"||p==="lectures" ? teachPage() : lecRoute(p) ? lecPage(p) : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="beehost" ? beePage() : p==="waspexpos" ? wexPage() : p==="activities" ? actPage() : p==="teaching"||p==="lectures" ? teachPage() : lecRoute(p) ? lecPage(p) : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
     a.classList.toggle("cur", sub.includes(p) || (!!lecRoute(p) && sub.includes("teaching")));
