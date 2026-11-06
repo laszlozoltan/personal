@@ -113,6 +113,19 @@ nav.menu > ul > li.rgr:hover > a, nav.menu > ul > li.rgr:focus-within > a, nav.m
 :root[data-theme="dark"] .sibmap{--mp-bg:#1a2a35;--mp-lab:#ece6da;--mp-halo:#161616;--mp-sea:#7fb0cc;--mp-area:#9a907e;--mp-dot:#ddd;--mp-ring:#161616}
 :root[data-theme="dark"] .sibmap .bm-l{display:none} :root[data-theme="dark"] .sibmap .bm-d{display:inline}
 .diary .gal.wide figure{flex-basis:100%}
+.lec-form{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 6px}
+.lec-form input{min-width:0;flex:1 1 180px;max-width:280px;padding:7px 9px;font:inherit;border:1px solid var(--line,#bbb);border-radius:4px;background:var(--bg,#fff);color:inherit}
+.lec-form button,.lec-top button{padding:7px 14px;font:inherit;cursor:pointer}
+.lec-msg{min-height:1.4em;color:#b3261e}
+.lec-top{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:.9em}
+.lec-courses{list-style:none;padding:0;margin:0 0 10px} .lec-courses li{padding:10px 0;border-bottom:1px solid var(--line)}
+.lec-courses .ct{font-weight:700} .lec-courses .tl,.lec-meta{color:var(--muted);font-size:.85em}
+.lec-courses p{margin:3px 0 5px} .lec-courses .secs{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.92em}
+h3.lv{margin-top:22px}
+.lec-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;border-bottom:2px solid var(--link)}
+.lec-tabs a{padding:6px 12px;border-radius:4px 4px 0 0;text-decoration:none}
+.lec-tabs a[aria-current]{background:var(--link);color:#fff}
+.lec-list{padding-left:1.2em} .lec-list li{margin:.35em 0} .lec-size,.lec-none,.lec-note{color:var(--muted);font-size:.9em}
 .diary .jrows{margin:14px 0 18px;display:flex;flex-direction:column;gap:8px}
 .diary .jrow{display:flex;gap:8px;width:100%;margin:0 auto}
 .diary .jrow figure{margin:0;min-width:0}
@@ -318,7 +331,7 @@ const T = {
 hu:{
  skip:"Tovább a tartalomra", site_title:"Ökológiai modellezés BBTE", site_tag:"tantárgyak, egyebek", menu:"☰ Menü",
  m_home:"Főoldal", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Szibéria-expedíció", rg_chn:"Kínai látogatás", rg_kaz:"Kazahsztáni látogatás", rg_tur:"Törökországi látogatás", rg_geo:"Grúziai látogatás", m_cv:"Önéletrajz", m_pubs:"Közlemények", m_act:"Projektek, ismeretterjesztés, konferenciák", m_teach:"Oktatás", m_research:"Kutatás", m_topics:"Kutatási témák",
- m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat",
+ m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat", m_lect:"Tananyagok hallgatóknak 🔒",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
  foot:"A közleménylista az ORCID-ból frissül.", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
@@ -329,14 +342,6 @@ hu:{
 <p>A fémfürkészek (Chalcidoidea) parazitoidként fontos szabályozó szerepet töltenek be a táplálékhálózatokban. Azt vizsgálom, hogyan hat a tájhasználat intenzívebbé válása ezekre a közösségekre. A méhek sokfélesége az elmúlt évtizedekben mérhetően csökkent; célom a háttérben álló – tájhasználati, genetikai vagy járványtani – tényezők feltárása.</p>
 <p>Módszereim: tájökológiai, molekuláris, közösségökológiai és modellezési megközelítések.</p>
 <address>${ADDR.hu}</address>`,
- teaching:`<h2>Oktatott tantárgyak</h2>
-<p>A BBTE magyar nyelvű Ökológia és környezetvédelem szakán, valamint a doktori iskolában oktatok.</p>
-<h3>Tájökológia</h3><p>Térbeli fragmentáció, tájhasználat és hatásuk az élőlényközösségekre.</p>
-<h3>Biomatematika</h3><p>Matematikai alapok biológusoknak, gyakorlatokkal.</p>
-<h3>Biostatisztika</h3><p>Statisztikai elemzés és modellezés ökológiai adatokon, R-ben.</p>
-<h3>Ökológiai modellezés</h3><p>Előadások, gyakorlatok és irodalom.</p>
-<h3>Ökológiai terepgyakorlat</h3><p>Terepi mintavételi módszerek és adatgyűjtés.</p>
-<h3>Térbeli adatok elemzése R-ben</h3><p>Doktori kurzus (BBTE Doktori Iskola).</p>`,
  research:`<h2>Kutatási témák</h2>
 <h3 class="topic"><a href="#rozsagubacsok">Rózsagubacsok</a></h3><p>A vadrózsák <i>Diplolepis</i> és <i>Liebelia</i> gubacsdarazsai, parazitoidjaik és inkvilinusaik: a gubacs mérete, falvastagsága és kamraszáma hogyan alakítja a parazitoidok támadását és a hálózatok topológiáját. Ide tartozik a fajhatárok és a filogenetika molekuláris vizsgálata (COI, ITS2, matK, rbcL), a gubacs-mikrobiom és a laboratóriumi gubacsindukció is.</p>
 <h3 class="topic"><a href="#akacmagdarazsak">Akácmagdarazsak</a></h3><p>Az akác (<i>Robinia pseudoacacia</i>) magjaiban fejlődő fémfürkészek és parazitoidjaik.</p>
@@ -352,7 +357,7 @@ hu:{
 en:{
  skip:"Skip to content", site_title:"Ecological modelling BBU", site_tag:"courses and more", menu:"☰ Menu",
  m_home:"Home", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Siberia expedition", rg_chn:"China visit", rg_kaz:"Kazakhstan visit", rg_tur:"Turkey visit", rg_geo:"Georgia visit", m_cv:"CV", m_pubs:"Publications", m_act:"Projects, outreach & conferences", m_teach:"Teaching", m_research:"Research", m_topics:"Research topics",
- m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact",
+ m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact", m_lect:"Materials for students 🔒",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
  foot:"Publication list updates from ORCID.", loading:"Loading…", err:"Could not load the list right now – full record on ",
@@ -363,14 +368,6 @@ en:{
 <p>Chalcid wasps (Chalcidoidea) are parasitoids with an important regulatory role in food webs; I study how intensifying land use affects their communities. Bee diversity has measurably declined in recent decades, and I aim to identify the land-use, genetic and epidemiological factors behind it.</p>
 <p>Methods: landscape ecology, molecular, community ecology and modelling approaches.</p>
 <address>${ADDR.en}</address>`,
- teaching:`<h2>Courses</h2>
-<p>I teach in the Hungarian-language Ecology and Environmental Protection programme at Babeș-Bolyai University and in the Doctoral School.</p>
-<h3>Landscape ecology</h3><p>Spatial fragmentation, land use and their effects on communities.</p>
-<h3>Biomathematics</h3><p>Mathematical foundations for biologists, with practicals.</p>
-<h3>Biostatistics</h3><p>Statistical analysis and modelling of ecological data in R.</p>
-<h3>Ecological modelling</h3><p>Lectures, practicals and reading.</p>
-<h3>Ecological field practice</h3><p>Field sampling methods and data collection.</p>
-<h3>Spatial data analysis in R</h3><p>Doctoral course (BBU Doctoral School).</p>`,
  research:`<h2>Research topics</h2>
 <h3 class="topic"><a href="#rozsagubacsok">Rose galls</a></h3><p><i>Diplolepis</i> and <i>Liebelia</i> gall wasps on wild roses, their parasitoids and inquilines: how gall size, wall thickness and chamber number shape parasitoid attack and network topology. This includes molecular work on species boundaries and phylogenies (COI, ITS2, matK, rbcL), gall microbiomes and gall induction under lab conditions.</p>
 <h3 class="topic"><a href="#akacmagdarazsak">Black locust seed wasps</a></h3><p>Chalcid wasps developing in black locust (<i>Robinia pseudoacacia</i>) seeds and their parasitoids.</p>
@@ -386,7 +383,7 @@ en:{
 ro:{
  skip:"Salt la conținut", site_title:"Modelare ecologică UBB", site_tag:"discipline și altele", menu:"☰ Meniu",
  m_home:"Acasă", m_rfl:"RoseFarm Lab", m_wex:"Wasp Expos", m_rgr:"RoseGall Rambling", rg_sib:"Expediția în Siberia", rg_chn:"Vizita în China", rg_kaz:"Vizita în Kazahstan", rg_tur:"Vizita în Turcia", rg_geo:"Vizita în Georgia", m_cv:"CV", m_pubs:"Publicații", m_act:"Proiecte, popularizare și conferințe", m_teach:"Predare", m_research:"Cercetare", m_topics:"Teme de cercetare",
- m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact",
+ m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact", m_lect:"Materiale pentru studenți 🔒",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
  foot:"Lista de publicații se actualizează din ORCID.", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
@@ -397,14 +394,6 @@ ro:{
 <p>Calcidoidele (Chalcidoidea) sunt parazitoizi cu un rol reglator important în rețelele trofice; studiez efectul intensificării utilizării terenului asupra comunităților lor. Diversitatea albinelor a scăzut măsurabil în ultimele decenii, iar scopul meu este identificarea factorilor – de utilizare a terenului, genetici sau epidemiologici – din spatele acestui declin.</p>
 <p>Metode: abordări de ecologia peisajului, moleculare, de ecologia comunităților și de modelare.</p>
 <address>${ADDR.ro}</address>`,
- teaching:`<h2>Discipline predate</h2>
-<p>Predau la specializarea Ecologie și protecția mediului, linia maghiară, a Universității Babeș-Bolyai, și în cadrul Școlii Doctorale.</p>
-<h3>Ecologia peisajului</h3><p>Fragmentarea spațială, utilizarea terenului și efectele lor asupra comunităților.</p>
-<h3>Biomatematică</h3><p>Fundamente matematice pentru biologi, cu lucrări practice.</p>
-<h3>Biostatistică</h3><p>Analiza statistică și modelarea datelor ecologice în R.</p>
-<h3>Modelare ecologică</h3><p>Cursuri, lucrări practice și bibliografie.</p>
-<h3>Practică de teren ecologică</h3><p>Metode de eșantionare pe teren și colectarea datelor.</p>
-<h3>Analiza datelor spațiale în R</h3><p>Curs doctoral (Școala Doctorală, UBB).</p>`,
  research:`<h2>Teme de cercetare</h2>
 <h3 class="topic"><a href="#rozsagubacsok">Gale de trandafir</a></h3><p>Viespile galicole <i>Diplolepis</i> și <i>Liebelia</i> de pe trandafirii sălbatici, parazitoizii și inchilinii lor: cum influențează mărimea galei, grosimea peretelui și numărul de camere atacul parazitoizilor și topologia rețelelor. Include studii moleculare asupra limitelor de specie și filogeniei (COI, ITS2, matK, rbcL), microbiomul galelor și inducerea galelor în laborator.</p>
 <h3 class="topic"><a href="#akacmagdarazsak">Viespi ale semințelor de salcâm</a></h3><p>Calcidoide care se dezvoltă în semințele de salcâm (<i>Robinia pseudoacacia</i>) și parazitoizii lor.</p>
@@ -421,7 +410,7 @@ ro:{
 /* ---------- state ---------- */
 const ORCID = "0000-0001-5064-4785";
 let lang = "hu", works = null, orcidFailed = false, orcidStarted = false;
-const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","rambling-georgia","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact"];
+const PAGES = ["home","cv","publications","activities","teaching","rosefarmlab","waspexpos","rambling","rambling-siberia","rambling-china","rambling-kazakhstan","rambling-turkey","rambling-georgia","research","rozsagubacsok","akacmagdarazsak","szitakotok","students","contact","lectures"];
 const $ = s => document.querySelector(s);
 const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doiLink = d => d ? ` <a href="https://doi.org/${esc(d)}">doi:${esc(d)}</a>` : "";
@@ -1273,14 +1262,123 @@ function pubsPage(){
 <p class="note" id="orcidStatus"></p>`;
 }
 
+
+/* ---------- visit statistics (GoatCounter) ----------
+   Put your GoatCounter code here (the "xxx" in https://xxx.goatcounter.com); empty = no statistics are collected.
+   Every page of the site (each #hash) is counted as its own path, e.g. /rambling-kazakhstan. */
+const GC_CODE = "";
+if(GC_CODE){ window.goatcounter = {no_onload:true};
+  const sc=document.createElement("script"); sc.async=true; sc.src="https://gc.zgo.at/count.js";
+  sc.dataset.goatcounter=`https://${GC_CODE}.goatcounter.com/count`; document.head.appendChild(sc); }
+let gcLast = null;
+function countView(p){ if(!GC_CODE || p===gcLast) return; gcLast = p;
+  const send=(n)=>{ if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:"/"+p, title:document.title});
+    else if(n<50) setTimeout(()=>send(n+1),200); }; send(0); }
+
+/* ---------- course materials for students (one password per course) ----------
+   Pages: #lectures (list of courses) and #lectures-<course>-<section>, section = lectures | labs | other.
+   lectures/<course>.enc and lectures/files/<course>/*.bin are encrypted (PBKDF2-SHA256 + AES-256-GCM)
+   by lectures_src/build_lectures.py. The password never leaves the browser; without it the files on GitHub are unreadable. */
+const LEC_COURSES = {
+ /* BSc – Ecology and environmental protection, Hungarian line */
+ "biomath-r":{on:1,lv:"bsc",tl:"hu",t:{hu:"Alkalmazott biomatematika R-ben",en:"Applied Biomathematics in R",ro:"Biomatematică aplicată în R"},
+  d:{hu:"Matematikai alapok biológusoknak, a számításokat és ábrákat R-ben készítjük.",en:"Mathematical foundations for biologists, with calculations and graphs done in R.",ro:"Fundamente matematice pentru biologi, cu calcule și grafice realizate în R."}},
+ "biostat":{on:1,lv:"bsc",tl:"hu",t:{hu:"Statisztika biológusoknak",en:"Statistics for Biologists",ro:"Statistică pentru biologi"},
+  d:{hu:"Leíró statisztika, hipotézisvizsgálat és egyszerű modellek biológiai adatokon.",en:"Descriptive statistics, hypothesis testing and simple models on biological data.",ro:"Statistică descriptivă, testarea ipotezelor și modele simple pe date biologice."}},
+ "commeco":{on:1,lv:"bsc",tl:"hu",t:{hu:"Közösségökológia",en:"Community Ecology",ro:"Ecologia comunităților"},
+  d:{hu:"Fajok együttélése, kölcsönhatások, diverzitás és a közösségek szerveződése.",en:"Species coexistence, interactions, diversity and how communities are organised.",ro:"Coexistența speciilor, interacțiuni, diversitate și organizarea comunităților."}},
+ "landscape":{on:1,lv:"bsc",tl:"hu",t:{hu:"Tájökológia",en:"Landscape Ecology",ro:"Ecologia peisajului"},
+  d:{hu:"Térbeli fragmentáció, tájhasználat és hatásuk az élőlényközösségekre.",en:"Spatial fragmentation, land use and their effects on communities.",ro:"Fragmentarea spațială, utilizarea terenului și efectele lor asupra comunităților."}},
+ "fieldwork":{lv:"bsc",tl:"hu",t:{hu:"Ökológiai terepgyakorlat",en:"Field Practice in Ecology",ro:"Practică de teren în ecologie"},
+  d:{hu:"Terepi mintavételi módszerek, adatgyűjtés és az adatok feldolgozása.",en:"Field sampling methods, data collection and processing the data.",ro:"Metode de eșantionare pe teren, colectarea și prelucrarea datelor."}},
+ "entomology":{lv:"bsc",tl:"hu",t:{hu:"Rovartan",en:"Entomology",ro:"Entomologie"},
+  d:{hu:"A rovarok felépítése, rendszerezése, életmódja és ökológiai szerepe.",en:"Insect morphology, classification, life histories and ecological roles.",ro:"Morfologia, clasificarea, modul de viață și rolul ecologic al insectelor."}},
+ "computer":{lv:"bsc",tl:"hu",t:{hu:"Számítógépes ismeretek",en:"Computer Operations",ro:"Operare pe calculator"},
+  d:{hu:"Alapvető számítógépes készségek a tanulmányokhoz: fájlok, szövegszerkesztés, táblázatkezelés.",en:"Basic computer skills for studying: files, word processing, spreadsheets.",ro:"Abilități de bază de utilizare a calculatorului: fișiere, editare de text, foi de calcul."}},
+ /* MSc – in English */
+ "ecomodel":{lv:"msc",tl:"en",t:{hu:"Ökológiai modellezés",en:"Ecological Modelling",ro:"Modelare ecologică"},
+  d:{hu:"Populációs és közösségi folyamatok matematikai és számítógépes modelljei.",en:"Mathematical and computer models of population and community processes.",ro:"Modele matematice și computaționale ale proceselor populaționale și ale comunităților."}},
+ "bioinf-r":{lv:"msc",tl:"en",t:{hu:"Bioinformatika R-ben",en:"Bioinformatics in R",ro:"Bioinformatică în R"},
+  d:{hu:"Szekvencia- és omikai adatok kezelése és elemzése R-ben.",en:"Handling and analysing sequence and omics data in R.",ro:"Gestionarea și analiza datelor de secvență și omice în R."}},
+ "stat-bioinf":{lv:"msc",tl:"en",t:{hu:"Statisztika bioinformatikusoknak R-ben",en:"Statistics for Bioinformaticians in R",ro:"Statistică pentru bioinformaticieni în R"},
+  d:{hu:"Statisztikai módszerek nagy biológiai adathalmazokra, R-ben.",en:"Statistical methods for large biological datasets, in R.",ro:"Metode statistice pentru seturi mari de date biologice, în R."}},
+ "python-bioinf":{lv:"msc",tl:"en",t:{hu:"Python bioinformatikusoknak",en:"Python for Bioinformaticians",ro:"Python pentru bioinformaticieni"},
+  d:{hu:"Programozási alapok Pythonban, biológiai adatok feldolgozására.",en:"Programming basics in Python for processing biological data.",ro:"Bazele programării în Python pentru prelucrarea datelor biologice."}},
+ "bionet":{lv:"msc",tl:"en",t:{hu:"Biológiai hálózatok",en:"Biological Networks",ro:"Rețele biologice"},
+  d:{hu:"Ökológiai és molekuláris hálózatok felépítése, elemzése és értelmezése.",en:"Building, analysing and interpreting ecological and molecular networks.",ro:"Construirea, analiza și interpretarea rețelelor ecologice și moleculare."}},
+ /* PhD – Doctoral School, Romanian / English */
+ "biostat-sport":{lv:"phd",tl:"ro/en",t:{hu:"Alkalmazott biostatisztika a testnevelés- és sporttudományban",en:"Applied Biostatistics in Physical Education and Sport Science",ro:"Biostatistică aplicată în educație fizică și știința sportului"},
+  d:{hu:"Kísérlettervezés és statisztikai elemzés sporttudományi adatokon.",en:"Study design and statistical analysis of sport science data.",ro:"Proiectarea studiilor și analiza statistică a datelor din știința sportului."}},
+ "spatial-gis":{lv:"phd",tl:"ro/en",t:{hu:"Térbeli elemzés és GIS R-ben",en:"Spatial Analysis and GIS in R",ro:"Analiză spațială și GIS în R"},
+  d:{hu:"Térbeli adatok kezelése, térképezés és térbeli statisztika R-ben.",en:"Handling spatial data, mapping and spatial statistics in R.",ro:"Gestionarea datelor spațiale, cartografiere și statistică spațială în R."}},
+ "appstat-r":{lv:"phd",tl:"ro/en",t:{hu:"Alkalmazott statisztika R-ben",en:"Applied Statistics in R",ro:"Statistică aplicată în R"},
+  d:{hu:"Statisztikai modellezés a doktori kutatások adataira, R-ben.",en:"Statistical modelling for doctoral research data, in R.",ro:"Modelare statistică pentru datele cercetării doctorale, în R."}}};
+const LEC_SECS = ["lectures","labs","other"];
+const LEC_UI = "hu";   /* the course pages (all BSc, taught in Hungarian) are shown in Hungarian whatever the site language */
+const LEC_T = {
+ hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
+ en:{h:"Materials for students", intro:"Each course has its own password-protected page in three parts. The password is given in class.", sec:{lectures:"Lectures",labs:"Labs / practicals",other:"Other materials"}, back:"Courses", pw:"Password", go:"Enter", bad:"Wrong password.", err:"The materials cannot be loaded right now. Please try again later.", busy:"Checking…", none:"No materials uploaded in this part yet.", upd:"Updated", out:"Log out", note:"Please do not share the materials elsewhere.", need:"This course is password protected."},
+ ro:{h:"Materiale pentru studenți", intro:"Fiecare disciplină are propria pagină protejată prin parolă, în trei părți. Parola este comunicată la curs.", sec:{lectures:"Curs",labs:"Laborator / seminar",other:"Alte materiale"}, back:"Discipline predate", pw:"Parolă", go:"Intrare", bad:"Parolă greșită.", err:"Materialele nu pot fi încărcate acum. Încercați din nou mai târziu.", busy:"Se verifică…", none:"Încă nu sunt materiale în această parte.", upd:"Actualizat", out:"Ieșire", note:"Vă rog să nu publicați materialele în altă parte.", need:"Această disciplină este protejată prin parolă."}};
+const lecOpen = {};          /* course -> {key, data} after a correct password, for this visit */
+const b64d = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+const lecRoute = p => { const m=/^lectures-([a-z0-9-]+?)-(lectures|labs|other)$/.exec(p); return m&&LEC_COURSES[m[1]]&&LEC_COURSES[m[1]].on ? [m[1],m[2]] : null; };
+const TEACH_T = {
+ hu:{h:"Oktatott tantárgyak", intro:"A Babeș-Bolyai Tudományegyetemen alap-, mester- és doktori képzésben oktatok. Az online tananyaggal rendelkező tantárgyaknak saját oldaluk van, három jelszóval védett résszel: előadás, gyakorlat és egyéb tananyag. A jelszót az órán adom meg.",
+     lv:{bsc:"Alapképzés (BSc) – Ökológia és környezetvédelem, magyar tagozat",msc:"Mesterképzés (MSc)",phd:"Doktori képzés (PhD)"}, tl:{hu:"magyarul",en:"angolul","ro/en":"románul / angolul"}},
+ en:{h:"Courses", intro:"I teach at Babeș-Bolyai University at bachelor, master and doctoral level. Courses with materials online have their own page (in Hungarian) with three password-protected parts: lectures, labs and other materials. The password is given in class.",
+     lv:{bsc:"Bachelor (BSc) – Ecology and environmental protection, Hungarian line",msc:"Master (MSc)",phd:"Doctoral (PhD)"}, tl:{hu:"in Hungarian",en:"in English","ro/en":"in Romanian / English"}},
+ ro:{h:"Discipline predate", intro:"Predau la Universitatea Babeș-Bolyai la nivel de licență, master și doctorat. Disciplinele cu materiale online au o pagină proprie (în limba maghiară) cu trei părți protejate prin parolă: curs, laborator și alte materiale. Parola este comunicată la curs.",
+     lv:{bsc:"Licență (BSc) – Ecologie și protecția mediului, linia maghiară",msc:"Master (MSc)",phd:"Doctorat (PhD)"}, tl:{hu:"în limba maghiară",en:"în limba engleză","ro/en":"în limba română / engleză"}}};
+function teachPage(){ const t=TEACH_T[lang];
+  return `<h2>${t.h}</h2><p>${t.intro}</p>` + ["bsc","msc","phd"].map(lv=>`<h3 class="lv">${t.lv[lv]}</h3><ul class="lec-courses">${
+    Object.entries(LEC_COURSES).filter(([,c])=>c.lv===lv).map(([id,c])=>`<li><div>${c.on?`<a class="ct" href="#lectures-${id}-lectures">${c.t[lang]}</a>`:`<span class="ct">${c.t[lang]}</span>`} <span class="tl">${t.tl[c.tl]}</span><p>${c.d[lang]}</p></div>
+${c.on?`<span class="secs">${LEC_SECS.map(x=>`<a href="#lectures-${id}-${x}">🔒 ${LEC_T[LEC_UI].sec[x]}</a>`).join("")}</span>`:""}</li>`).join("")}</ul>`).join(""); }
+function lecPage(p){ const t=LEC_T[LEC_UI], [c,sec]=lecRoute(p);
+  return `<p class="crumb"><a href="#teaching">${LEC_T[lang].back}</a></p><h2 lang="hu">🔒 ${LEC_COURSES[c].t.hu}</h2><p class="lec-meta">${TEACH_T.hu.lv[LEC_COURSES[c].lv].split(" – ")[0]} · ${TEACH_T.hu.tl[LEC_COURSES[c].tl]}</p>
+<nav class="lec-tabs" lang="hu" aria-label="${LEC_COURSES[c].t.hu}">${LEC_SECS.map(s=>`<a href="#lectures-${c}-${s}"${s===sec?' aria-current="page"':""}>${t.sec[s]}</a>`).join("")}</nav>
+<div id="lecBox"><p>${t.need}</p><form id="lecForm" class="lec-form" autocomplete="off"><label for="lecPw">${t.pw}</label>
+<input type="password" id="lecPw" required autocomplete="current-password"><button type="submit">${t.go}</button></form><p id="lecMsg" class="lec-msg" role="status"></p></div>`; }
+async function lecUnlock(c, pw){
+  const r = await fetch(`lectures/${c}.enc`,{cache:"no-store"}); if(!r.ok) throw new Error("load");
+  const E = await r.json();
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt:b64d(E.salt), iterations:E.iter, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  let plain; try{ plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64d(E.iv)}, key, b64d(E.ct)); }catch(e){ throw new Error("bad"); }
+  lecOpen[c] = {key, data:JSON.parse(new TextDecoder().decode(plain))};
+}
+const lecStore = (c,v)=>{ try{ v==null ? sessionStorage.removeItem("lecPw-"+c) : sessionStorage.setItem("lecPw-"+c, v); }catch(e){} };
+function lecShow(c, sec){ const t=LEC_T[LEC_UI], box=$("#lecBox"); if(!box) return; const {key,data}=lecOpen[c], items=data[sec]||[];
+  const fmt = n => n>1048576 ? (n/1048576).toFixed(1)+" MB" : Math.max(1,Math.round(n/1024))+" kB";
+  box.innerHTML = `<p class="lec-top"><span>${t.upd}: ${data.updated||""}</span> <button type="button" id="lecOut">${t.out}</button></p>` +
+    (items.length ? `<ul class="lec-list">${items.map(it=> it.url
+      ? `<li><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.n)}</a></li>`
+      : `<li><a href="#lectures-${c}-${sec}" data-f="${esc(it.f)}" data-fn="${esc(it.fn)}" data-type="${esc(it.type)}">${esc(it.n)}</a> <span class="lec-size">${esc((it.fn.split(".").pop()||"").toUpperCase())} · ${fmt(it.size)}</span></li>`).join("")}</ul>`
+      : `<p class="lec-none">${t.none}</p>`) + `<p class="lec-note">${t.note}</p>`;
+  $("#lecOut").onclick = ()=>{ delete lecOpen[c]; lecStore(c,null); route(); };
+  box.querySelectorAll("a[data-f]").forEach(a=>a.onclick = async e=>{ e.preventDefault(); const old=a.textContent; a.textContent=t.busy;
+    try{ const r=await fetch(`lectures/files/${c}/${a.dataset.f}.bin`); if(!r.ok) throw 0; const buf=new Uint8Array(await r.arrayBuffer());
+      const raw=await crypto.subtle.decrypt({name:"AES-GCM", iv:buf.slice(0,12)}, key, buf.slice(12));
+      const url=URL.createObjectURL(new Blob([raw],{type:a.dataset.type})), dl=document.createElement("a");
+      dl.href=url; dl.download=a.dataset.fn; document.body.appendChild(dl); dl.click(); dl.remove(); setTimeout(()=>URL.revokeObjectURL(url),60000);
+    }catch(err){ alert(t.err); } a.textContent=old; }); }
+function lecInit(p){ const t=LEC_T[LEC_UI], [c,sec]=lecRoute(p);
+  if(lecOpen[c]) return lecShow(c,sec);
+  let saved=null; try{ saved=sessionStorage.getItem("lecPw-"+c); }catch(e){}
+  const tryPw = async (pw, quiet)=>{ const m=$("#lecMsg"); if(m) m.textContent=t.busy;
+    try{ await lecUnlock(c,pw); lecStore(c,pw); if(location.hash.slice(1)===p) lecShow(c,sec); }
+    catch(e){ if(m) m.textContent = quiet ? "" : (e.message==="bad" ? t.bad : t.err); if(quiet&&e.message==="bad") lecStore(c,null); } };
+  $("#lecForm").onsubmit = e=>{ e.preventDefault(); tryPw($("#lecPw").value, false); };
+  if(saved) tryPw(saved, true); else $("#lecPw").focus();
+}
+
 function route(){
   let p = location.hash.slice(1) || "home";
-  if(!PAGES.includes(p)) p = "home";
+  if(!PAGES.includes(p) && !lecRoute(p)) p = "home";
   const c = $("#content");
-  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="activities" ? actPage() : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
+  c.innerHTML = p==="publications" ? pubsPage() : p==="cv" ? cvPage() : p==="rozsagubacsok" ? gallsPage() : p==="szitakotok" ? odoPage() : p==="akacmagdarazsak" ? robPage() : p==="rosefarmlab" ? rflPage() : p==="waspexpos" ? wexPage() : p==="activities" ? actPage() : p==="teaching"||p==="lectures" ? teachPage() : lecRoute(p) ? lecPage(p) : p==="rambling" ? rgrPage() : p.startsWith("rambling-") ? tripPage(p.slice(9)) : T[lang][p];
   document.querySelectorAll("nav.menu > ul > li > a").forEach(a=>{
     const sub = [...a.parentElement.querySelectorAll("a")].map(x=>x.hash.slice(1));
-    a.classList.toggle("cur", sub.includes(p));
+    a.classList.toggle("cur", sub.includes(p) || (!!lecRoute(p) && sub.includes("teaching")));
   });
   if(p==="publications"){
     const f = $("#pubFilter");
@@ -1290,6 +1388,8 @@ function route(){
   }
   if(p.startsWith("rambling-")) loadTrip(p.slice(9));
   if(p==="activities") loadActOrcid();
+  if(lecRoute(p)) lecInit(p);
+  countView(p);
   $("#menu").classList.remove("open");
 }
 
