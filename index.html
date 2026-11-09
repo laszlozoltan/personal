@@ -126,6 +126,14 @@ h3.lv{margin-top:22px}
 .lec-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;border-bottom:2px solid var(--link)}
 .lec-tabs a{padding:6px 12px;border-radius:4px 4px 0 0;text-decoration:none}
 .lec-tabs a[aria-current]{background:var(--link);color:#fff}
+.pdfv{position:fixed;inset:0;z-index:1000;background:#3a3a3a;display:flex;flex-direction:column}
+.pdfv-bar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#222;color:#fff;font:600 14px "Open Sans",sans-serif}
+.pdfv-t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .pdfv-n{color:#bbb;font-weight:400;white-space:nowrap}
+.pdfv-bar button{font:inherit;padding:6px 12px;border:1px solid #777;border-radius:3px;background:#333;color:#fff;cursor:pointer}
+.pdfv-body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;align-items:center;gap:12px;outline:none}
+.pdfv-pg{background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.4);max-width:100%} .pdfv-pg canvas{display:block;max-width:100%;height:auto!important}
+body.pdfv-open{overflow:hidden}
+@media (max-width:600px){.pdfv-n{display:none}.pdfv-body{padding:6px;gap:6px}}
 .lec-list{padding-left:1.2em} .lec-list li{margin:.35em 0} .lec-size,.lec-none,.lec-note{color:var(--muted);font-size:.9em}
 .diary .jrows{margin:14px 0 18px;display:flex;flex-direction:column;gap:8px}
 .diary .jrow{display:flex;gap:8px;width:100%;margin:0 auto}
@@ -1346,7 +1354,7 @@ const LEC_COURSES = {
 const LEC_SECS = ["lectures","labs","other"];
 const LEC_UI = "hu";   /* the course pages (all BSc, taught in Hungarian) are shown in Hungarian whatever the site language */
 const LEC_T = {
- hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
+ hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", dl:"Letöltés", close:"Bezárás", pages:"oldal", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
  en:{h:"Materials for students", intro:"Each course has its own password-protected page in three parts. The password is given in class.", sec:{lectures:"Lectures",labs:"Labs / practicals",other:"Other materials"}, back:"Courses", pw:"Password", go:"Enter", bad:"Wrong password.", err:"The materials cannot be loaded right now. Please try again later.", busy:"Checking…", none:"No materials uploaded in this part yet.", upd:"Updated", out:"Log out", note:"Please do not share the materials elsewhere.", need:"This course is password protected."},
  ro:{h:"Materiale pentru studenți", intro:"Fiecare disciplină are propria pagină protejată prin parolă, în trei părți. Parola este comunicată la curs.", sec:{lectures:"Curs",labs:"Laborator / seminar",other:"Alte materiale"}, back:"Discipline predate", pw:"Parolă", go:"Intrare", bad:"Parolă greșită.", err:"Materialele nu pot fi încărcate acum. Încercați din nou mai târziu.", busy:"Se verifică…", none:"Încă nu sunt materiale în această parte.", upd:"Actualizat", out:"Ieșire", note:"Vă rog să nu publicați materialele în altă parte.", need:"Această disciplină este protejată prin parolă."}};
 const lecOpen = {};          /* course -> {key, data} after a correct password, for this visit */
@@ -1388,9 +1396,38 @@ function lecShow(c, sec){ const t=LEC_T[LEC_UI], box=$("#lecBox"); if(!box) retu
   box.querySelectorAll("a[data-f]").forEach(a=>a.onclick = async e=>{ e.preventDefault(); const old=a.textContent; a.textContent=t.busy;
     try{ const r=await fetch(`lectures/files/${c}/${a.dataset.f}.bin`); if(!r.ok) throw 0; const buf=new Uint8Array(await r.arrayBuffer());
       const raw=await crypto.subtle.decrypt({name:"AES-GCM", iv:buf.slice(0,12)}, key, buf.slice(12));
-      const url=URL.createObjectURL(new Blob([raw],{type:a.dataset.type})), dl=document.createElement("a");
-      dl.href=url; dl.download=a.dataset.fn; document.body.appendChild(dl); dl.click(); dl.remove(); setTimeout(()=>URL.revokeObjectURL(url),60000);
+      if(a.dataset.type==="application/pdf") await pdfView(raw, old, a.dataset.fn);
+      else lecSave(raw, a.dataset.type, a.dataset.fn);
     }catch(err){ alert(t.err); } a.textContent=old; }); }
+/* save decrypted bytes as a file */
+function lecSave(raw, type, fn){ const url=URL.createObjectURL(new Blob([raw],{type})), dl=document.createElement("a");
+  dl.href=url; dl.download=fn; document.body.appendChild(dl); dl.click(); dl.remove(); setTimeout(()=>URL.revokeObjectURL(url),60000); }
+/* PDF viewer in a window on the page (PDF.js, Apache 2.0, served from lib/pdfjs) – works on phones too */
+let pdfLib = null;
+const pdfLoad = () => pdfLib || (pdfLib = new Promise((ok,bad)=>{ const sc=document.createElement("script"); sc.src="lib/pdfjs/pdf.min.js";
+  sc.onload=()=>{ pdfjsLib.GlobalWorkerOptions.workerSrc="lib/pdfjs/pdf.worker.min.js"; ok(pdfjsLib); }; sc.onerror=()=>{ pdfLib=null; bad(); }; document.head.appendChild(sc); }));
+async function pdfView(raw, title, fn){ const t=LEC_T[LEC_UI], lib=await pdfLoad();
+  const doc=await lib.getDocument({data:new Uint8Array(raw.slice(0))}).promise;
+  const ov=document.createElement("div"); ov.className="pdfv"; ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true"); ov.setAttribute("aria-label",title);
+  ov.innerHTML=`<div class="pdfv-bar"><span class="pdfv-t">${esc(title)}</span><span class="pdfv-n">${doc.numPages} ${t.pages}</span>
+<button type="button" class="pdfv-dl">${t.dl}</button><button type="button" class="pdfv-x" aria-label="${t.close}">✕</button></div><div class="pdfv-body" tabindex="0"></div>`;
+  document.body.appendChild(ov); document.body.classList.add("pdfv-open");
+  const body=ov.querySelector(".pdfv-body"); let alive=true;
+  const close=()=>{ alive=false; doc.destroy(); ov.remove(); document.body.classList.remove("pdfv-open"); document.removeEventListener("keydown",key); };
+  const key=e=>{ if(e.key==="Escape") close(); };
+  ov.querySelector(".pdfv-x").onclick=close; ov.querySelector(".pdfv-dl").onclick=()=>lecSave(raw,"application/pdf",fn);
+  ov.addEventListener("click",e=>{ if(e.target===ov) close(); }); document.addEventListener("keydown",key); body.focus();
+  const W=Math.min(body.clientWidth-24, 1000), dpr=Math.min(window.devicePixelRatio||1, 2);
+  /* placeholders first, pages rendered when they come near the screen */
+  const first=await doc.getPage(1), v1=first.getViewport({scale:1});
+  const holders=[...Array(doc.numPages)].map((_,i)=>{ const d=document.createElement("div"); d.className="pdfv-pg"; d.style.width=W+"px"; d.style.height=(W*v1.height/v1.width)+"px"; d.dataset.i=i+1; body.appendChild(d); return d; });
+  const draw=async d=>{ if(d.dataset.done||!alive) return; d.dataset.done=1;
+    const pg=await doc.getPage(+d.dataset.i), v0=pg.getViewport({scale:1}), vp=pg.getViewport({scale:W/v0.width*dpr});
+    const c=document.createElement("canvas"); c.width=vp.width; c.height=vp.height; c.style.width=W+"px"; c.style.height=(W*v0.height/v0.width)+"px";
+    d.style.height=""; d.appendChild(c); await pg.render({canvasContext:c.getContext("2d"), viewport:vp}).promise; };
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) draw(e.target); }),{root:body, rootMargin:"600px 0px"});
+  holders.forEach(h=>io.observe(h));
+}
 function lecInit(p){ const t=LEC_T[LEC_UI], [c,sec]=lecRoute(p);
   if(lecOpen[c]) return lecShow(c,sec);
   let saved=null; try{ saved=sessionStorage.getItem("lecPw-"+c); }catch(e){}
