@@ -133,8 +133,10 @@ h3.lv{margin-top:22px}
 .pdfv-body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;align-items:center;gap:12px;outline:none}
 .pdfv-pg{background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.4);max-width:100%} .pdfv-pg canvas{display:block;max-width:100%;height:auto!important}
 body.pdfv-open{overflow:hidden}
+.htmlv{flex:1;width:100%;border:0;background:#fff}
 @media (max-width:600px){.pdfv-n{display:none}.pdfv-body{padding:6px;gap:6px}}
-.lec-list{padding-left:1.2em} .lec-list li{margin:.35em 0} .lec-size,.lec-none,.lec-note{color:var(--muted);font-size:.9em}
+.lec-list{padding-left:1.2em}
+.lec-list li.lec-test{list-style:none;margin:-.1em 0 .6em 1.2em} .lec-list li.lec-test a::before{content:"✎ "} .lec-list li{margin:.35em 0} .lec-size,.lec-none,.lec-note{color:var(--muted);font-size:.9em}
 .diary .jrows{margin:14px 0 18px;display:flex;flex-direction:column;gap:8px}
 .diary .jrow{display:flex;gap:8px;width:100%;margin:0 auto}
 .diary .jrow figure{margin:0;min-width:0}
@@ -1354,7 +1356,7 @@ const LEC_COURSES = {
 const LEC_SECS = ["lectures","labs","other"];
 const LEC_UI = "hu";   /* the course pages (all BSc, taught in Hungarian) are shown in Hungarian whatever the site language */
 const LEC_T = {
- hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", dl:"Letöltés", close:"Bezárás", pages:"oldal", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
+ hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", dl:"Letöltés", close:"Bezárás", pages:"oldal", quiz:"interaktív teszt", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
  en:{h:"Materials for students", intro:"Each course has its own password-protected page in three parts. The password is given in class.", sec:{lectures:"Lectures",labs:"Labs / practicals",other:"Other materials"}, back:"Courses", pw:"Password", go:"Enter", bad:"Wrong password.", err:"The materials cannot be loaded right now. Please try again later.", busy:"Checking…", none:"No materials uploaded in this part yet.", upd:"Updated", out:"Log out", note:"Please do not share the materials elsewhere.", need:"This course is password protected."},
  ro:{h:"Materiale pentru studenți", intro:"Fiecare disciplină are propria pagină protejată prin parolă, în trei părți. Parola este comunicată la curs.", sec:{lectures:"Curs",labs:"Laborator / seminar",other:"Alte materiale"}, back:"Discipline predate", pw:"Parolă", go:"Intrare", bad:"Parolă greșită.", err:"Materialele nu pot fi încărcate acum. Încercați din nou mai târziu.", busy:"Se verifică…", none:"Încă nu sunt materiale în această parte.", upd:"Actualizat", out:"Ieșire", note:"Vă rog să nu publicați materialele în altă parte.", need:"Această disciplină este protejată prin parolă."}};
 const lecOpen = {};          /* course -> {key, data} after a correct password, for this visit */
@@ -1390,18 +1392,30 @@ function lecShow(c, sec){ const t=LEC_T[LEC_UI], box=$("#lecBox"); if(!box) retu
   box.innerHTML = `<p class="lec-top"><span>${t.upd}: ${data.updated||""}</span> <button type="button" id="lecOut">${t.out}</button></p>` +
     (items.length ? `<ul class="lec-list">${items.map(it=> it.url
       ? `<li><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.n)}</a></li>`
-      : `<li><a href="#lectures-${c}-${sec}" data-f="${esc(it.f)}" data-fn="${esc(it.fn)}" data-type="${esc(it.type)}">${esc(it.n)}</a> <span class="lec-size">${esc((it.fn.split(".").pop()||"").toUpperCase())} · ${fmt(it.size)}</span></li>`).join("")}</ul>`
+      : `<li${it.type==="text/html"?' class="lec-test"':""}><a href="#lectures-${c}-${sec}" data-f="${esc(it.f)}" data-fn="${esc(it.fn)}" data-type="${esc(it.type)}">${esc(it.n)}</a> <span class="lec-size">${it.type==="text/html" ? t.quiz : esc((it.fn.split(".").pop()||"").toUpperCase())+" · "+fmt(it.size)}</span></li>`).join("")}</ul>`
       : `<p class="lec-none">${t.none}</p>`) + `<p class="lec-note">${t.note}</p>`;
   $("#lecOut").onclick = ()=>{ delete lecOpen[c]; lecStore(c,null); route(); };
   box.querySelectorAll("a[data-f]").forEach(a=>a.onclick = async e=>{ e.preventDefault(); const old=a.textContent; a.textContent=t.busy;
     try{ const r=await fetch(`lectures/files/${c}/${a.dataset.f}.bin`); if(!r.ok) throw 0; const buf=new Uint8Array(await r.arrayBuffer());
       const raw=await crypto.subtle.decrypt({name:"AES-GCM", iv:buf.slice(0,12)}, key, buf.slice(12));
       if(a.dataset.type==="application/pdf") await pdfView(raw, old, a.dataset.fn);
+      else if(a.dataset.type==="text/html") htmlView(raw, old);
       else lecSave(raw, a.dataset.type, a.dataset.fn);
     }catch(err){ alert(t.err); } a.textContent=old; }); }
 /* save decrypted bytes as a file */
 function lecSave(raw, type, fn){ const url=URL.createObjectURL(new Blob([raw],{type})), dl=document.createElement("a");
   dl.href=url; dl.download=fn; document.body.appendChild(dl); dl.click(); dl.remove(); setTimeout(()=>URL.revokeObjectURL(url),60000); }
+/* interactive page (e.g. a self-check test) in a window on the page; it runs sandboxed: no access to this site or its storage */
+function htmlView(raw, title){ const t=LEC_T[LEC_UI];
+  const ov=document.createElement("div"); ov.className="pdfv"; ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true"); ov.setAttribute("aria-label",title);
+  ov.innerHTML=`<div class="pdfv-bar"><span class="pdfv-t">${esc(title)}</span><button type="button" class="pdfv-x" aria-label="${t.close}">✕</button></div>`;
+  const fr=document.createElement("iframe"); fr.className="htmlv"; fr.title=title; fr.setAttribute("sandbox","allow-scripts");
+  fr.srcdoc=new TextDecoder().decode(raw); ov.appendChild(fr);
+  document.body.appendChild(ov); document.body.classList.add("pdfv-open");
+  const close=()=>{ ov.remove(); document.body.classList.remove("pdfv-open"); document.removeEventListener("keydown",key); };
+  const key=e=>{ if(e.key==="Escape") close(); };
+  ov.querySelector(".pdfv-x").onclick=close; document.addEventListener("keydown",key); fr.focus();
+}
 /* PDF viewer in a window on the page (PDF.js, Apache 2.0, served from lib/pdfjs) – works on phones too */
 let pdfLib = null;
 const pdfLoad = () => pdfLib || (pdfLib = new Promise((ok,bad)=>{ const sc=document.createElement("script"); sc.src="lib/pdfjs/pdf.min.js";
