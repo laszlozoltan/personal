@@ -135,6 +135,11 @@ h3.lv{margin-top:22px}
 body.pdfv-open{overflow:hidden}
 .htmlv{flex:1;width:100%;border:0;background:#fff}
 @media (max-width:600px){.pdfv-n{display:none}.pdfv-body{padding:6px;gap:6px}}
+.lec-tab{border-collapse:collapse;width:100%;margin:6px 0 14px}
+.lec-tab th{text-align:left;font:600 12px "Open Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 10px 6px 0;border-bottom:1px solid var(--line)}
+.lec-tab td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.lec-tab td:last-child{white-space:nowrap;width:1%} .lec-tab .lec-no{color:var(--muted)}
+.lec-tab td:last-child a::before{content:"✎ "}
 .lec-list{padding-left:1.2em}
 .lec-list li.lec-test{list-style:none;margin:-.1em 0 .6em 1.2em} .lec-list li.lec-test a::before{content:"✎ "} .lec-list li{margin:.35em 0} .lec-size,.lec-none,.lec-note{color:var(--muted);font-size:.9em}
 .diary .jrows{margin:14px 0 18px;display:flex;flex-direction:column;gap:8px}
@@ -1356,7 +1361,7 @@ const LEC_COURSES = {
 const LEC_SECS = ["lectures","labs","other"];
 const LEC_UI = "hu";   /* the course pages (all BSc, taught in Hungarian) are shown in Hungarian whatever the site language */
 const LEC_T = {
- hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", dl:"Letöltés", close:"Bezárás", pages:"oldal", quiz:"interaktív teszt", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
+ hu:{h:"Tananyagok hallgatóknak", intro:"Minden tantárgynak saját, jelszóval védett oldala van, három részre bontva. A jelszót az órán adom meg.", sec:{lectures:"Előadás",labs:"Gyakorlat / labor",other:"Egyéb tananyag"}, back:"Oktatott tantárgyak", pw:"Jelszó", go:"Belépés", bad:"Hibás jelszó.", err:"A tananyagok most nem tölthetők be. Próbáld újra később.", busy:"Ellenőrzés…", none:"Ebben a részben még nincs feltöltött anyag.", upd:"Frissítve", out:"Kilépés", dl:"Letöltés", close:"Bezárás", pages:"oldal", quiz:"interaktív teszt", test:"Teszt", note:"Kérlek, az anyagokat ne tedd közzé máshol.", need:"Ez a tantárgy jelszóval védett."},
  en:{h:"Materials for students", intro:"Each course has its own password-protected page in three parts. The password is given in class.", sec:{lectures:"Lectures",labs:"Labs / practicals",other:"Other materials"}, back:"Courses", pw:"Password", go:"Enter", bad:"Wrong password.", err:"The materials cannot be loaded right now. Please try again later.", busy:"Checking…", none:"No materials uploaded in this part yet.", upd:"Updated", out:"Log out", note:"Please do not share the materials elsewhere.", need:"This course is password protected."},
  ro:{h:"Materiale pentru studenți", intro:"Fiecare disciplină are propria pagină protejată prin parolă, în trei părți. Parola este comunicată la curs.", sec:{lectures:"Curs",labs:"Laborator / seminar",other:"Alte materiale"}, back:"Discipline predate", pw:"Parolă", go:"Intrare", bad:"Parolă greșită.", err:"Materialele nu pot fi încărcate acum. Încercați din nou mai târziu.", busy:"Se verifică…", none:"Încă nu sunt materiale în această parte.", upd:"Actualizat", out:"Ieșire", note:"Vă rog să nu publicați materialele în altă parte.", need:"Această disciplină este protejată prin parolă."}};
 const lecOpen = {};          /* course -> {key, data} after a correct password, for this visit */
@@ -1387,10 +1392,19 @@ async function lecUnlock(c, pw){
   lecOpen[c] = {key, data:JSON.parse(new TextDecoder().decode(plain))};
 }
 const lecStore = (c,v)=>{ try{ v==null ? sessionStorage.removeItem("lecPw-"+c) : sessionStorage.setItem("lecPw-"+c, v); }catch(e){} };
+/* a part with tests: one row per lecture (short title → PDF) with its test(s) beside it */
+function lecTable(c, sec, items, fmt, t){
+  const rows=[]; items.forEach(it=>{ if(it.type==="text/html" && rows.length) rows[rows.length-1].tests.push(it); else rows.push({it, tests:[]}); });
+  const link=(it,label)=>it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(label)}</a>`
+    : `<a href="#lectures-${c}-${sec}" data-f="${esc(it.f)}" data-fn="${esc(it.fn)}" data-type="${esc(it.type)}" title="${esc(it.n)}">${esc(label)}</a>`;
+  return `<table class="lec-tab"><thead><tr><th>${t.sec[sec]}</th><th>${t.test}</th></tr></thead><tbody>${rows.map((r,i)=>
+    `<tr><td><span class="lec-no">${i+1}.</span> ${link(r.it, r.it.s||r.it.n)}${r.it.size?` <span class="lec-size">${esc((r.it.fn.split(".").pop()||"").toUpperCase())}</span>`:""}</td>
+<td>${r.tests.map((x,j)=>link(x, `${t.test} ${i+1}${r.tests.length>1?String.fromCharCode(97+j):""}`)).join(" ")}</td></tr>`).join("")}</tbody></table>`; }
 function lecShow(c, sec){ const t=LEC_T[LEC_UI], box=$("#lecBox"); if(!box) return; const {key,data}=lecOpen[c], items=data[sec]||[];
   const fmt = n => n>1048576 ? (n/1048576).toFixed(1)+" MB" : Math.max(1,Math.round(n/1024))+" kB";
   box.innerHTML = `<p class="lec-top"><span>${t.upd}: ${data.updated||""}</span> <button type="button" id="lecOut">${t.out}</button></p>` +
-    (items.length ? `<ul class="lec-list">${items.map(it=> it.url
+    (items.length && items.some(it=>it.type==="text/html") ? lecTable(c, sec, items, fmt, t) :
+     items.length ? `<ul class="lec-list">${items.map(it=> it.url
       ? `<li><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.n)}</a></li>`
       : `<li${it.type==="text/html"?' class="lec-test"':""}><a href="#lectures-${c}-${sec}" data-f="${esc(it.f)}" data-fn="${esc(it.fn)}" data-type="${esc(it.type)}">${esc(it.n)}</a> <span class="lec-size">${it.type==="text/html" ? t.quiz : esc((it.fn.split(".").pop()||"").toUpperCase())+" · "+fmt(it.size)}</span></li>`).join("")}</ul>`
       : `<p class="lec-none">${t.none}</p>`) + `<p class="lec-note">${t.note}</p>`;
