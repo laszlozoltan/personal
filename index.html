@@ -217,10 +217,10 @@ ul.pubs .jr{font-style:italic}
 @media (max-width:520px){.cvt{grid-template-columns:1fr}.cvt .d{border-bottom:0;padding-bottom:0}}
 .topic{border-bottom:1px solid var(--line);padding-bottom:6px}
 .note{font-size:14px;color:var(--muted)}
-#content .visits{margin:36px 0 0}
+#content .visits{width:80%;margin:28px auto 0}
 #content .visits h3{margin:0 0 6px}
 #content .visits svg{width:100%;height:auto;display:block}
-#content .visits .bar{fill:var(--link)} #content .visits .bar.cur{opacity:.55}
+#content .visits .bar{fill:url(#visGrad)} #content .visits .bar.cur{opacity:.6}
 #content .visits text{fill:var(--muted);font:11px "Open Sans",sans-serif}
 #content .visits .cap{margin:4px 0 0}
 #content .views{margin:32px 0 0;padding-top:10px;border-top:1px solid var(--line);font:13px "Open Sans",sans-serif;color:var(--muted)}
@@ -1507,7 +1507,7 @@ function visitChart(){
         + `<text x="${x+(bw-12)/2}" y="${H-6}" text-anchor="middle">${lab}</text></g>`; }).join("");
     const upd = j.updated ? new Date(j.updated).toLocaleDateString(lang) : "–";
     box.innerHTML = `<h3>${T[lang].vis_h}</h3>
-<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${T[lang].vis_h}"><line x1="0" x2="${W}" y1="${top+ch+.5}" y2="${top+ch+.5}" stroke="var(--line)"/>${bars}</svg>
+<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${T[lang].vis_h}"><defs><linearGradient id="visGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#f28c28" stop-opacity=".25"/><stop offset=".5" stop-color="#f28c28" stop-opacity=".8"/><stop offset="1" stop-color="#f28c28" stop-opacity=".25"/></linearGradient></defs><line x1="0" x2="${W}" y1="${top+ch+.5}" y2="${top+ch+.5}" stroke="var(--line)"/>${bars}</svg>
 <p class="note cap">${T[lang].vis_cap.replace("{n}", fmtN.format(total)).replace("{d}", upd)}</p>`;
     box.hidden = false;
   }).catch(()=>{});
@@ -1531,8 +1531,8 @@ function route(){
   if(p.startsWith("rambling-")) loadTrip(p.slice(9));
   if(p==="activities") loadActOrcid();
   if(lecRoute(p)) lecInit(p);
-  if(p==="contact") visitChart();
   countView(p); showViews(p);
+  if(p==="contact") visitChart();
   $("#menu").classList.remove("open");
 }
 
