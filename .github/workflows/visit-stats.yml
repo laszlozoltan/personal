@@ -1,1 +1,37 @@
-visit-stats.yml
+# Once a day: fetch the daily visitor numbers of the last year from GoatCounter
+# and save them to stats/visits.json (drawn as a histogram on the Contact page).
+# Needs the repository secret GOATCOUNTER_TOKEN (a GoatCounter API key with "Read statistics" permission).
+name: Visit statistics
+
+on:
+  schedule:
+    - cron: "17 2 * * *"   # every day 02:17 UTC
+  workflow_dispatch:        # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch daily visitors from GoatCounter
+        env:
+          GC_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: |
+          start=$(date -u -d '366 days ago' +%Y-%m-%dT00:00:00Z)
+          end=$(date -u +%Y-%m-%dT23:00:00Z)
+          curl -sSf -H "Authorization: Bearer $GC_TOKEN" -H "Content-Type: application/json" \
+            "https://laszlozoltan.goatcounter.com/api/v0/stats/total?start=$start&end=$end" -o raw.json
+          mkdir -p stats
+          jq '{updated: (now|todate), days: (.stats | map({key: .day, value: .daily}) | from_entries)}' raw.json > stats/visits.json
+          rm raw.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stats/visits.json
+          git diff --cached --quiet || git commit -m "Update visit statistics" && git push
