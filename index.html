@@ -217,6 +217,12 @@ ul.pubs .jr{font-style:italic}
 @media (max-width:520px){.cvt{grid-template-columns:1fr}.cvt .d{border-bottom:0;padding-bottom:0}}
 .topic{border-bottom:1px solid var(--line);padding-bottom:6px}
 .note{font-size:14px;color:var(--muted)}
+#content .visits{margin:36px 0 0}
+#content .visits h3{margin:0 0 6px}
+#content .visits svg{width:100%;height:auto;display:block}
+#content .visits .bar{fill:var(--link)} #content .visits .bar.cur{opacity:.55}
+#content .visits text{fill:var(--muted);font:11px "Open Sans",sans-serif}
+#content .visits .cap{margin:4px 0 0}
 #content .views{margin:32px 0 0;padding-top:10px;border-top:1px solid var(--line);font:13px "Open Sans",sans-serif;color:var(--muted)}
 .filter{width:100%;max-width:340px;padding:7px 10px;border:1px solid var(--line);background:var(--box);color:var(--ink);font:14px "Open Sans",sans-serif;margin:4px 0 10px}
 
@@ -355,7 +361,7 @@ hu:{
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat", m_lect:"Tananyagok hallgatóknak 🔒",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
- foot:"A közleménylista az ORCID-ból frissül.", views:"Az oldal megtekintései: {n}", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
+ foot:"A közleménylista az ORCID-ból frissül.", views:"Az oldal megtekintései: {n}", vis_h:"Látogatók az elmúlt évben", vis_cap:"Havi látogatószám a teljes honlapon · összesen {n} · frissítve: {d}", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
  n:"{n} közlemény az ORCID-on.", sel:"Válogatott közlemények", all:"Összes közlemény (ORCID)", filter:"Szűrés cím, folyóirat vagy év szerint…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
 <p>A Föld élőlényeinek jelentős részét a rovarok teszik ki, ezen belül a hártyásszárnyúak (darazsak, méhek, hangyák és parazitoid darazsak) az egyik legnagyobb rend. Kutatásaim középpontjában ezek a rovarok és kapcsolataik állnak: a gubacsképző darazsak, a fémfürkészek és a magányos méhek.</p>
@@ -381,7 +387,7 @@ en:{
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact", m_lect:"Materials for students 🔒",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
- foot:"Publication list updates from ORCID.", views:"Page views: {n}", loading:"Loading…", err:"Could not load the list right now – full record on ",
+ foot:"Publication list updates from ORCID.", views:"Page views: {n}", vis_h:"Visitors in the past year", vis_cap:"Monthly visitors, whole site · total {n} · updated {d}", loading:"Loading…", err:"Could not load the list right now – full record on ",
  n:"{n} works listed on ORCID.", sel:"Selected publications", all:"All publications (ORCID)", filter:"Filter by title, journal or year…",
  home:`<h2>Zoltán László</h2>${PORTRAIT}
 <p>Insects make up a large share of Earth's organisms, and Hymenoptera – wasps, bees, ants and parasitoid wasps – is one of the largest insect orders. My research focuses on these insects and their interactions: gall wasps, chalcid wasps and solitary bees.</p>
@@ -407,7 +413,7 @@ ro:{
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact", m_lect:"Materiale pentru studenți 🔒",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
- foot:"Lista de publicații se actualizează din ORCID.", views:"Vizualizări ale paginii: {n}", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
+ foot:"Lista de publicații se actualizează din ORCID.", views:"Vizualizări ale paginii: {n}", vis_h:"Vizitatori în ultimul an", vis_cap:"Vizitatori lunari, întregul site · total {n} · actualizat: {d}", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
  n:"{n} lucrări listate pe ORCID.", sel:"Publicații selectate", all:"Toate publicațiile (ORCID)", filter:"Filtrează după titlu, revistă sau an…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
 <p>Insectele reprezintă o parte importantă a organismelor de pe Pământ, iar himenopterele – viespi, albine, furnici și viespi parazitoide – formează unul dintre cele mai mari ordine de insecte. Cercetarea mea se concentrează asupra acestor insecte și a interacțiunilor lor: viespi galicole, calcidoide și albine solitare.</p>
@@ -1478,6 +1484,35 @@ function lecInit(p){ const t=LEC_T[LEC_UI], [c,sec]=lecRoute(p);
   if(saved) tryPw(saved, true); else $("#lecPw").focus();
 }
 
+/* ---------- visitor histogram on the Contact page ----------
+   Data: stats/visits.json, refreshed daily by .github/workflows/visit-stats.yml from GoatCounter
+   ({updated, days:{"YYYY-MM-DD":visitors}}). Bars = calendar months, last 12 incl. the current (paler) one. */
+function visitChart(){
+  const box = document.createElement("section"); box.className = "visits"; box.hidden = true;
+  $("#content").appendChild(box);
+  fetch("stats/visits.json", {cache:"no-cache"}).then(r=> r.ok ? r.json() : Promise.reject(r.status)).then(j=>{
+    if(!box.isConnected) return;
+    const now = new Date(), months = [];
+    for(let i=11;i>=0;i--){ const d=new Date(now.getFullYear(), now.getMonth()-i, 1);
+      months.push({k:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`, d, n:0}); }
+    const idx = Object.fromEntries(months.map((m,i)=>[m.k,i]));
+    for(const [day,n] of Object.entries(j.days||{})){ const i=idx[day.slice(0,7)]; if(i!==undefined) months[i].n += n; }
+    const max = Math.max(1, ...months.map(m=>m.n)), total = months.reduce((a,m)=>a+m.n,0);
+    const W=600, H=190, top=18, bot=22, bw=W/12, ch=H-top-bot;
+    const fmtM = new Intl.DateTimeFormat(lang, {month:"short"}), fmtN = new Intl.NumberFormat(lang);
+    const bars = months.map((m,i)=>{ const h = Math.round(m.n/max*ch), x = i*bw+6, y = top+ch-h;
+      const lab = fmtM.format(m.d).replace(/\.$/,"") + (m.d.getMonth()===0||i===0 ? " ’"+String(m.d.getFullYear()).slice(2) : "");
+      return `<g><title>${lab}: ${fmtN.format(m.n)}</title><rect class="bar${i===11?" cur":""}" x="${x}" y="${y}" width="${bw-12}" height="${Math.max(h, m.n?1:0)}" rx="2"/>`
+        + `<text x="${x+(bw-12)/2}" y="${y-5}" text-anchor="middle">${m.n?fmtN.format(m.n):""}</text>`
+        + `<text x="${x+(bw-12)/2}" y="${H-6}" text-anchor="middle">${lab}</text></g>`; }).join("");
+    const upd = j.updated ? new Date(j.updated).toLocaleDateString(lang) : "–";
+    box.innerHTML = `<h3>${T[lang].vis_h}</h3>
+<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${T[lang].vis_h}"><line x1="0" x2="${W}" y1="${top+ch+.5}" y2="${top+ch+.5}" stroke="var(--line)"/>${bars}</svg>
+<p class="note cap">${T[lang].vis_cap.replace("{n}", fmtN.format(total)).replace("{d}", upd)}</p>`;
+    box.hidden = false;
+  }).catch(()=>{});
+}
+
 function route(){
   let p = location.hash.slice(1) || "home";
   if(!PAGES.includes(p) && !lecRoute(p)) p = "home";
@@ -1496,6 +1531,7 @@ function route(){
   if(p.startsWith("rambling-")) loadTrip(p.slice(9));
   if(p==="activities") loadActOrcid();
   if(lecRoute(p)) lecInit(p);
+  if(p==="contact") visitChart();
   countView(p); showViews(p);
   $("#menu").classList.remove("open");
 }
