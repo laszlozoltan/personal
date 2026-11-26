@@ -217,6 +217,7 @@ ul.pubs .jr{font-style:italic}
 @media (max-width:520px){.cvt{grid-template-columns:1fr}.cvt .d{border-bottom:0;padding-bottom:0}}
 .topic{border-bottom:1px solid var(--line);padding-bottom:6px}
 .note{font-size:14px;color:var(--muted)}
+#content .views{margin:32px 0 0;padding-top:10px;border-top:1px solid var(--line);font:13px "Open Sans",sans-serif;color:var(--muted)}
 .filter{width:100%;max-width:340px;padding:7px 10px;border:1px solid var(--line);background:var(--box);color:var(--ink);font:14px "Open Sans",sans-serif;margin:4px 0 10px}
 
 /* sidebar */
@@ -354,7 +355,7 @@ hu:{
  m_students:"Szakdolgozóknak", m_courses:"Oktatott tantárgyak", m_contact:"Kapcsolat", m_lect:"Tananyagok hallgatóknak 🔒",
  w_search:"Keresés a közleményekben", search_ph:"Keresés…", w_recent:"Legutóbbi közlemények", w_topics:"Kutatási témák", w_links:"Linkek",
  tp1:"Rózsagubacsok", tp2:"Akácmagdarazsak", tp3:"Magányos méhek", tp4:"Fémfürkészek és tájhasználat", tp5:"Szitakötők",
- foot:"A közleménylista az ORCID-ból frissül.", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
+ foot:"A közleménylista az ORCID-ból frissül.", views:"Az oldal megtekintései: {n}", loading:"Betöltés…", err:"A lista most nem tölthető be – a teljes lista az ORCID-on: ",
  n:"{n} közlemény az ORCID-on.", sel:"Válogatott közlemények", all:"Összes közlemény (ORCID)", filter:"Szűrés cím, folyóirat vagy év szerint…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
 <p>A Föld élőlényeinek jelentős részét a rovarok teszik ki, ezen belül a hártyásszárnyúak (darazsak, méhek, hangyák és parazitoid darazsak) az egyik legnagyobb rend. Kutatásaim középpontjában ezek a rovarok és kapcsolataik állnak: a gubacsképző darazsak, a fémfürkészek és a magányos méhek.</p>
@@ -380,7 +381,7 @@ en:{
  m_students:"For thesis students", m_courses:"Courses", m_contact:"Contact", m_lect:"Materials for students 🔒",
  w_search:"Search publications", search_ph:"Search…", w_recent:"Recent publications", w_topics:"Research topics", w_links:"Links",
  tp1:"Rose galls", tp2:"Black locust seed wasps", tp3:"Solitary bees", tp4:"Chalcids and land use", tp5:"Dragonflies and damselflies",
- foot:"Publication list updates from ORCID.", loading:"Loading…", err:"Could not load the list right now – full record on ",
+ foot:"Publication list updates from ORCID.", views:"Page views: {n}", loading:"Loading…", err:"Could not load the list right now – full record on ",
  n:"{n} works listed on ORCID.", sel:"Selected publications", all:"All publications (ORCID)", filter:"Filter by title, journal or year…",
  home:`<h2>Zoltán László</h2>${PORTRAIT}
 <p>Insects make up a large share of Earth's organisms, and Hymenoptera – wasps, bees, ants and parasitoid wasps – is one of the largest insect orders. My research focuses on these insects and their interactions: gall wasps, chalcid wasps and solitary bees.</p>
@@ -406,7 +407,7 @@ ro:{
  m_students:"Pentru studenți", m_courses:"Discipline predate", m_contact:"Contact", m_lect:"Materiale pentru studenți 🔒",
  w_search:"Caută în publicații", search_ph:"Caută…", w_recent:"Publicații recente", w_topics:"Teme de cercetare", w_links:"Linkuri",
  tp1:"Gale de trandafir", tp2:"Viespi ale semințelor de salcâm", tp3:"Albine solitare", tp4:"Calcidoide și utilizarea terenului", tp5:"Odonate",
- foot:"Lista de publicații se actualizează din ORCID.", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
+ foot:"Lista de publicații se actualizează din ORCID.", views:"Vizualizări ale paginii: {n}", loading:"Se încarcă…", err:"Lista nu poate fi încărcată acum – lista completă pe ",
  n:"{n} lucrări listate pe ORCID.", sel:"Publicații selectate", all:"Toate publicațiile (ORCID)", filter:"Filtrează după titlu, revistă sau an…",
  home:`<h2>László Zoltán</h2>${PORTRAIT}
 <p>Insectele reprezintă o parte importantă a organismelor de pe Pământ, iar himenopterele – viespi, albine, furnici și viespi parazitoide – formează unul dintre cele mai mari ordine de insecte. Cercetarea mea se concentrează asupra acestor insecte și a interacțiunilor lor: viespi galicole, calcidoide și albine solitare.</p>
@@ -1311,7 +1312,7 @@ function pubsPage(){
 /* ---------- visit statistics (GoatCounter) ----------
    Put your GoatCounter code here (the "xxx" in https://xxx.goatcounter.com); empty = no statistics are collected.
    Every page of the site (each #hash) is counted as its own path, e.g. /rambling-kazakhstan. */
-const GC_CODE = "";
+const GC_CODE = "laszlozoltan";
 if(GC_CODE){ window.goatcounter = {no_onload:true};
   const sc=document.createElement("script"); sc.async=true; sc.src="https://gc.zgo.at/count.js";
   sc.dataset.goatcounter=`https://${GC_CODE}.goatcounter.com/count`; document.head.appendChild(sc); }
@@ -1319,6 +1320,17 @@ let gcLast = null;
 function countView(p){ if(!GC_CODE || p===gcLast) return; gcLast = p;
   const send=(n)=>{ if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:"/"+p, title:document.title});
     else if(n<50) setTimeout(()=>send(n+1),200); }; send(0); }
+/* visible view counter at the bottom of every subpage (not on the home page).
+   Needs GC_CODE above AND, in GoatCounter: Settings → "Allow adding visitor counts on your website". */
+function showViews(p){
+  if(!GC_CODE || p==="home") return;
+  const c = $("#content"), el = document.createElement("p");
+  el.className = "views"; el.id = "views"; el.hidden = true; c.appendChild(el);
+  fetch(`https://${GC_CODE}.goatcounter.com/counter/${encodeURIComponent("/"+p)}.json`)
+    .then(r=> r.ok ? r.json() : r.status===404 ? {count:"1"} : Promise.reject(r.status))
+    .then(j=>{ if(!el.isConnected) return; el.textContent = T[lang].views.replace("{n}", j.count); el.hidden = false; })
+    .catch(()=>{});
+}
 
 /* ---------- course materials for students (one password per course) ----------
    Pages: #lectures (list of courses) and #lectures-<course>-<section>, section = lectures | labs | other.
@@ -1484,7 +1496,7 @@ function route(){
   if(p.startsWith("rambling-")) loadTrip(p.slice(9));
   if(p==="activities") loadActOrcid();
   if(lecRoute(p)) lecInit(p);
-  countView(p);
+  countView(p); showViews(p);
   $("#menu").classList.remove("open");
 }
 
